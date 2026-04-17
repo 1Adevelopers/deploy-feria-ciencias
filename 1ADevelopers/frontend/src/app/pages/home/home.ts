@@ -5,7 +5,7 @@ import { Contact } from '../contact/contact';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Contact ],
+  imports: [Header, Contact],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
