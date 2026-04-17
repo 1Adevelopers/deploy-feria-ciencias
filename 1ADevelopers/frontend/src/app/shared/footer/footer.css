@@ -1,0 +1,27 @@
+footer {
+    letter-spacing: 0.5px;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.tracking-wider {
+    letter-spacing: 2px;
+}
+
+/* Tipografía un poco más pequeña para los créditos legales */
+.x-small {
+    font-size: 0.75rem;
+}
+
+/* Opcional: un detalle sutil en color verde para conectar con el tema */
+footer strong {
+    color: #2d5a27; /* Un verde bosque profundo */
+    font-weight: 600;
+}
+
+/* Línea superior sutil */
+.border-top {
+    border-top: 1px solid #e0e0e0 !important;
+}
