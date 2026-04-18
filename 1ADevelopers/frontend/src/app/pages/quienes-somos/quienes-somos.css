@@ -1,0 +1,27 @@
+.quienes-section {
+    background-color: #f8f9fa;
+    min-height: 60vh;
+    border-radius: 10px;
+    margin: 2rem;
+    padding: 2rem;
+}
+
+.text-forest {
+    color: #2d5a27;
+    font-weight: 600;
+    border-bottom: 2px solid #a3b18a;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.btn-nature {
+    background-color: #4f772d;
+    border-color: #4f772d;
+    color: white;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-nature:hover {
+    background-color: #31572c;
+}
