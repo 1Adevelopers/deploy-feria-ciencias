@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+.ep-wrap {
+  min-height: 100vh;
+  background: #f4f4f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  padding: 2rem 1rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ep-bosque {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
+.ep-suelo {
+  width: 100%;
+  max-width: 680px;
+  height: 1.5px;
+  background: #b5c4a0;
+  margin-bottom: 2.8rem;
+}
+
+.ep-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #5a7a2e;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+
+.ep-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #2a3a1a;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.ep-title em {
+  font-style: italic;
+  color: #5a7a2e;
+}
+
+.ep-desc {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: #6b7c5a;
+  line-height: 1.9;
+  max-width: 340px;
+}
