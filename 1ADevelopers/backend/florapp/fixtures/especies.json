@@ -1,0 +1,12 @@
+[
+  {
+    "model": "florapp.especieplanta",
+    "pk": 1,
+    "fields": {
+      "nombre_comun": "Algarrobo",
+      "nombre_cientifico": "Prosopis alba",
+      "categoria": "árbol",
+      "descripcion": "Árbol siempre verde de la familia de las papilionáceas, de ocho a diez metros de altura, con copa de ramas irregulares y tortuosas, hojas lustrosas y coriáceas, flores purpúreas, y cuyo fruto es la algarroba. Originario de Oriente, se cría en regiones marítimas templadas y florece en otoño e invierno."
+    }
+  }
+]
