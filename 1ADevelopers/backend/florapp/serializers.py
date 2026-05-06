@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from .models import EspeciePlanta
+from .models import Especie, CategoriaEspecie
 
-class EspeciePlantaSerializer(serializers.ModelSerializer):
+class CategoriaEspecieSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EspeciePlanta
+        model = CategoriaEspecie
+        fields = '__all__'
+
+class EspecieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Especie
         fields = '__all__'
