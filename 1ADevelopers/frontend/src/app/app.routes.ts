@@ -5,11 +5,13 @@ import { Contact } from './pages/contact/contact';
 import { Notfound404 } from './pages/notfound404/notfound404';
 import { Enproceso } from './shared/enproceso/enproceso';
 import { Dashboard } from './pages/dashboard/dashboard';
+import { IniciarSesionComponent } from './pages/auth/login/login';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
+  { path: 'login', component: IniciarSesionComponent },
   { path: 'dashboard', component: Dashboard },
   { path: 'quienes-somos', component: QuienesSomos },
   { path: 'galeria', component:  Enproceso},
