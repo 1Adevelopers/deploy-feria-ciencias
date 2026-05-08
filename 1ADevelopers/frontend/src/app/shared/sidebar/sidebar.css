@@ -1,0 +1,31 @@
+/* Estilo para el enlace activo */
+.active-link {
+background-color: rgba(255, 255, 255, 0.15);
+  border-left: 5px solid #f4d35e; /* El amarillo de acento de FlorApp */
+font-weight: bold;
+}
+
+/* Efecto al pasar el mouse por los enlaces */
+.nav-link:hover {
+background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Colores de acento para los iconos */
+.text-accent-yellow {
+color: #f4d35e !important;
+}
+
+.text-accent-blue {
+color: #6ecbf5 !important;
+}
+
+/* Transición suave para los efectos */
+.transition-all {
+transition: all 0.2s ease-in-out;
+}
+
+/* Ajuste extra para los iconos de Bootstrap */
+.nav-link i {
+min-width: 25px;
+text-align: center;
+}
