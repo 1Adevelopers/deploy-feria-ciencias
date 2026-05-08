@@ -1,1 +1,53 @@
-<p>sidebar works!</p>
+<nav class="sidebar-container d-flex flex-column p-3 text-white"
+    style="width: 280px; background-color: #3D8A2E; min-height: 100vh; box-shadow: 4px 0 10px rgba(0,0,0,0.1);">
+
+    <!-- Perfil de Usuario -->
+    <div class="text-center mb-5 mt-4">
+        <div class="position-relative d-inline-block mb-2">
+            <!-- Imagen circular con borde blanco -->
+            <img src="https://ui-avatars.com/api/?name=Admin&background=61B045&color=fff&rounded=true"
+                alt="Admin Avatar" class="rounded-circle border border-3 border-white shadow-sm" width="90">
+            <span
+                class="position-absolute bottom-0 end-0 bg-success border border-2 border-white rounded-circle p-2"></span>
+        </div>
+        <p class="text-uppercase small fw-bold opacity-75 m-0"
+            style="letter-spacing: 2px; font-family: 'Montserrat', sans-serif;">
+            admin
+        </p>
+    </div>
+
+    <hr class="opacity-25 mb-4">
+
+    <!-- Navegación -->
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item mb-2">
+            <span class="text-uppercase x-small fw-bold opacity-50 px-3 d-block mb-2" style="font-size: 0.7rem;">Gestión
+                Principal</span>
+        </li>
+
+        <!-- Enlace a Usuarios -->
+        <li class="nav-item">
+            <a routerLink="/admin/usuarios" routerLinkActive="active-link"
+                class="nav-link text-white d-flex align-items-center py-3 px-3 rounded-3 transition-all mb-1">
+                <i class="bi bi-people-fill me-3 fs-5 text-accent-yellow"></i>
+                <span class="fw-medium">USUARIOS</span>
+            </a>
+        </li>
+
+        <!-- Enlace a Plantas -->
+        <li class="nav-item mt-2">
+            <a routerLink="/admin/plantas" routerLinkActive="active-link"
+                class="nav-link text-white d-flex align-items-center py-3 px-3 rounded-3 transition-all">
+                <i class="bi bi-tree-fill me-3 fs-5 text-accent-blue"></i>
+                <span class="fw-medium">PLANTAS</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Footer del Sidebar -->
+    <div class="mt-auto p-2">
+        <button class="btn btn-link text-white text-decoration-none w-100 d-flex align-items-center opacity-75">
+            <i class="bi bi-box-arrow-left me-2"></i> Salir del Sistema
+        </button>
+    </div>
+</nav>
