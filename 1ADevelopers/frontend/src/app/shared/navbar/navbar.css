@@ -1,7 +1,26 @@
+:root {
+  --color-amarillo: #F0C017;
+  --color-celeste: #6ECBF5;
+  --color-violeta: #9B6EF3;
+  --color-naranja: #F08A4B;
+  --color-verde: #61B045;
+  --color-fondo-acento: #EDF2EB;
+}
+
+*{
+  font-family: 'montserrat', sans-serif;
+}
+
 nav {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.logo-nav {
+  height: 35px;
+  width: auto;
+  align-self: center;
 }
 
 .user-icon svg {
@@ -13,5 +32,66 @@ nav {
 .user-icon svg:hover {
   color: #1b5e20;
   transform: scale(1.1);
+}
+
+.nav-link {
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}
+
+a{
+  text-decoration: none;
+  list-style: none;
+}
+
+.btn-home {
+  display: flex;
+  color: white;
+  background-color: #F0C017;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn-quienes-somos{
+  display: flex;
+  color: white;
+  background-color: #6ECBF5;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn-galeria{
+  display: flex;
+  color: white;
+  background-color: #9B6EF3;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn-contacto{
+  display: flex;
+  color: white;
+  background-color: #F08A4B;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn-login{
+  display: flex;
+  color: white;
+  background-color: #61B045;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
