@@ -1,16 +1,3 @@
-:root {
-  --color-amarillo: #F0C017;
-  --color-celeste: #6ECBF5;
-  --color-violeta: #9B6EF3;
-  --color-naranja: #F08A4B;
-  --color-verde: #61B045;
-  --color-fondo-acento: #EDF2EB;
-}
-
-*{
-  font-family: 'montserrat', sans-serif;
-}
-
 nav {
   position: sticky;
   top: 0;
@@ -23,7 +10,7 @@ nav {
   align-self: center;
 }
 
-.user-icon svg {
+/* .user-icon svg {
   font-size: 24px;
   color: #2e7d32;
   transition: 0.3s;
@@ -33,65 +20,34 @@ nav {
   color: #1b5e20;
   transform: scale(1.1);
 }
-
+ */
 .nav-link {
   justify-content: center;
   align-items: center;
   font-weight: bolder;
 }
 
-a{
+a {
   text-decoration: none;
   list-style: none;
 }
 
 .btn-home {
-  display: flex;
-  color: white;
-  background-color: #F0C017;
-  padding: 5px 15px;
-  border-radius: 10px;
-  font-weight: bolder;
-  cursor: pointer;
+  background-color: var(--color-amarillo);
 }
 
-.btn-quienes-somos{
-  display: flex;
-  color: white;
-  background-color: #6ECBF5;
-  padding: 5px 15px;
-  border-radius: 10px;
-  font-weight: bolder;
-  cursor: pointer;
+.btn-quienes-somos {
+  background-color: var(--color-celeste);
 }
 
-.btn-galeria{
-  display: flex;
-  color: white;
-  background-color: #9B6EF3;
-  padding: 5px 15px;
-  border-radius: 10px;
-  font-weight: bolder;
-  cursor: pointer;
+.btn-galeria {
+  background-color: var(--color-violeta);
 }
 
-.btn-contacto{
-  display: flex;
-  color: white;
-  background-color: #F08A4B;
-  padding: 5px 15px;
-  border-radius: 10px;
-  font-weight: bolder;
-  cursor: pointer;
+.btn-contacto {
+  background-color: var(--color-naranja);
 }
 
-.btn-login{
-  display: flex;
-  color: white;
-  background-color: #61B045;
-  padding: 5px 15px;
-  border-radius: 10px;
-  font-weight: bolder;
-  cursor: pointer;
+.btn-login {
+  background-color: var(--color-verde2);
 }
-
