@@ -59,13 +59,13 @@ export class IniciarSesionComponent {
       password === '123456'
     ) {
 
-      alert('¡Bienvenido a Flora Autóctona! 🌿');
+      alert('¡Bienvenido a Flora Autóctona!');
 
       this.router.navigate(['/dashboard']);
 
     } else {
 
-      alert('Correo o contraseña incorrectos ❌');
+      alert('Correo o contraseña incorrectos');
 
     }
 
