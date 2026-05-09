@@ -1,57 +1,36 @@
 /* Contenedor principal */
 .contact-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: #ffffff;
-    border: 1px solid #e9ecef;
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
 }
 
 /* Títulos con color "Bosque" */
 .text-forest {
-    color: #2d5a27;
-    font-weight: 600;
-    border-bottom: 2px solid #a3b18a;
-    display: inline-block;
-    padding-bottom: 5px;
+  color: #2d5a27;
+  font-weight: 600;
+  border-bottom: 2px solid #a3b18a;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 /* Estilización de los campos de entrada */
 .custom-input {
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    padding: 0.75rem;
-    transition: all 0.3s ease;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
 }
 
 .custom-input:focus {
-    border-color: #a3b18a; /* Verde oliva suave */
-    box-shadow: 0 0 0 0.25rem rgba(163, 177, 138, 0.25);
-    outline: none;
-}
-
-/* Botón con estilo orgánico */
-.btn-nature {
-    background-color: #4f772d; /* Verde monte */
-    border-color: #4f772d;
-    color: white;
-    font-weight: 500;
-    border-radius: 30px; /* Bordes muy redondeados */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-nature:hover {
-    background-color: #31572c;
-    border-color: #31572c;
-    color: white;
-    transform: translateY(-1px);
-}
-
-.btn-nature:active {
-    transform: translateY(0);
+  border-color: #a3b18a; /* Verde oliva suave */
+  box-shadow: 0 0 0 0.25rem rgba(163, 177, 138, 0.25);
+  outline: none;
 }
 
 /* Estilo para las etiquetas */
 .form-label {
-    color: #495057;
-    font-size: 0.95rem;
+  color: #495057;
+  font-size: 0.95rem;
 }

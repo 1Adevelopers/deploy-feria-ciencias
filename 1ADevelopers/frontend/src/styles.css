@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-amarillo: #f0c017;
+  --color-celeste: #6ecbf5;
+  --color-violeta: #9b6ef3;
+  --color-naranja: #f08a4b;
+  --color-verde1: #3d8a2e;
+  --color-verde2: #61b045;
+  --color-fondo: #edf2eb;
+  --color-salmon: #f4d3bb;
+  --color-salmon-claro: #f3eae4;
+
+  --font-general: 'Montserrat', sans-serif;
+  --font-titulos: 'Grandstander', cursive;
+}
+
+body {
+  font-family: var(--font-general);
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-titulos);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.btn {
+  display: inline-flex;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.btn-verde {
+  background-color: var(--color-verde1);
+}
+
+.btn-verde:hover {
+  background-color: #295c1f;
+  color: white;
+}
