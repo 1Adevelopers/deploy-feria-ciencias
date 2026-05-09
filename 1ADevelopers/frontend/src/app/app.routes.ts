@@ -7,6 +7,7 @@ import { Enproceso } from './shared/enproceso/enproceso';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { PlantList } from './pages/plants/plant-list/plant-list';
 import { UserList } from './pages/users/user-list/user-list';
+import { UserForm } from './pages/users/user-form/user-form';
 import { IniciarSesionComponent } from './pages/auth/login/login';
 
 
@@ -17,7 +18,8 @@ export const routes: Routes = [
   { path: 'admin', component: Dashboard, 
     children: [
       { path: 'plantas', component: PlantList },
-      { path: 'usuarios', component: UserList }
+      { path: 'usuarios', component: UserList },
+      { path: 'usuarios/nuevo', component: UserForm },
     ]
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },

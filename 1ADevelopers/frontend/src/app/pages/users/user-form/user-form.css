@@ -1,0 +1,108 @@
+/* Contenedor principal estilo WP */
+.wp-form-container {
+    background-color: #f1f1f1; /* Gris clásico de WP */
+    padding: 20px 40px;
+    font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
+    color: #3c434a;
+    min-height: 100vh;
+}
+
+.wp-form-container h2 {
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #646970;
+    margin-bottom: 25px;
+}
+
+/* Estructura de tabla para los inputs */
+.wp-form {
+    max-width: 800px;
+    background-color: transparent;
+}
+
+.form-row {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+/* Etiquetas a la izquierda */
+.form-row label {
+    width: 250px;
+    font-weight: 600;
+    font-size: 14px;
+    padding-top: 5px;
+    color: #2c3338;
+}
+
+/* Inputs a la derecha */
+.input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    max-width: 400px;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 2;
+    color: #32373c;
+    background-color: #fff;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    box-shadow: 0 0 0 transparent;
+    transition: border-color 0.1s ease-in-out;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: #3d8a2e; /* Verde FlorApp en el foco */
+    box-shadow: 0 0 0 1px #3d8a2e;
+    outline: none;
+}
+
+/* Textos de error de validación */
+.error-text {
+    color: #d63638; /* Rojo clásico de error de WP */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Botón estilo WP pero con el verde de la marca */
+.form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+.wp-button {
+    background-color: #3d8a2e;
+    color: #fff;
+    border: 1px solid #3d8a2e;
+    border-radius: 3px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 2.15384615;
+    cursor: pointer;
+}
+
+.wp-button:hover {
+    background-color: #61b045;
+    border-color: #61b045;
+}
+
+.wp-button:disabled {
+    background-color: #a7d0a1;
+    border-color: #a7d0a1;
+    cursor: not-allowed;
+}
