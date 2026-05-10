@@ -10,6 +10,7 @@ import { UserList } from './pages/users/user-list/user-list';
 import { UserForm } from './pages/users/user-form/user-form';
 import { IniciarSesionComponent } from './pages/auth/login/login';
 import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
+import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'plantas', component: PlantList },
       { path: 'usuarios', component: UserList },
       { path: 'usuarios/nuevo', component: UserForm },
+      { path: 'docentes', component: DocenteDashboard },
     ]
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
