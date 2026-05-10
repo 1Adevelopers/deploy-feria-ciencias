@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Ficha
 
-# Register your models here.
+@admin.register(Ficha)
+class FichaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'especie', 'estado_publicacion', 'fecha_creacion')

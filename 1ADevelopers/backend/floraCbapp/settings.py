@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'flora',
     'interacciones',
     'fichas',
-    'florapp',
 ]
 
 MIDDLEWARE = [
