@@ -9,7 +9,7 @@ import { PlantList } from './pages/plants/plant-list/plant-list';
 import { UserList } from './pages/users/user-list/user-list';
 import { UserForm } from './pages/users/user-form/user-form';
 import { IniciarSesionComponent } from './pages/auth/login/login';
-
+import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +20,7 @@ export const routes: Routes = [
       { path: 'plantas', component: PlantList },
       { path: 'usuarios', component: UserList },
       { path: 'usuarios/nuevo', component: UserForm },
+      { path: 'docentes', component: DocenteDashboard },
     ]
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
