@@ -9,6 +9,7 @@ import { PlantList } from './pages/plants/plant-list/plant-list';
 import { UserList } from './pages/users/user-list/user-list';
 import { UserForm } from './pages/users/user-form/user-form';
 import { IniciarSesionComponent } from './pages/auth/login/login';
+import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
 
 
 export const routes: Routes = [
@@ -24,7 +25,7 @@ export const routes: Routes = [
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: 'quienes-somos', component: QuienesSomos },
-  { path: 'galeria', component:  Enproceso},
+  { path: 'galeria', component:  Galeriafichas},
   { path: 'contacto', component: Contact },
   { path: '**', component: Notfound404 },
 ];
