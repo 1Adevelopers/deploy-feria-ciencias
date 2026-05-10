@@ -9,6 +9,9 @@
   --color-fondo: #edf2eb;
   --color-salmon: #f4d3bb;
   --color-salmon-claro: #f3eae4;
+  --color-violeta-pastel: #decffb;
+  --color-verde-pastel: #cae5c1;
+  --color-amarillo-pastel: #fae9af;
 
   --font-general: 'Montserrat', sans-serif;
   --font-titulos: 'Grandstander', cursive;
@@ -47,4 +50,21 @@ h6 {
 .btn-verde:hover {
   background-color: #295c1f;
   color: white;
+}
+
+.etiqueta {
+  color: #000;
+}
+
+.etiqueta-verde {
+  background-color: var(--color-verde-pastel);
+}
+.etiqueta-salmon {
+  background-color: var(--color-salmon);
+}
+.etiqueta-violeta {
+  background-color: var(--color-violeta-pastel);
+}
+.etiqueta-amarilla {
+  background-color: var(--color-amarillo-pastel);
 }
