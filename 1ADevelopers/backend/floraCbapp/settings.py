@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'usuarios',
     'flora',
     'interacciones',
+    'fichas',
     'florapp',
 ]
 
