@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'usuarios',
     'flora',
+    'interacciones',
     'florapp',
 ]
 
