@@ -102,31 +102,29 @@
 </html> -->
 
 <div class="d-flex min-vh-100 overflow-hidden">
-    <!-- 1. Llamamos a tu componente Sidebar -->
-    <app-sidebar></app-sidebar>
+  <!-- 1. Llamamos a tu componente Sidebar -->
+  <app-sidebar></app-sidebar>
 
-    <!-- 2. Área de Contenido Principal -->
-    <div class="flex-grow-1 overflow-auto" style="background-color: #EDF2EB;">
-        <div class="container-fluid p-4">
-
-            <!-- Cabecera del Panel -->
-            <header class="mb-4 d-flex justify-content-between align-items-center">
-                <div>
-                    <h1 class="display-6 fw-bold" style="font-family: 'Fredoka', sans-serif; color: #3D8A2E;">
-                        Panel de Control FlorApp
-                    </h1>
-                    <p class="text-muted">Gestionando la naturaleza de Córdoba.</p>
-                </div>
-                <span class="badge rounded-pill p-2 px-3" style="background-color: #F4D35E; color: #333;">
-                    <i class="bi bi-calendar3 me-2"></i> {{ today | date:'dd/MM/yyyy' }}
-                </span>
-            </header>
-
-            <!-- Aquí es donde Angular inyectará las listas de Plantas o Usuarios -->
-            <main class="card border-0 shadow-sm p-4 rounded-4" style="min-height: 80vh;">
-                <router-outlet></router-outlet>
-            </main>
-
+  <!-- 2. Área de Contenido Principal -->
+  <div class="flex-grow-1 overflow-auto" style="background-color: #edf2eb">
+    <div class="container-fluid p-4 mt-4">
+      <!-- Cabecera del Panel -->
+      <header class="mb-4 d-flex justify-content-between align-items-center mt-5">
+        <div>
+          <h1 class="display-6 fw-bold" style="font-family: 'Fredoka', sans-serif; color: #3d8a2e">
+            Panel de Control
+          </h1>
+          <p class="text-muted">Gestionando la naturaleza de Córdoba.</p>
         </div>
+        <span class="badge rounded-pill p-2 px-3" style="background-color: #f4d35e; color: #333">
+          <i class="bi bi-calendar3 me-2"></i> {{ today | date: 'dd/MM/yyyy' }}
+        </span>
+      </header>
+
+      <!-- Aquí es donde Angular inyectará las listas de Plantas o Usuarios -->
+      <main class="card border-0 shadow-sm p-4 rounded-4" style="min-height: 80vh">
+        <router-outlet></router-outlet>
+      </main>
     </div>
+  </div>
 </div>
