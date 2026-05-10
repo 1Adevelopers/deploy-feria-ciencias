@@ -8,3 +8,8 @@
 .container2 {
   justify-content: center;
 }
+
+
+.card{
+  min-height: 350px;
+}
