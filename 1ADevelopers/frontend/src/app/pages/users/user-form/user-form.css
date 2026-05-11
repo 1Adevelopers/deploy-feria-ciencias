@@ -66,22 +66,25 @@
 
 .input-wrapper input:focus,
 .input-wrapper select:focus {
-    border-color: #3d8a2e; /* Verde FlorApp en el foco */
+    border-color: #3d8a2e; 
     box-shadow: 0 0 0 1px #3d8a2e;
     outline: none;
 }
 
 /* Textos de error de validación */
 .error-text {
-    color: #d63638; /* Rojo clásico de error de WP */
+    color: #d63638; 
     font-size: 12px;
     margin-top: 5px;
 }
 
 /* Botón estilo WP pero con el verde de la marca */
 .form-actions {
+    display: flex; 
+    align-items: center; 
     margin-top: 30px;
     padding-top: 20px;
+    border-top: 1px solid #dcdcde; 
 }
 
 .wp-button {
@@ -92,13 +95,27 @@
     padding: 4px 12px;
     font-size: 13px;
     font-weight: 600;
-    line-height: 2.15384615;
+    line-height: 2.15;
     cursor: pointer;
+    transition: background-color 0.1s ease;
 }
 
 .wp-button:hover {
     background-color: #61b045;
     border-color: #61b045;
+}
+
+.cancel-link {
+    margin-left: 20px;      
+    color: #2271b1;         
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.cancel-link:hover {
+    color: #135e96;         
+    text-decoration: underline;
 }
 
 .wp-button:disabled {

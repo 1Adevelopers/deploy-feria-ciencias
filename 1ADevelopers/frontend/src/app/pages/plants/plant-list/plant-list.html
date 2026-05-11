@@ -1,5 +1,4 @@
 <div class="plant-container animate__animated animate__fadeIn">
-
     <header class="list-header">
         <div class="list-title-area">
             <h2>Plantas Nativas</h2>
@@ -22,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let planta of plantas">
+                @for (planta of plantas; track planta.id) {
+                <tr>
                     <td><img [src]="planta.imagen" class="rounded" width="50" height="50" style="object-fit: cover;">
                     </td>
                     <td class="fw-bold">{{ planta.nombreComun }}</td>
@@ -34,8 +34,8 @@
                                 class="bi bi-trash3-fill"></i> Borrar</button>
                     </td>
                 </tr>
-
-                <tr *ngIf="plantas.length === 0">
+                } @empty {
+                <tr>
                     <td colspan="5" class="text-center py-5">
                         <div class="py-4">
                             <i class="bi bi-tree text-muted opacity-25" style="font-size: 3rem;"></i>
@@ -43,6 +43,7 @@
                         </div>
                     </td>
                 </tr>
+                }
             </tbody>
         </table>
     </div>
