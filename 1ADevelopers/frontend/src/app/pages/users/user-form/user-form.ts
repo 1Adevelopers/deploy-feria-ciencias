@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -7,7 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-user-form',
   standalone:true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './user-form.html',
   styleUrl: './user-form.css',
 })
