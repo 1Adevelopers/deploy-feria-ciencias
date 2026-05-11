@@ -10,33 +10,36 @@
     </div>
 
     <div class="row g-4">
-      <div class="col-md-4" *ngFor="let ficha of fichas">
-        <div class="card rounded-4 shadow border-0" (click)="ficha.mostrar = !ficha.mostrar">
+      @for (ficha of fichas; track ficha){
+        <div class="col-md-4">
+          <div class="card rounded-4 shadow border-0" (click)="ficha.mostrar = !ficha.mostrar">
 
-          <ng-container *ngIf="!ficha.mostrar">
-            <img src="assets/fotos/nativas/algarrobo-0.webp" class="card-img-top rounded-top-4" alt="{{ ficha.nombreComun }}"/>
-            <div class="position-absolute top-0 end-0 p-2"><span class="badge rounded-pill etiqueta etiqueta-amarilla">Categoría</span></div>
-            <div class="card-body">
-              <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-              <p class="card-text">{{ ficha.nombreCientifico }}</p>
+
+            @if (!ficha.mostrar){
+                <img src="assets/fotos/nativas/algarrobo-0.webp" class="card-img-top rounded-top-4" alt="{{ ficha.nombreComun }}"/>
+                <div class="position-absolute top-0 end-0 p-2"><span class="badge rounded-pill etiqueta etiqueta-amarilla">Categoría</span></div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ ficha.nombreComun }}</h5>
+                  <p class="card-text">{{ ficha.nombreCientifico }}</p>
+                </div>
+              } @else {
+                  <div class="card-body">
+                    <h5 class="card-title">{{ ficha.nombreComun }}</h5>
+                    <p class="card-text">{{ ficha.nombreCientifico }}</p>
+                    <p> {{ ficha.descripcion }} </p>
+                </div>
+              }
             </div>
-          </ng-container>
+        </div> 
+      }
 
-            <ng-container *ngIf="ficha.mostrar">
-              <div class="card-body">
-                <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-                <p class="card-text">{{ ficha.nombreCientifico }}</p>
-                <p> {{ ficha.descripcion }} </p>
-            </div>
-          </ng-container>
-        </div>
-      </div> 
-
-      <div *ngIf="seleccionada" class="mt-4 p-3 border rounded bg-light">
+  @if (seleccionada) {
+      <div class="mt-4 p-3 border rounded bg-light">
         <h3>{{ seleccionada.nombre }}</h3>
         <p> {{ seleccionada.nombreCientifico}} </p>
         <p> {{ seleccionada.descripcion }} </p>
       </div>
+    }
     </div>
   </div>
 </section>
