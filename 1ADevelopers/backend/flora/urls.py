@@ -1,12 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import CategoriaViewSet, EspecieViewSet, ImagenEspecieViewSet
-
-router = DefaultRouter()
-router.register(r'categorias', CategoriaViewSet)
-router.register(r'especies', EspecieViewSet)
-router.register(r'imagenes', ImagenEspecieViewSet)
+from django.urls import path
+from .views import CategoriaViewSet, EspecieListarCrear, EspecieDetalle, ImagenEspecieViewSet
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('',EspecieListarCrear.as_view(), name='especie-listar-crear'),
+    path('<int:pk>',EspecieDetalle.as_view(), name='especie-detalle'),
 ]
