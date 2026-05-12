@@ -1,29 +1,56 @@
 <div class="contact-container shadow-sm p-4 rounded-4">
   <h2 class="h4 mb-4 text-forest">Contacto</h2>
 
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label fw-medium">Tu correo electrónico</label>
-    <input
-      type="email"
-      class="form-control custom-input"
-      id="exampleFormControlInput1"
-      placeholder="ejemplo@correo.com"
-    />
-  </div>
+  <form [formGroup]="form" (ngSubmit)="enviarConsulta()">
+    <div class="mb-3">
+      <label for="email" class="form-label fw-medium">Tu correo electrónico</label>
+      <input
+        type="email"
+        class="form-control custom-input"
+        id="email"
+        placeholder="ejemplo@correo.com"
+        formControlName="email"
+      />
 
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label fw-medium"
-      >Dejanos tu inquietud</label
-    >
-    <textarea
-      class="form-control custom-input"
-      id="exampleFormControlTextarea1"
-      rows="4"
-      placeholder="¿En qué podemos ayudarte?"
-    ></textarea>
-  </div>
+      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <div class="error">
+          @if (form.get('email')?.errors?.['required']) {
+            <small> El correo es obligatorio </small>
+          }
 
-  <div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-verde px-5" routerLink="/notfound404">Enviar consulta</button>
-  </div>
+          @if (form.get('email')?.errors?.['email']) {
+            <small> El formato del correo debe ser válido </small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="mensaje" class="form-label fw-medium">Dejanos tu inquietud</label>
+      <textarea
+        class="form-control custom-input"
+        id="mensaje"
+        rows="4"
+        placeholder="¿En qué podemos ayudarte?"
+        formControlName="mensaje"
+      ></textarea>
+      @if (form.get('mensaje')?.invalid && form.get('mensaje')?.touched) {
+        <div class="error">
+          @if (form.get('mensaje')?.errors?.['required']) {
+            <small> El mensaje es obligatorio </small>
+          }
+
+          @if (form.get('mensaje')?.errors?.['minlength']) {
+            <small> El mensaje requiere al menos 10 caracteres </small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-verde px-5" routerLink="/notfound404">
+        Enviar consulta
+      </button>
+    </div>
+  </form>
 </div>
