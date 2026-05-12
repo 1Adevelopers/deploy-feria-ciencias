@@ -4,7 +4,13 @@ nav {
   z-index: 1000;
 }
 
-.user-icon svg {
+.logo-nav {
+  height: 35px;
+  width: auto;
+  align-self: center;
+}
+
+/* .user-icon svg {
   font-size: 24px;
   color: #2e7d32;
   transition: 0.3s;
@@ -14,4 +20,34 @@ nav {
   color: #1b5e20;
   transform: scale(1.1);
 }
+ */
+.nav-link {
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}
 
+a {
+  text-decoration: none;
+  list-style: none;
+}
+
+.btn-home {
+  background-color: var(--color-amarillo);
+}
+
+.btn-quienes-somos {
+  background-color: var(--color-celeste);
+}
+
+.btn-galeria {
+  background-color: var(--color-violeta);
+}
+
+.btn-contacto {
+  background-color: var(--color-naranja);
+}
+
+.btn-login {
+  background-color: var(--color-verde2);
+}

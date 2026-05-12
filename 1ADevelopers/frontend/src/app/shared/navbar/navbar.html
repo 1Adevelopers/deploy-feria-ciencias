@@ -1,52 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-
-    <a class="navbar-brand" (click)="scrollTo('home')" style="cursor:pointer">
-      Flora Autóctona
+<nav class="navbar navbar-expand-lg position-absolute top-0 start-50 translate-middle-x w-100">
+  <div class="container-xl bg-white rounded-5 shadow p-2">
+    <a class="navbar-brand" (click)="scrollTo('home')" style="cursor: pointer">
+      <img src="assets/logo.png" alt="Logo" class="mt-n5 ms-3 logo-nav" />
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
       data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup"
       aria-expanded="false"
-      aria-label="Toggle navigation">
-
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
-
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav gap-2 align-items-right ms-auto">
+        <a class="nav-link" (click)="scrollTo('home')" class="btn btn-home"> Home </a>
 
-      <div class="navbar-nav">
+        <a class="nav-link" (click)="scrollTo('quienes-somos')" class="btn btn-quienes-somos">Quiénes Somos</a>
 
-        <a class="nav-link" (click)="scrollTo('home')" style="cursor:pointer">
-          Home
-        </a>
+        <a class="nav-link" (click)="scrollTo('contacto')" class="btn btn-contacto"> Contacto </a>
 
-        <a class="nav-link" (click)="scrollTo('quienes-somos')" style="cursor:pointer">
-          Quiénes Somos
-        </a>
+        <a class="nav-link" routerLink="/galeria" class="btn btn-galeria"> Fichas </a>
 
-        <a class="nav-link" routerLink="/galeria">
-          Galería
-        </a>
 
-        <a class="nav-link" (click)="scrollTo('contacto')" style="cursor:pointer">
-          Contacto
-        </a>
-
+        <a class="nav-link" routerLink="/login" class="btn btn-login me-3"> Iniciar sesión </a>
       </div>
 
-
-      <div class="ms-auto">
+      <!-- <div class="ms-auto">
         <a routerLink="/login" class="user-icon ">
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 </svg>
         </a>
 
-      </div>
-
+      </div>-->
     </div>
   </div>
 </nav>
