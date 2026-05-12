@@ -26,5 +26,6 @@ urlpatterns = [
     path('api/fichas/', include('fichas.urls')),
     path('api/especies/', include('flora.urls')),
     path('api/categorias/', include('flora.urls')),
+    path('api/imagen-especie/', include('flora.urls')),
     #path('api/', include('florapp.urls')), 
 ]

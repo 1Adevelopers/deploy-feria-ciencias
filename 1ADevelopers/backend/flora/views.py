@@ -66,6 +66,29 @@ class EspecieDetalle(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ImagenEspecieViewSet(viewsets.ModelViewSet):
-    queryset = ImagenEspecie.objects.all()
-    serializer_class = ImagenEspecieSerializer
+class ImagenEspecie(APIView):
+    def get(self, request):
+        ImagenEspecie = ImagenEspecie.objects.all()
+        serializer = ImagenEspecieSerializer(ImagenEspecie, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = ImagenEspecieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk):
+        ImagenEspecie = get_object_or_404(ImagenEspecie, pk=pk)
+        serializer = ImagenEspecieSerializer (ImagenEspecie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        ImagenEspecie = get_object_or_404(ImagenEspecie, pk=pk)
+        ImagenEspecie.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
