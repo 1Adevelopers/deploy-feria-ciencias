@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import ContactoInteraccionEdit, ContactoInteracciones
-
+from .views import ContactoDetalle, ContactoListarCrear
 
 
 urlpatterns = [
-    path('',ContactoInteracciones.as_view(), name='contacto-interacciones'),
-    path('<int:pk>',ContactoInteraccionEdit.as_view(), name='contacto-interaccion-edit'),
+   path('',ContactoListarCrear.as_view(), name='contacto-interacciones'),
+   path('<int:pk>/',ContactoDetalle.as_view(), name='contacto-interaccion-edit'),
 ]
