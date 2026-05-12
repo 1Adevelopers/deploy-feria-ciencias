@@ -1,10 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import ContactoViewSet
+from django.urls import path
+from .views import ContactoDetalle, ContactoListarCrear
 
-router = DefaultRouter()
-router.register(r'contacto', ContactoViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+   path('',ContactoListarCrear.as_view(), name='contacto-interacciones'),
+   path('<int:pk>/',ContactoDetalle.as_view(), name='contacto-interaccion-edit'),
 ]

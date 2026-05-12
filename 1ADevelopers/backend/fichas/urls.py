@@ -1,10 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import FichaViewSet
-
-router = DefaultRouter()
-router.register(r'fichas', FichaViewSet)
+from django.urls import path
+from .views import FichaListarCrear, FichaDetalle
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('',FichaListarCrear.as_view(), name='ficha-listar-crear'),
+    path('<int:pk>',FichaDetalle.as_view(), name='ficha-detalle'),
 ]
