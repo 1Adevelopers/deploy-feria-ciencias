@@ -19,6 +19,14 @@ class ContactoInteracciones(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
        
+       
+    
+class ContactoInteraccionEdit(APIView):
+    def get(self, request, pk):
+        contactoInteraccion = get_object_or_404(Contacto, pk=pk)
+        serializer = ContactoSerializer(contactoInteraccion)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     def put(self, request, pk):
         contactoInteraccion = get_object_or_404(Contacto, pk=pk)
         serializer = ContactoSerializer(contactoInteraccion, data=request.data)
@@ -30,4 +38,4 @@ class ContactoInteracciones(APIView):
     def delete(self, request, pk):
         contactoInteraccion = get_object_or_404(Contacto, pk=pk)
         contactoInteraccion.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)       
