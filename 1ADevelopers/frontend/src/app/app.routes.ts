@@ -11,6 +11,7 @@ import { UserForm } from './pages/users/user-form/user-form';
 import { IniciarSesionComponent } from './pages/auth/login/login';
 import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
 import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
+import { PlantForm } from './pages/plants/plant-form/plant-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
       { path: 'usuarios', component: UserList },
       { path: 'usuarios/nuevo', component: UserForm },
       { path: 'docentes', component: DocenteDashboard },
+      { path: 'nueva-planta', component: PlantForm },
     ],
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
