@@ -1,0 +1,125 @@
+<section class="pf-wrapper">
+
+    <header class="pf-header">
+        <div class="pf-header__logo-container">
+            <img src="public/FlorApp-10.png" alt="FlorApp Logo" class="pf-header__logo">
+        </div>
+        <div>
+            <h1 class="pf-header__title">Cargar nueva especie</h1>
+            <p class="pf-header__subtitle">Registrá una planta en el catálogo</p>
+        </div>
+    </header>
+
+    @if (submitStatus === 'success') {
+    <div class="pf-banner pf-banner--success" role="alert">
+        <span>✅</span>
+        <span>¡Especie registrada con éxito!</span>
+        <button class="pf-banner__close" (click)="onReset()">+</button>
+    </div>
+    }
+
+    @if (submitStatus === 'error') {
+    <div class="pf-banner pf-banner--error" role="alert">
+        <span>⚠️</span>
+        <span>{{ errorMessage }}</span>
+        <button class="pf-banner__close" (click)="submitStatus = 'idle'">+</button>
+    </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="pf-form">
+
+        <div class="pf-row">
+            <div class="pf-field">
+                <label class="pf-label" for="nombre_comun">
+                    Nombre común <span class="pf-required">*</span>
+                </label>
+                <input id="nombre_comun" class="pf-input"
+                    [class.pf-input--error]="hasError('nombre_comun', 'required') || hasError('nombre_comun', 'minlength') || hasError('nombre_comun', 'maxlength')"
+                    type="text" placeholder="ej. Peperina" formControlName="nombre_comun" autocomplete="off" />
+                @if (hasError('nombre_comun', 'required')) {
+                <span class="pf-error">Este campo es obligatorio.</span>
+                } @else if (hasError('nombre_comun', 'minlength')) {
+                }
+            </div>
+
+            <div class="pf-field">
+                <label class="pf-label" for="nombre_cientifico">
+                    Nombre científico <span class="pf-required">*</span>
+                </label>
+                <input id="nombre_cientifico" class="pf-input pf-input--italic"
+                    [class.pf-input--error]="hasError('nombre_cientifico', 'required') || hasError('nombre_cientifico', 'pattern')"
+                    type="text" placeholder="ej. Minthostachys verticillata" formControlName="nombre_cientifico"
+                    autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="pf-field">
+            <label class="pf-label" for="categoria">
+                Categoría <span class="pf-required">*</span>
+            </label>
+            <select id="categoria" class="pf-select" [class.pf-input--error]="hasError('categoria', 'required')"
+                formControlName="categoria">
+                <option [value]="null" disabled selected>— Seleccioná una categoría —</option>
+                @for (cat of categorias; track cat.id) {
+                <option [value]="cat.id">{{ cat.categoria }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="pf-field">
+            <label class="pf-label" for="descripcion">
+                Descripción <span class="pf-required">*</span>
+            </label>
+            <textarea id="descripcion" class="pf-textarea" [class.pf-input--error]="hasError('descripcion', 'required')"
+                rows="4" placeholder="Describí hábitat, usos, características morfológicas…"
+                formControlName="descripcion"></textarea>
+            <div class="pf-field-footer">
+                <span class="pf-counter">
+                    {{ form.get('descripcion')?.value?.length ?? 0 }}/2000
+                </span>
+            </div>
+        </div>
+
+        <fieldset class="pf-fieldset" formArrayName="imagenes">
+            <legend class="pf-legend">Cargar Imágenes</legend>
+            <span class="pf-legend__sub">Formatos permitidos: jpg, png, webp</span>
+
+            @for (img of imagenes.controls; track $index) {
+            <div class="pf-image-row" [formGroupName]="$index">
+                <div class="pf-image-preview">
+                    @if (getUrlValue($index) && !urlControl($index).errors) {
+                    <img [src]="getUrlValue($index)" alt="Preview" class="pf-preview-img" />
+                    } @else {
+                    <span class="pf-preview-placeholder">🖼️</span>
+                    }
+                </div>
+
+                <div class="pf-field pf-field--grow">
+                    <input class="pf-input" type="url" placeholder="https://ejemplo.com/foto.jpg" formControlName="url" />
+                </div>
+
+                <button type="button" class="pf-btn-icon" [disabled]="imagenes.length === 1"
+                    (click)="removeImagen($index)">✕</button>
+            </div>
+            }
+
+            @if (imagenes.length < maxImages) { <button type="button" class="pf-btn-add" (click)="addImagen()">
+                ＋ Imágenes
+                </button>
+                }
+        </fieldset>
+
+        <div class="pf-actions">
+            <button type="button" class="pf-btn pf-btn--ghost" (click)="onReset()">
+                Limpiar
+            </button>
+            <button type="submit" class="pf-btn pf-btn--primary" [disabled]="submitStatus === 'loading'">
+                @if (submitStatus === 'loading') {
+                <span class="pf-spinner"></span> Guardando…
+                } @else {
+                Registrar especie
+                }
+            </button>
+        </div>
+    </form>
+</section>

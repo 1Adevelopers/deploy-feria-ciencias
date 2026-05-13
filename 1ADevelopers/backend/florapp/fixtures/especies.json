@@ -1,12 +1,20 @@
 [
   {
-    "model": "florapp.especieplanta",
+    "model": "florapp.categoriaespecie",
     "pk": 1,
     "fields": {
-      "nombre_comun": "Algarrobo",
-      "nombre_cientifico": "Prosopis alba",
-      "categoria": "árbol",
-      "descripcion": "Árbol siempre verde de la familia de las papilionáceas, de ocho a diez metros de altura, con copa de ramas irregulares y tortuosas, hojas lustrosas y coriáceas, flores purpúreas, y cuyo fruto es la algarroba. Originario de Oriente, se cría en regiones marítimas templadas y florece en otoño e invierno."
+      "categoria": "arbol",
+      "descripcion": "Los árboles son plantas leñosas (con madera) de por lo menos 5 metros de altura, se caracterizan por la presencia de un tronco que se ramifica a cierta altura del suelo y ramas que forman una copa."
+    }
+  },
+  {
+    "model": "florapp.especie",
+    "pk": 1,
+    "fields": {
+      "nombre_comun": "Algarrobo Blanco",
+      "nombre_cientifico": "Neltuma alba",
+      "descripcion": "Árbol nativo de Argentina, de 6 a 15 metros de altura, con hojas que caen en invierno y vuelven en primavera. Sus flores amarillas atraen abejas y mariposas, y sus frutos dulces alimentan personas y animales.",
+      "categoria": 1
     }
   }
 ]

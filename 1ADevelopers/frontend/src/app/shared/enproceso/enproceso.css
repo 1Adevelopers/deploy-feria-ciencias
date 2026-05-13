@@ -5,12 +5,11 @@
 
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  background: #CAE5C1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 2rem;
-  font-family: Georgia, 'Times New Roman', serif;
+  padding: 40px 20px;
 }
 
 .inner {
@@ -29,40 +28,37 @@
   flex: 1;
 }
 
-.eyebrow {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: #97C459;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+.logo{
+  height: 80px;
+  margin-bottom: 10px;
 }
 
 .titulo {
-  font-family: Georgia, serif;
-  font-size: 2.4rem;
-  font-weight: 400;
-  color: #27500A;
-  line-height: 1.2;
-  margin-bottom: 0.3rem;
+  font-size: 50px;
+  font-family: 'montserrat', sans-serif;
+  font-weight: bold;
+  color: var(--color-verde1);
 }
 
-.titulo em {
-  font-style: italic;
-  color: #639922;
+.linea2 {
+  width: 400px;
+  height: 3px;
+  background: #a3b18a;
+  margin: 20px 0;
 }
 
 .linea {
   width: 32px;
-  height: 1px;
-  background: #C0DD97;
-  margin: 1.2rem 0;
+  height: 2px;
+  background: #a3b18a;
+  margin: 10px 0;
 }
 
 .descripcion {
-  font-size: 1rem;
-  color: #3B3B39;
+  font-size: 15px;
+  font-family: 'montserrat', sans-serif;
+  font-weight: thin;
+  color: black;
   line-height: 1.8;
 }
 

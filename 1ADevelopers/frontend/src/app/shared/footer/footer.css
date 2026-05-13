@@ -17,7 +17,7 @@ footer {
 
 /* Opcional: un detalle sutil en color verde para conectar con el tema */
 footer strong {
-    color: #2d5a27; /* Un verde bosque profundo */
+    color: var(--color-verde1); /* Un verde bosque profundo */
     font-weight: 600;
 }
 

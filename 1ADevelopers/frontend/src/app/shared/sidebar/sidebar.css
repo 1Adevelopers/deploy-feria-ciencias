@@ -1,0 +1,42 @@
+.sidebar-contenedor {
+  background-color: var(--color-verde1);
+  width: 280px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.texto-perfil {
+  letter-spacing: 2px;
+  font-size: 22px;
+}
+
+/* Estilo para el enlace activo */
+.active-link {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-left: 5px solid var(--color-amarillo);
+  font-weight: bold;
+}
+
+/* Efecto al pasar el mouse por los enlaces */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Colores de acento para los iconos */
+.text-accent-yellow {
+  color: var(--color-amarillo) !important;
+}
+
+.text-accent-blue {
+  color: var(--color-celeste) !important;
+}
+
+/* Transición suave para los efectos */
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Ajuste extra para los iconos de Bootstrap */
+.nav-link i {
+  min-width: 25px;
+  text-align: center;
+}

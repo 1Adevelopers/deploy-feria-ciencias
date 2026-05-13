@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import EspecieDetailView, EspecieListCreateView
 
 urlpatterns = [
-    path('api/especies/', views.especies_list, name='especies-list'),
+    path('especies/', EspecieListCreateView.as_view(), name='especies-lista'),
 ]

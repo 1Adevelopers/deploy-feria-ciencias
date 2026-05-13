@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'florapp',
+    'usuarios',
+    'flora',
+    'interacciones',
+    'fichas',
 ]
 
 MIDDLEWARE = [

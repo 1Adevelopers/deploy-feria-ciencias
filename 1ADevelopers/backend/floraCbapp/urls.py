@@ -19,5 +19,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('florapp.urls')), 
+    path('api/usuarios/', include('usuarios.urls')),
+    path('api/flora/', include('flora.urls')),
+    path('api/galeria/', include('fichas.urls')),
+    path('api/interacciones/', include('interacciones.urls')),
+    path('api/fichas/', include('fichas.urls')),
+    path('api/especies/', include('flora.urls')),
+    path('api/categorias/', include('flora.urls')),
+    path('api/imagen-especie/', include('flora.urls')),
+    #path('api/', include('florapp.urls')), 
 ]
