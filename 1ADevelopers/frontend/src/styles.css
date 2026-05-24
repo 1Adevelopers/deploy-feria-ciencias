@@ -119,3 +119,19 @@ h6 {
     background-color: #61B045;
     transform: translateY(-1px);
 }
+
+/* Estilos para el dashboard principal */
+
+.titulo-panel {
+    font-family: 'Fredoka', sans-serif; 
+    color: #3d8a2e;
+}
+
+.badge-fecha {
+    background-color: #f4d35e; 
+    color: #333;
+}
+
+.contenedor-principal {
+    min-height: 80vh;
+}
