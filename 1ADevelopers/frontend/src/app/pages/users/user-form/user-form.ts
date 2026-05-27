@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
-  standalone:true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './user-form.html',
   styleUrl: './user-form.css',
