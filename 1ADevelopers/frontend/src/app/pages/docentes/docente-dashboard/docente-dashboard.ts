@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-docente-dashboard',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './docente-dashboard.html',
   styleUrl: './docente-dashboard.css',
 })
@@ -33,7 +31,7 @@ export class DocenteDashboard {
 
       console.log('Docente eliminado con ID:', id);
 
-      // Lógica futura
+      
     }
 
   }
