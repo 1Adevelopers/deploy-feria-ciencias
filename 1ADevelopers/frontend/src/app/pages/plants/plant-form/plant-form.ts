@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -53,8 +52,7 @@ interface EspeciePayload {
 
 @Component({
   selector: 'app-plant-form',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [ ReactiveFormsModule, HttpClientModule],
   templateUrl: './plant-form.html',
   styleUrl: './plant-form.css',
 })
