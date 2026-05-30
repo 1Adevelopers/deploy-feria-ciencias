@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -8,76 +8,52 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { PlantaService, Categoria, EspeciePayload } from '../../../services/planta';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 const MAX_FILE_SIZE_MB = 5;
 
+// Validador personalizado para asegurar que la URL sea una imagen válida
 function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
   const url: string = control.value?.trim() ?? '';
-  if (!url) return null; // required se encarga del campo vacío
+  if (!url) return null;
 
-  // Formato de URL básico
   try {
     new URL(url);
   } catch {
     return { invalidUrl: true };
   }
 
-  // Extensión permitida (ignora query params)
   const pathname = new URL(url).pathname.toLowerCase();
   const ext = pathname.split('.').pop() ?? '';
   if (!ALLOWED_EXTENSIONS.includes(ext)) {
     return { invalidExtension: { allowed: ALLOWED_EXTENSIONS.join(', '), actual: ext } };
   }
-
   return null;
-}
-
-
-interface Categoria {
-  id: number;
-  categoria: string;
-  descripcion: string;
-}
-
-interface EspeciePayload {
-  nombre_comun: string;
-  nombre_cientifico: string;
-  descripcion: string;
-  categoria: number;
-  imagenes: { url: string }[];
 }
 
 @Component({
   selector: 'app-plant-form',
-  imports: [ ReactiveFormsModule, HttpClientModule],
+  standalone: true,
+  imports: [ReactiveFormsModule], // Única importación necesaria
   templateUrl: './plant-form.html',
   styleUrl: './plant-form.css',
 })
 export class PlantForm implements OnInit {
+  private fb = inject(FormBuilder);
+  private plantaService = inject(PlantaService);
+
   form!: FormGroup;
   categorias: Categoria[] = [];
   submitStatus: 'idle' | 'loading' | 'success' | 'error' = 'idle';
   errorMessage = '';
 
   readonly maxImages = 6;
-  readonly maxFileSizeMB = MAX_FILE_SIZE_MB;
-
-  private readonly API = 'http://localhost:8000/api/flora';
-
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-  ) {}
 
   ngOnInit(): void {
     this.buildForm();
     this.loadCategorias();
   }
-
-  // Formulario
 
   private buildForm(): void {
     this.form = this.fb.group({
@@ -88,43 +64,26 @@ export class PlantForm implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(150),
-          Validators.pattern(/^[A-Z][a-z]+ [a-z]+.*/), // género Especie
+          Validators.pattern(/^[A-Z][a-z]+ [a-z]+.*/),
         ],
       ],
-      descripcion: [
-        '',
-        [Validators.required, Validators.minLength(10), Validators.maxLength(2000)],
-      ],
+      descripcion: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]],
       categoria: [null, Validators.required],
       imagenes: this.fb.array([this.createImagenControl()]),
     });
   }
 
-  private createImagenControl() {
+  private createImagenControl(): FormGroup {
     return this.fb.group({
       url: ['', [Validators.required, imageUrlValidator]],
-      tamano_valido: [true], // se actualiza al hacer HEAD/fetch al recurso
+      tamano_valido: [true],
     });
   }
 
-  
   get imagenes(): FormArray {
     return this.form.get('imagenes') as FormArray;
   }
 
-  imageGroup(i: number): FormGroup {
-    return this.imagenes.at(i) as FormGroup;
-  }
-
-  urlControl(i: number): AbstractControl {
-    return this.imageGroup(i).get('url')!;
-  }
-
-  getUrlValue(i: number): string {
-    return this.urlControl(i).value?.trim() ?? '';
-  }
-
-  
   addImagen(): void {
     if (this.imagenes.length < this.maxImages) {
       this.imagenes.push(this.createImagenControl());
@@ -137,42 +96,13 @@ export class PlantForm implements OnInit {
     }
   }
 
-  /**
-   * Valida el tamaño real del recurso haciendo una petición HEAD.
-   * Actualiza el control tamano_valido del grupo correspondiente.
-   */
-  async checkImageSize(i: number): Promise<void> {
-    const url = this.getUrlValue(i);
-    if (!url || this.urlControl(i).errors) return;
-
-    try {
-      const res = await fetch(url, { method: 'HEAD' });
-      const contentLength = res.headers.get('content-length');
-      if (contentLength) {
-        const sizeBytes = parseInt(contentLength, 10);
-        const sizeMB = sizeBytes / (1024 * 1024);
-        this.imageGroup(i).patchValue({ tamano_valido: sizeMB <= MAX_FILE_SIZE_MB });
-      }
-    } catch {
-      // No se pudo verificar (CORS, etc.) — se acepta optimistamente
-      this.imageGroup(i).patchValue({ tamano_valido: true });
-    }
-  }
-
-  isSizeInvalid(i: number): boolean {
-    return this.imageGroup(i).get('tamano_valido')?.value === false;
-  }
-
-  
-
   private loadCategorias(): void {
-    this.http.get<Categoria[]>(`${this.API}/categorias/`).subscribe({
-      next: (data) => (this.categorias = data),
-      error: () => console.warn('No se pudieron cargar las categorías'),
+    this.plantaService.getCategorias().subscribe({
+      next: (data: Categoria[]) => (this.categorias = data),
+      error: () => console.warn('Error al cargar categorías'),
     });
   }
 
-  
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -192,18 +122,25 @@ export class PlantForm implements OnInit {
         .map((img: { url: string }) => ({ url: img.url.trim() })),
     };
 
-    this.http.post<EspeciePayload>(`${this.API}/especies/`, payload).subscribe({
+    this.plantaService.crearPlanta(payload).subscribe({
       next: () => {
         this.submitStatus = 'success';
         this.form.reset();
         this.imagenes.clear();
         this.imagenes.push(this.createImagenControl());
+        alert('Planta guardada exitosamente');
       },
-      error: (err) => {
+      error: (err: any) => {
         this.submitStatus = 'error';
         this.errorMessage = err?.error?.detail ?? 'Ocurrió un error al guardar la planta.';
+        alert(this.errorMessage);
       },
     });
+  }
+
+  hasError(field: string, error: string): boolean {
+    const ctrl = this.form.get(field);
+    return !!(ctrl?.hasError(error) && (ctrl.dirty || ctrl.touched));
   }
 
   onReset(): void {
@@ -211,17 +148,6 @@ export class PlantForm implements OnInit {
     this.imagenes.clear();
     this.imagenes.push(this.createImagenControl());
     this.submitStatus = 'idle';
-  }
-
-  
-
-  hasError(field: string, error: string): boolean {
-    const ctrl = this.form.get(field);
-    return !!(ctrl?.hasError(error) && (ctrl.dirty || ctrl.touched));
-  }
-
-  urlHasError(i: number, error: string): boolean {
-    const ctrl = this.urlControl(i);
-    return !!(ctrl?.hasError(error) && (ctrl.dirty || ctrl.touched));
+    this.errorMessage = '';
   }
 }
