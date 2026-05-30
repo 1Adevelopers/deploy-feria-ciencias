@@ -1,19 +1,39 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Planta } from '../interfaces/planta';
+
+
+export interface Categoria {
+  id: number;
+  categoria: string;
+  descripcion: string;
+}
+
+export interface EspeciePayload {
+  nombre_comun: string;
+  nombre_cientifico: string;
+  descripcion: string;
+  categoria: number;
+  imagenes: { url: string }[];
+}
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PlantaService {
+  
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000/api/plantas'; //cambiar por la url de django
+  
+  
+  private readonly API = 'http://localhost:8000/api/flora';
 
-  crearPlanta(formData: FormData): Observable<any> {
-    return this.http.post(this.apiUrl, formData);
+
+  getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${this.API}/categorias/`);
   }
 
-  obtenerPlantas(): Observable<Planta[]>{
-    return this.http.get<Planta[]>(this.apiUrl);
+  
+  crearPlanta(payload: EspeciePayload): Observable<EspeciePayload> {
+    return this.http.post<EspeciePayload>(`${this.API}/especies/`, payload);
   }
 }
