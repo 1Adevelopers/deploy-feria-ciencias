@@ -1,0 +1,7 @@
+[
+  { "model": "flora.categoriaespecie", "pk": 1, "fields": { "categoria": "arbol", "descripcion": "Árboles nativos de la región" } },
+  { "model": "flora.categoriaespecie", "pk": 2, "fields": { "categoria": "arbusto", "descripcion": "Arbustos nativos de la región" } },
+  { "model": "flora.categoriaespecie", "pk": 3, "fields": { "categoria": "hierba", "descripcion": "Hierbas nativas de la región" } },
+  { "model": "flora.categoriaespecie", "pk": 4, "fields": { "categoria": "trepadora", "descripcion": "Plantas trepadoras" } },
+  { "model": "flora.categoriaespecie", "pk": 5, "fields": { "categoria": "otro", "descripcion": "Otros tipos de plantas" } }
+]
