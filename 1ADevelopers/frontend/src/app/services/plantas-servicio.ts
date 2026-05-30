@@ -31,8 +31,8 @@ export class PlantasServicio {
     return this.http.get<any[]>(`${this.API}/especies/`);
   }
 
-  crearPlanta(payload: Especie): Observable<any> {
-    return this.http.post<any>(`${this.API}/especies/`, payload);
+  crearPlanta(Especie: Especie): Observable<any> {
+    return this.http.post<any>(`${this.API}/especies/`, Especie);
   }
 
   eliminarPlanta(id: number): Observable<void> {
