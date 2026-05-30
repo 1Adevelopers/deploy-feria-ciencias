@@ -8,10 +8,10 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { PlantaService, Categoria, EspeciePayload } from '../../../services/planta';
+import { PlantasServicio, Categoria, Especie } from '../../../services/plantas-servicio';
+import { RouterModule } from '@angular/router';
 
-const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
-const MAX_FILE_SIZE_MB = 5;
+const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 
 // Validador personalizado para asegurar que la URL sea una imagen válida
 function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
@@ -34,14 +34,13 @@ function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
 
 @Component({
   selector: 'app-plant-form',
-  standalone: true,
-  imports: [ReactiveFormsModule], // Única importación necesaria
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './plant-form.html',
   styleUrl: './plant-form.css',
 })
 export class PlantForm implements OnInit {
   private fb = inject(FormBuilder);
-  private plantaService = inject(PlantaService);
+  private PlantasServicio = inject(PlantasServicio);
 
   form!: FormGroup;
   categorias: Categoria[] = [];
@@ -58,15 +57,7 @@ export class PlantForm implements OnInit {
   private buildForm(): void {
     this.form = this.fb.group({
       nombre_comun: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      nombre_cientifico: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(150),
-          Validators.pattern(/^[A-Z][a-z]+ [a-z]+.*/),
-        ],
-      ],
+      nombre_cientifico: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(150),],],
       descripcion: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]],
       categoria: [null, Validators.required],
       imagenes: this.fb.array([this.createImagenControl()]),
@@ -76,7 +67,6 @@ export class PlantForm implements OnInit {
   private createImagenControl(): FormGroup {
     return this.fb.group({
       url: ['', [Validators.required, imageUrlValidator]],
-      tamano_valido: [true],
     });
   }
 
@@ -97,7 +87,7 @@ export class PlantForm implements OnInit {
   }
 
   private loadCategorias(): void {
-    this.plantaService.getCategorias().subscribe({
+    this.PlantasServicio.getCategorias().subscribe({
       next: (data: Categoria[]) => (this.categorias = data),
       error: () => console.warn('Error al cargar categorías'),
     });
@@ -110,19 +100,20 @@ export class PlantForm implements OnInit {
     }
 
     this.submitStatus = 'loading';
-    const raw = this.form.getRawValue();
+    const raw : Especie = this.form.getRawValue();
 
-    const payload: EspeciePayload = {
+    const payload: Especie = {
       nombre_comun: raw.nombre_comun.trim(),
       nombre_cientifico: raw.nombre_cientifico.trim(),
       descripcion: raw.descripcion.trim(),
       categoria: Number(raw.categoria),
+      usuario: 1, 
       imagenes: raw.imagenes
-        .filter((img: { url: string }) => img.url?.trim())
-        .map((img: { url: string }) => ({ url: img.url.trim() })),
-    };
+      .filter((img: { url: string}) => img.url?.trim())
+      .map((img: { url: string }) => ({ url: img.url.trim() })),
+    }
 
-    this.plantaService.crearPlanta(payload).subscribe({
+    this.PlantasServicio.crearPlanta(payload).subscribe({
       next: () => {
         this.submitStatus = 'success';
         this.form.reset();
