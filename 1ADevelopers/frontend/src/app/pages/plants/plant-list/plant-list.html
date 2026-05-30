@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let planta of plantas; trackBy: trackById">
+              @for (planta of plantas; track $index) {
+              <tr>
                 <td>
                   <img [src]="planta.imagenes[0]?.url" class="rounded" width="50" height="50" style="object-fit: cover;">
                 </td>
@@ -35,8 +36,8 @@
                   </button>
                 </td>
               </tr>
-          
-              <tr *ngIf="plantas.length === 0">
+              } @empty {
+              <tr>
                 <td colspan="5" class="text-center py-5">
                   <div class="py-4">
                     <i class="bi bi-tree text-muted opacity-25" style="font-size: 3rem;"></i>
@@ -44,6 +45,7 @@
                   </div>
                 </td>
               </tr>
+              }
             </tbody>
 
         </table>
