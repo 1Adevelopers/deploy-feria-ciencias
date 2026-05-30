@@ -8,8 +8,8 @@ from .serializers import CategoriaSerializer, EspecieSerializer, ImagenEspecieSe
 
 class Categorias(APIView):
     def get(self, request):
-        categoria = categoria.objects.all()
-        serializer = CategoriaSerializer(categoria, many=True)
+        categorias = CategoriaEspecie.objects.all()
+        serializer = CategoriaSerializer(categorias, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def post(self, request):
@@ -20,7 +20,7 @@ class Categorias(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def put(self, request, pk):
-        categoria = get_object_or_404(Categorias, pk=pk)
+        categoria = get_object_or_404(CategoriaEspecie, pk=pk)
         serializer = CategoriaSerializer (categoria, data=request.data)
         if serializer.is_valid():
             serializer.save()

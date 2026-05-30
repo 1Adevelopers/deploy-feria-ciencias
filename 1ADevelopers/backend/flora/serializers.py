@@ -14,7 +14,7 @@ class ImagenEspecieSerializer(serializers.ModelSerializer):
 class EspecieSerializer(serializers.ModelSerializer):
     # Traemos la info de la categoría y las imágenes relacionadas
     categoria_detalle = CategoriaSerializer(source='categoria', read_only=True)
-    imagenes = ImagenEspecieSerializer(many=True, read_only=True)
+    imagenes = ImagenEspecieSerializer(many=True, read_only=False)
 
     class Meta:
         model = Especie
@@ -23,3 +23,10 @@ class EspecieSerializer(serializers.ModelSerializer):
             'descripcion', 'categoria', 'categoria_detalle', 
             'usuario', 'imagenes'
         ]
+
+    def create(self, validated_data):
+        imagenes_data = validated_data.pop('imagenes', [])
+        especie = Especie.objects.create(**validated_data)
+        for img in imagenes_data:
+            ImagenEspecie.objects.create(especie=especie, **img)
+        return especie
