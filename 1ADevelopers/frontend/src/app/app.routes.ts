@@ -12,11 +12,13 @@ import { IniciarSesionComponent } from './pages/auth/login/login';
 import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
 import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
 import { PlantForm } from './pages/plants/plant-form/plant-form';
+import { RegisterComponent } from './pages/auth/register/register';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
   { path: 'login', component: IniciarSesionComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'admin',
     component: Dashboard,
@@ -29,7 +31,7 @@ export const routes: Routes = [
       { path: 'editar-planta/:id', component: PlantForm }
     ],
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+
   { path: 'quienes-somos', component: QuienesSomos },
   { path: 'galeria', component: Galeriafichas },
   { path: 'contacto', component: Contact },
