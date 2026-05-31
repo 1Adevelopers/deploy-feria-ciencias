@@ -1,6 +1,6 @@
 /* 1. Evitar saltos de scroll */
 html {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 /* You can add global styles to this file, and also import other style files */
 :root {
@@ -57,7 +57,19 @@ h6 {
 }
 
 .etiqueta {
+  border: none !important;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   color: #000;
+  cursor: pointer;
+}
+
+.etiqueta.active {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  font-weight: 700;
+  outline: none !important;
 }
 
 .etiqueta-verde {
@@ -72,66 +84,72 @@ h6 {
 .etiqueta-amarilla {
   background-color: var(--color-amarillo-pastel);
 }
+.etiqueta-gris {
+  background-color: #e0e0e0 !important;
+}
+.etiqueta-celeste {
+  background-color: var(--color-celeste) !important;
+}
 
 /* Estructura de Listas (Usuarios y Plantas) */
 
 /* Contenedor estándar para las cabeceras de las listas */
 .list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Alinea al tope para que los títulos no bailen */
-    min-height: 90px; /* Altura fija para la cabecera */
-    margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinea al tope para que los títulos no bailen */
+  min-height: 90px; /* Altura fija para la cabecera */
+  margin-bottom: 1.5rem;
 }
 
 /* Estilo para los títulos (idéntico en ambos) */
 .list-title-area h2 {
-    font-family: 'Fredoka', sans-serif;
-    color: #3D8A2E;
-    font-size: 1.75rem;
-    margin-bottom: 0.25rem;
-    line-height: 1.2;
+  font-family: 'Fredoka', sans-serif;
+  color: #3d8a2e;
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
 }
 
 .list-title-area p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #6c757d;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
 }
 
 /* Botón "Añadir" con ancho mínimo para evitar saltos visuales */
 .btn-add-main {
-    background-color: #3D8A2E;
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    white-space: nowrap; /* Evita que el texto del botón se rompa */
-    min-width: 180px; /* Asegura que el botón ocupe un espacio similar */
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #3d8a2e;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  white-space: nowrap; /* Evita que el texto del botón se rompa */
+  min-width: 180px; /* Asegura que el botón ocupe un espacio similar */
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-add-main:hover {
-    background-color: #61B045;
-    transform: translateY(-1px);
+  background-color: #61b045;
+  transform: translateY(-1px);
 }
 
 /* Estilos para el dashboard principal */
 
 .titulo-panel {
-    font-family: 'Fredoka', sans-serif; 
-    color: #3d8a2e;
+  font-family: 'Fredoka', sans-serif;
+  color: #3d8a2e;
 }
 
 .badge-fecha {
-    background-color: #f4d35e; 
-    color: #333;
+  background-color: #f4d35e;
+  color: #333;
 }
 
 .contenedor-principal {
-    min-height: 80vh;
+  min-height: 80vh;
 }
