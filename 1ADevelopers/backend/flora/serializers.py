@@ -12,7 +12,6 @@ class ImagenEspecieSerializer(serializers.ModelSerializer):
         fields = ['id', 'url', 'fecha_subida']
 
 class EspecieSerializer(serializers.ModelSerializer):
-    # Traemos la info de la categoría y las imágenes relacionadas
     categoria_detalle = CategoriaSerializer(source='categoria', read_only=True)
     imagenes = ImagenEspecieSerializer(many=True, read_only=False)
 
@@ -30,3 +29,19 @@ class EspecieSerializer(serializers.ModelSerializer):
         for img in imagenes_data:
             ImagenEspecie.objects.create(especie=especie, **img)
         return especie
+    
+    def update(self, instance, validated_data):
+        instance.nombre_comun = validated_data.get('nombre_comun', instance.nombre_comun)
+        instance.nombre_cientifico = validated_data.get('nombre_cientifico', instance.nombre_cientifico)
+        instance.descripcion = validated_data.get('descripcion', instance.descripcion)
+        instance.categoria = validated_data.get('categoria', instance.categoria)
+        instance.usuario = validated_data.get('usuario', instance.usuario)
+        instance.save()
+
+        imagenes_data = validated_data.get('imagenes')
+        if imagenes_data is not None:
+            instance.imagenes.all().delete()
+            for img in imagenes_data:
+                ImagenEspecie.objects.create(especie=instance, **img)
+
+        return instance
