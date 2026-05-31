@@ -1,4 +1,4 @@
-<section class="">
+<section>
   <div class="container py-5 mt-5">
     <div class="text-center">
       <h1 class="titulo mb-5 mt-5">Fichas de Plantas</h1>
@@ -6,12 +6,8 @@
 
     <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
       <button
-        class="btn etiqueta text-capitalize"
+        class="btn etiqueta etiqueta-gris"
         [class.active]="categoriaSeleccionadaId() === null"
-        [ngClass]="{
-          'btn-dark text-white': categoriaSeleccionadaId() === null,
-          'btn-outline-dark': categoriaSeleccionadaId() !== null,
-        }"
         (click)="filtrarPorCategoria(null)"
       >
         Todas
@@ -19,13 +15,18 @@
 
       @for (cat of categorias(); track cat.id) {
         <button
-          class="btn etiqueta text-capitalize"
-          [class.active]="categoriaSeleccionadaId() === cat.id"
+          class="btn etiqueta"
           [ngClass]="{
+            active: categoriaSeleccionadaId() === cat.id,
             'etiqueta-verde': cat.categoria === 'arbol',
             'etiqueta-salmon': cat.categoria === 'arbusto',
             'etiqueta-amarilla': cat.categoria === 'hierba',
             'etiqueta-violeta': cat.categoria === 'trepadora',
+            'etiqueta-celeste':
+              cat.categoria !== 'arbol' &&
+              cat.categoria !== 'arbusto' &&
+              cat.categoria !== 'hierba' &&
+              cat.categoria !== 'trepadora',
           }"
           (click)="filtrarPorCategoria(cat.id)"
         >
@@ -35,43 +36,35 @@
     </div>
 
     <div class="row g-4">
-      @for (ficha of fichasFiltradas(); track ficha.id) {
+      @for (planta of plantasFiltradas(); track planta.id) {
         <div class="col-md-4">
-          <div class="card rounded-4 shadow border-0 c-pointer" (click)="toggleFicha(ficha.id)">
-            @if (!ficha.mostrar) {
+          <div class="card rounded-4 shadow border-0 c-pointer" (click)="togglePlanta(planta.id)">
+            @if (!planta.mostrar) {
               <img
-                src="public/fotos/nativas/algarrobo-0.webp"
+                [src]="planta.imagenes && planta.imagenes.length > 0 ? planta.imagenes[0].url : ''"
                 class="card-img-top rounded-top-4 object-fit-cover"
                 style="height: 220px"
-                alt="{{ ficha.especieObjeto?.nombre_comun }}"
+                [alt]="planta.nombre_comun"
               />
 
-              @if (obtenerNombreCategoria(ficha.especieObjeto?.categoria)) {
-                <div class="position-absolute top-0 end-0 p-2">
-                  <span
-                    class="badge rounded-pill etiqueta text-capitalize"
-                    [ngClass]="{
-                      'etiqueta-verde':
-                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'arbol',
-                      'etiqueta-salmon':
-                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'arbusto',
-                      'etiqueta-amarilla':
-                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'hierba',
-                      'etiqueta-violeta':
-                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'trepadora',
-                    }"
-                  >
-                    {{ obtenerNombreCategoria(ficha.especieObjeto?.categoria) }}
-                  </span>
-                </div>
-              }
+              <div class="position-absolute top-0 end-0 p-2">
+                <span
+                  class="badge rounded-pill etiqueta text-capitalize"
+                  [ngClass]="{
+                    'etiqueta-verde': obtenerNombreCategoria(planta.categoria) === 'arbol',
+                    'etiqueta-salmon': obtenerNombreCategoria(planta.categoria) === 'arbusto',
+                    'etiqueta-amarilla': obtenerNombreCategoria(planta.categoria) === 'hierba',
+                    'etiqueta-violeta': obtenerNombreCategoria(planta.categoria) === 'trepadora',
+                  }"
+                >
+                  {{ obtenerNombreCategoria(planta.categoria) }}
+                </span>
+              </div>
 
               <div class="card-body">
-                <h5 class="card-title">
-                  {{ ficha.especieObjeto?.nombre_comun || 'Cargando nombre...' }}
-                </h5>
+                <h5 class="card-title">{{ planta.nombre_comun }}</h5>
                 <p class="card-text text-muted">
-                  <em>{{ ficha.especieObjeto?.nombre_cientifico }}</em>
+                  <em>{{ planta.nombre_cientifico }}</em>
                 </p>
               </div>
             } @else {
@@ -80,9 +73,9 @@
                 style="min-height: 220px"
               >
                 <div>
-                  <h5 class="card-title">{{ ficha.especieObjeto?.nombre_comun }}</h5>
+                  <h5 class="card-title">{{ planta.nombre_comun }}</h5>
                   <p class="card-text mt-3"><strong>Detalles Técnicos:</strong></p>
-                  <p class="small text-secondary">{{ ficha.informacion_tecnica }}</p>
+                  <p class="small text-secondary">{{ planta.descripcion }}</p>
                 </div>
               </div>
             }
@@ -90,7 +83,7 @@
         </div>
       } @empty {
         <div class="col-12 text-center py-5">
-          <p class="text-muted fs-5">No hay fichas disponibles para esta categoría.</p>
+          <p class="text-muted fs-5">No hay plantas disponibles.</p>
         </div>
       }
     </div>
