@@ -1,47 +1,96 @@
 <section class="">
   <div class="container py-5 mt-5">
-    <div class="text-center"><h1 class="titulo mb-5 mt-5">Fichas de Plantas</h1></div>
+    <div class="text-center">
+      <h1 class="titulo mb-5 mt-5">Fichas de Plantas</h1>
+    </div>
 
-    <div class="d-flex justify-content-center gap-3 mb-4">
-      <button class="btn etiqueta etiqueta-verde">Árboles</button>
-      <button class="btn etiqueta etiqueta-salmon">Arbustos</button>
-      <button class="btn etiqueta etiqueta-amarilla">Hierbas</button>
-      <button class="btn etiqueta etiqueta-violeta">Trepadoras</button>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+      <button
+        class="btn etiqueta text-capitalize"
+        [class.active]="categoriaSeleccionadaId() === null"
+        [ngClass]="{
+          'btn-dark text-white': categoriaSeleccionadaId() === null,
+          'btn-outline-dark': categoriaSeleccionadaId() !== null,
+        }"
+        (click)="filtrarPorCategoria(null)"
+      >
+        Todas
+      </button>
+
+      @for (cat of categorias(); track cat.id) {
+        <button
+          class="btn etiqueta text-capitalize"
+          [class.active]="categoriaSeleccionadaId() === cat.id"
+          [ngClass]="{
+            'etiqueta-verde': cat.categoria === 'arbol',
+            'etiqueta-salmon': cat.categoria === 'arbusto',
+            'etiqueta-amarilla': cat.categoria === 'hierba',
+            'etiqueta-violeta': cat.categoria === 'trepadora',
+          }"
+          (click)="filtrarPorCategoria(cat.id)"
+        >
+          {{ cat.categoria }}
+        </button>
+      }
     </div>
 
     <div class="row g-4">
-      @for (ficha of fichas; track ficha) {
+      @for (ficha of fichasFiltradas(); track ficha.id) {
         <div class="col-md-4">
-          <div class="card rounded-4 shadow border-0" (click)="ficha.mostrar = !ficha.mostrar">
+          <div class="card rounded-4 shadow border-0 c-pointer" (click)="toggleFicha(ficha.id)">
             @if (!ficha.mostrar) {
               <img
                 src="public/fotos/nativas/algarrobo-0.webp"
-                class="card-img-top rounded-top-4"
-                alt="{{ ficha.nombreComun }}"
+                class="card-img-top rounded-top-4 object-fit-cover"
+                style="height: 220px"
+                alt="{{ ficha.especieObjeto?.nombre_comun }}"
               />
-              <div class="position-absolute top-0 end-0 p-2">
-                <span class="badge rounded-pill etiqueta etiqueta-amarilla">Categoría</span>
-              </div>
+
+              @if (obtenerNombreCategoria(ficha.especieObjeto?.categoria)) {
+                <div class="position-absolute top-0 end-0 p-2">
+                  <span
+                    class="badge rounded-pill etiqueta text-capitalize"
+                    [ngClass]="{
+                      'etiqueta-verde':
+                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'arbol',
+                      'etiqueta-salmon':
+                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'arbusto',
+                      'etiqueta-amarilla':
+                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'hierba',
+                      'etiqueta-violeta':
+                        obtenerNombreCategoria(ficha.especieObjeto?.categoria) === 'trepadora',
+                    }"
+                  >
+                    {{ obtenerNombreCategoria(ficha.especieObjeto?.categoria) }}
+                  </span>
+                </div>
+              }
+
               <div class="card-body">
-                <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-                <p class="card-text">{{ ficha.nombreCientifico }}</p>
+                <h5 class="card-title">
+                  {{ ficha.especieObjeto?.nombre_comun || 'Cargando nombre...' }}
+                </h5>
+                <p class="card-text text-muted">
+                  <em>{{ ficha.especieObjeto?.nombre_cientifico }}</em>
+                </p>
               </div>
             } @else {
-              <div class="card-body">
-                <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-                <p class="card-text">{{ ficha.nombreCientifico }}</p>
-                <p>{{ ficha.descripcion }}</p>
+              <div
+                class="card-body d-flex flex-column justify-content-between"
+                style="min-height: 220px"
+              >
+                <div>
+                  <h5 class="card-title">{{ ficha.especieObjeto?.nombre_comun }}</h5>
+                  <p class="card-text mt-3"><strong>Detalles Técnicos:</strong></p>
+                  <p class="small text-secondary">{{ ficha.informacion_tecnica }}</p>
+                </div>
               </div>
             }
           </div>
         </div>
-      }
-
-      @if (seleccionada) {
-        <div class="mt-4 p-3 border rounded bg-light">
-          <h3>{{ seleccionada.nombre }}</h3>
-          <p>{{ seleccionada.nombreCientifico }}</p>
-          <p>{{ seleccionada.descripcion }}</p>
+      } @empty {
+        <div class="col-12 text-center py-5">
+          <p class="text-muted fs-5">No hay fichas disponibles para esta categoría.</p>
         </div>
       }
     </div>
