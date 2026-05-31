@@ -9,11 +9,10 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { PlantasServicio, Categoria, Especie } from '../../../services/plantas-servicio';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 
-// Validador personalizado para asegurar que la URL sea una imagen válida
 function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
   const url: string = control.value?.trim() ?? '';
   if (!url) return null;
@@ -39,6 +38,7 @@ function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
   styleUrl: './plant-form.css',
 })
 export class PlantForm implements OnInit {
+  private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
   private PlantasServicio = inject(PlantasServicio);
 
@@ -52,6 +52,13 @@ export class PlantForm implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.loadCategorias();
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.PlantasServicio.getPlantaId(+id).subscribe(data =>{
+        this.form.patchValue(data);
+      });
+    }
   }
 
   private buildForm(): void {
@@ -109,9 +116,23 @@ export class PlantForm implements OnInit {
       categoria: Number(raw.categoria),
       usuario: 1, 
       imagenes: raw.imagenes
-      .filter((img: { url: string}) => img.url?.trim())
-      .map((img: { url: string }) => ({ url: img.url.trim() })),
-    }
+        .filter((img: { url: string }) => img.url?.trim())
+        .map((img: any) => ({
+          id: img.id,
+          url: img.url.trim()
+        })),
+    };
+
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.PlantasServicio.actualizarPlanta(+id, payload).subscribe({
+        next: () => {
+          this.submitStatus = 'success';
+          alert('Planta actualizada exitosamente');
+        },
+      });
+    } else {
 
     this.PlantasServicio.crearPlanta(payload).subscribe({
       next: () => {
@@ -125,8 +146,9 @@ export class PlantForm implements OnInit {
         this.submitStatus = 'error';
         this.errorMessage = err?.error?.detail ?? 'Ocurrió un error al guardar la planta.';
         alert(this.errorMessage);
-      },
-    });
+        },
+      });
+    }
   }
 
   hasError(field: string, error: string): boolean {

@@ -39,4 +39,13 @@ export class PlantasServicio {
     return this.http.delete<void>(`${this.API}/especies/${id}/`);
   }
 
+  actualizarPlanta(id: number, especie: Especie): Observable<any> {
+    return this.http.put<any>(`${this.API}/especies/${id}/`, especie);
+  }
+
+  getPlantaId(id: number): Observable<Especie> {
+    return this.http.get<Especie>(`${this.API}/especies/${id}/`);
+  }
+
+
 }

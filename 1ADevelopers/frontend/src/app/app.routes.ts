@@ -26,6 +26,7 @@ export const routes: Routes = [
       { path: 'usuarios/nuevo', component: UserForm },
       { path: 'docentes', component: DocenteDashboard },
       { path: 'nueva-planta', component: PlantForm },
+      { path: 'editar-planta/:id', component: PlantForm }
     ],
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -33,4 +34,5 @@ export const routes: Routes = [
   { path: 'galeria', component: Galeriafichas },
   { path: 'contacto', component: Contact },
   { path: '**', component: Notfound404 },
+
 ];
