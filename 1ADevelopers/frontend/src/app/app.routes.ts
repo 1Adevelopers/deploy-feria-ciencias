@@ -24,15 +24,16 @@ export const routes: Routes = [
       { path: 'plantas', component: PlantList },
       { path: 'usuarios', component: UserList },
       { path: 'usuarios/nuevo', component: UserForm },
-      { path: 'docentes', component: DocenteDashboard },
       { path: 'nueva-planta', component: PlantForm },
-      { path: 'editar-planta/:id', component: PlantForm }
+      { path: 'editar-planta/:id', component: PlantForm },
     ],
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  { path: 'docentes', component: DocenteDashboard },
+  { path: 'docentes/nueva-planta', component: PlantForm },
+  { path: 'docentes/editar-planta/:id', component: PlantForm },
   { path: 'quienes-somos', component: QuienesSomos },
   { path: 'galeria', component: Galeriafichas },
   { path: 'contacto', component: Contact },
   { path: '**', component: Notfound404 },
-
 ];

@@ -9,10 +9,16 @@ export interface Categoria {
 }
 
 export interface Especie {
+  id?: number;
   nombre_comun: string;
   nombre_cientifico: string;
   descripcion: string;
   categoria: number;
+  categoria_detalle?: {
+    id: number;
+    categoria: string;
+    descripcion: string;
+  };
   usuario: number;
   imagenes: { url: string }[];
 }
@@ -21,9 +27,13 @@ export interface Especie {
 export class PlantasServicio {
   private API = 'http://localhost:8000/api/flora';
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
-  getCategorias(): Observable<Categoria[]>{
+  getMisPlantas(): Observable<Especie[]> {
+    return this.http.get<Especie[]>(`${this.API}/especies/mis-especies/`);
+  }
+
+  getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.API}/categorias/`);
   }
 
@@ -46,6 +56,4 @@ export class PlantasServicio {
   getPlantaId(id: number): Observable<Especie> {
     return this.http.get<Especie>(`${this.API}/especies/${id}/`);
   }
-
-
 }

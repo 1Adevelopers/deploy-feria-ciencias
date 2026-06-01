@@ -14,7 +14,15 @@ export class UsuarioService {
     return this.http.post(this.apiUrl, usuario);
   }
 
-  ObtenerUsuarios():Observable<Usuario[]>{
+  ObtenerUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.apiUrl);
+  }
+
+  eliminarUsuario(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, usuario);
   }
 }

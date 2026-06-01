@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import viewsets #BORRAR
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import CategoriaEspecie, Especie, ImagenEspecie
+from .models import CategoriaEspecie, Especie, ImagenEspecie, Usuario
 from .serializers import CategoriaSerializer, EspecieSerializer, ImagenEspecieSerializer
+
 
 class Categorias(APIView):
     def get(self, request):
@@ -91,4 +92,14 @@ class ImagenEspecie(APIView):
         ImagenEspecie = get_object_or_404(ImagenEspecie, pk=pk)
         ImagenEspecie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+class MisEspeciesListar(APIView):
+    def get(self, request):
+        # usuario_docente = Usuario.objects.get(email='profe@gmail.com')
+        
+        # especies = Especie.objects.filter(usuario=usuario_docente)
+        # serializer = EspecieSerializer(especies, many=True)
+        # return Response(serializer.data, status=status.HTTP_200_OK)
+        especies = Especie.objects.filter(usuario_id=2)
+        serializer = EspecieSerializer(especies, many=True)
+        return Response(serializer.data)
