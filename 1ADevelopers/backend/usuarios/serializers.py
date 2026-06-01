@@ -15,5 +15,11 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = ['id', 'nombre', 'apellido', 'email', 'rol', 'rol_nombre']
         # Se proteje para que la contraseña no se envíe al frontend
         extra_kwargs = {
-            'contrasena': {'write_only': True}
+            'contrasena': {'write_only': True},
+            'rol': {'required': False}
         }
+        def create(self, validated_data):
+
+        validated_data['rol_id'] = 1
+
+        return Usuario.objects.create(**validated_data)
