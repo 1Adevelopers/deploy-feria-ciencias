@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth';
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
 })
+
 export class RegisterComponent {
 
   form: FormGroup;
@@ -18,52 +19,52 @@ export class RegisterComponent {
     private router: Router,
     private authService: AuthService
   ) {
-    this.form = this.formBuilder.group({
+      this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
+    }, {
+      validators: this.passwordMatchValidator
     });
   }
 
-  registrar() {
-    const email = this.form.value.email;
-    const username = this.form.value.username;
-    const password = this.form.value.password;
-    const confirmPassword = this.form.value.confirmPassword;
-
-    if (this.form.valid) {
-
-      if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
-      }
-
-      const userData = { email, username, password };
-
-      this.authService.register(userData).subscribe({
-
-           next:(response) => {
-
-          alert('Registro exitoso. Ahora puedes iniciar sesión.');
-          this.router.navigate(['/login']);
-        },
-
-        error:(error) => {
-
-          console.error('Error en el registro:', error);
-          alert('Error en el registro. Por favor, intenta nuevamente.');
-        }
-     
-     
-      }
-
   
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
 
-      );
+    return password === confirmPassword
+      ? null
+      : { passwordMismatch: true };
+  }
 
-    } else {
+  registrar() {
+    console.log(this.form.value);
+    console.log("funciona");
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      return;
     }
+
+    const userData = {
+      email: this.form.value.email,
+      nombre: this.form.value.nombre,
+      apellido: this.form.value.apellido,
+      contrasena: this.form.value.password,
+      rol: 1
+    };
+
+    this.authService.register(userData).subscribe({
+      next: () => {
+        alert('Registro exitoso');
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        alert('Error en registro');
+      }
+    });
   }
 }

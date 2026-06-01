@@ -6,7 +6,7 @@
 
     <form [formGroup]="form" (ngSubmit)="registrar()">
 
-     
+      <!-- EMAIL -->
       <input
         type="email"
         class="form-control custom-input"
@@ -19,14 +19,41 @@
           @if (form.get('email')?.errors?.['required']) {
             <small>El correo es obligatorio</small>
           }
-
           @if (form.get('email')?.errors?.['email']) {
             <small>El formato del mail debe ser válido</small>
           }
         </div>
       }
 
-     
+      <!-- NOMBRE -->
+      <input
+        type="text"
+        class="form-control custom-input"
+        placeholder="Nombre"
+        formControlName="nombre"
+      />
+
+      @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+        <div class="error">
+          <small>El nombre es obligatorio</small>
+        </div>
+      }
+
+      <!-- APELLIDO -->
+      <input
+        type="text"
+        class="form-control custom-input"
+        placeholder="Apellido"
+        formControlName="apellido"
+      />
+
+      @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
+        <div class="error">
+          <small>El apellido es obligatorio</small>
+        </div>
+      }
+
+      <!-- USERNAME -->
       <input
         type="text"
         class="form-control custom-input"
@@ -36,13 +63,11 @@
 
       @if (form.get('username')?.invalid && form.get('username')?.touched) {
         <div class="error">
-          @if (form.get('username')?.errors?.['required']) {
-            <small>El usuario es obligatorio</small>
-          }
+          <small>El usuario es obligatorio</small>
         </div>
       }
 
-     
+      <!-- PASSWORD -->
       <input
         type="password"
         class="form-control custom-input"
@@ -55,14 +80,13 @@
           @if (form.get('password')?.errors?.['required']) {
             <small>La contraseña es obligatoria</small>
           }
-
           @if (form.get('password')?.errors?.['minlength']) {
             <small>Mínimo 6 caracteres</small>
           }
         </div>
       }
 
-      <!-- Para Confirmnar el password, suele ser lo recomendado-->
+      <!-- CONFIMACION PASSWORD -->
       <input
         type="password"
         class="form-control custom-input"
