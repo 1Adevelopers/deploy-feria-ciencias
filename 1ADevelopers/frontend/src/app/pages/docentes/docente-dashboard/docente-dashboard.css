@@ -1,83 +1,83 @@
 /* Contenedor principal */
 .docente-container {
-padding: 10px;
+  padding: 100px 50px 300px 50px;
 }
 
 .section-title {
-    font-family: 'Fredoka', sans-serif;
-    color: #3d8a2e;
-    font-size: 28px;
-    margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  color: #3d8a2e;
+  font-size: 28px;
+  margin: 0;
 }
 
 /* Tarjeta de la tabla */
 .table-card {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .table thead {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #3d8a2e;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #3d8a2e;
 }
 
 .table th {
-    color: #50575e;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 15px;
+  color: #50575e;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 15px;
 }
 
 .table td {
-    padding: 15px;
-    vertical-align: middle;
-    font-size: 14px;
+  padding: 15px;
+  vertical-align: middle;
+  font-size: 14px;
 }
 
 /* Botón Añadir (Verde FlorApp) */
 .wp-button-green {
-    background-color: #3d8a2e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.2s;
+  background-color: #3d8a2e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .wp-button-green:hover {
-    background-color: #61b045;
-    transform: translateY(-1px);
+  background-color: #61b045;
+  transform: translateY(-1px);
 }
 
 /* Botones de Acción */
 .btn-action {
-    border: 1px solid #ccc;
-    background: white;
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s;
+  border: 1px solid #ccc;
+  background: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 /* Estilo Actualizar (Amarillo de acento) */
 .btn-edit:hover {
-    background-color: #f4d35e;
-    border-color: #d4b54a;
-    color: #333;
+  background-color: #f4d35e;
+  border-color: #d4b54a;
+  color: #333;
 }
 
 /* Estilo Borrar (Rojo sutil) */
 .btn-delete:hover {
-    background-color: #fbeaea;
-    border-color: #d63638;
-    color: #d63638;
+  background-color: #fbeaea;
+  border-color: #d63638;
+  color: #d63638;
 }
 
 i {
-    font-size: 3rem;
+  font-size: 3rem;
 }

@@ -1,7 +1,11 @@
+import { Rol } from './rol';
+
 export interface Usuario {
-    id?: number;
-    username: string;
-    email: string;
-    password: string;
-    perfil: 'Docente' | 'Administrador';
+  id?: number;
+  nombre: string;
+  apellido: string;
+  email: string;
+  contrasena?: string;
+  rol: number | Rol;
+  rol_nombre?: string;
 }

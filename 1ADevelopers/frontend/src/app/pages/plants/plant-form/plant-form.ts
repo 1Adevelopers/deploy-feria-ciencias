@@ -9,7 +9,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { PlantasServicio, Categoria, Especie } from '../../../services/plantas-servicio';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 
@@ -33,6 +33,7 @@ function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
 
 @Component({
   selector: 'app-plant-form',
+  standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './plant-form.html',
   styleUrl: './plant-form.css',
@@ -41,11 +42,13 @@ export class PlantForm implements OnInit {
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
   private PlantasServicio = inject(PlantasServicio);
+  private router = inject(Router);
 
   form!: FormGroup;
   categorias: Categoria[] = [];
   submitStatus: 'idle' | 'loading' | 'success' | 'error' = 'idle';
   errorMessage = '';
+  isEditMode: boolean = false;
 
   readonly maxImages = 6;
 
@@ -55,8 +58,23 @@ export class PlantForm implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.PlantasServicio.getPlantaId(+id).subscribe(data =>{
-        this.form.patchValue(data);
+      this.isEditMode = true;
+      this.PlantasServicio.getPlantaId(+id).subscribe((data) => {
+        this.form.patchValue({
+          nombre_comun: data.nombre_comun,
+          nombre_cientifico: data.nombre_cientifico,
+          descripcion: data.descripcion,
+          categoria: data.categoria,
+        });
+        this.imagenes.clear();
+        data.imagenes.forEach((img: any) => {
+          this.imagenes.push(
+            this.fb.group({
+              id: [img.id],
+              url: [img.url, [Validators.required, imageUrlValidator]],
+            }),
+          );
+        });
       });
     }
   }
@@ -64,8 +82,14 @@ export class PlantForm implements OnInit {
   private buildForm(): void {
     this.form = this.fb.group({
       nombre_comun: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      nombre_cientifico: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(150),],],
-      descripcion: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]],
+      nombre_cientifico: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
+      ],
+      descripcion: [
+        '',
+        [Validators.required, Validators.minLength(10), Validators.maxLength(2000)],
+      ],
       categoria: [null, Validators.required],
       imagenes: this.fb.array([this.createImagenControl()]),
     });
@@ -107,48 +131,58 @@ export class PlantForm implements OnInit {
     }
 
     this.submitStatus = 'loading';
-    const raw : Especie = this.form.getRawValue();
+    const raw: Especie = this.form.getRawValue();
 
     const payload: Especie = {
       nombre_comun: raw.nombre_comun.trim(),
       nombre_cientifico: raw.nombre_cientifico.trim(),
       descripcion: raw.descripcion.trim(),
       categoria: Number(raw.categoria),
-      usuario: 1, 
+      usuario: 1,
       imagenes: raw.imagenes
         .filter((img: { url: string }) => img.url?.trim())
         .map((img: any) => ({
           id: img.id,
-          url: img.url.trim()
+          url: img.url.trim(),
         })),
     };
 
-
     const id = this.route.snapshot.paramMap.get('id');
+    const isDocente = this.router.url.includes('docentes');
+
     if (id) {
       this.PlantasServicio.actualizarPlanta(+id, payload).subscribe({
         next: () => {
           this.submitStatus = 'success';
           alert('Planta actualizada exitosamente');
+          this.redirigir(isDocente);
         },
+        error: (err) => this.manejarError(err),
       });
     } else {
-
-    this.PlantasServicio.crearPlanta(payload).subscribe({
-      next: () => {
-        this.submitStatus = 'success';
-        this.form.reset();
-        this.imagenes.clear();
-        this.imagenes.push(this.createImagenControl());
-        alert('Planta guardada exitosamente');
-      },
-      error: (err: any) => {
-        this.submitStatus = 'error';
-        this.errorMessage = err?.error?.detail ?? 'Ocurrió un error al guardar la planta.';
-        alert(this.errorMessage);
+      this.PlantasServicio.crearPlanta(payload).subscribe({
+        next: () => {
+          this.submitStatus = 'success';
+          alert('Planta guardada exitosamente');
+          this.redirigir(isDocente);
         },
+        error: (err) => this.manejarError(err),
       });
     }
+  }
+
+  private redirigir(isDocente: boolean): void {
+    if (isDocente) {
+      this.router.navigate(['/docentes']);
+    } else {
+      this.router.navigate(['/admin/plantas']);
+    }
+  }
+
+  private manejarError(err: any): void {
+    this.submitStatus = 'error';
+    this.errorMessage = err?.error?.detail ?? 'Ocurrió un error al guardar la planta.';
+    alert(this.errorMessage);
   }
 
   hasError(field: string, error: string): boolean {
@@ -162,5 +196,9 @@ export class PlantForm implements OnInit {
     this.imagenes.push(this.createImagenControl());
     this.submitStatus = 'idle';
     this.errorMessage = '';
+  }
+
+  get esDocente(): boolean {
+    return this.router.url.includes('/docentes');
   }
 }

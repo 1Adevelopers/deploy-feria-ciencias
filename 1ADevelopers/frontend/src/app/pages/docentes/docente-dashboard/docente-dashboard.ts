@@ -1,39 +1,48 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PlantasServicio } from '../../../services/plantas-servicio';
+import { Especie } from '../../../services/plantas-servicio';
 
 @Component({
   selector: 'app-docente-dashboard',
+  standalone: true,
   imports: [RouterModule],
   templateUrl: './docente-dashboard.html',
   styleUrl: './docente-dashboard.css',
 })
+export class DocenteDashboard implements OnInit {
+  private plantasService = inject(PlantasServicio);
+  private cdr = inject(ChangeDetectorRef);
 
-export class DocenteDashboard {
+  misPlantas: Especie[] = [];
 
-  docentes: any[] = [
-    {
-      id: 1,
-      nombre: 'Eric Heredia',
-      especialidad: 'Programación Web',
-      email: 'eric@email.com'
-    },
-    {
-      id: 2,
-      nombre: 'Ana Pérez',
-      especialidad: 'UX/UI',
-      email: 'ana@email.com'
-    }
-  ];
-
-  eliminarDocente(id: number) {
-
-    if (confirm('¿Estás seguro de que deseas eliminar este docente?')) {
-
-      console.log('Docente eliminado con ID:', id);
-
-      
-    }
-
+  ngOnInit() {
+    // localStorage.setItem('auth_token', 'TOKEN_TEMPORAL_DE_PRUEBA');
+    this.cargarMisPlantas();
   }
 
+  cargarMisPlantas() {
+    this.plantasService.getMisPlantas().subscribe({
+      next: (data: Especie[]) => {
+        this.misPlantas = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error('Error al cargar', err),
+    });
+  }
+
+  eliminarFicha(id: number | undefined) {
+    if (id && confirm('¿Estás seguro de que deseas eliminar esta ficha?')) {
+      this.plantasService.eliminarPlanta(id).subscribe({
+        next: () => {
+          this.misPlantas = this.misPlantas.filter((p) => p.id !== id);
+          alert('Ficha eliminada correctamente');
+        },
+        error: (err) => {
+          console.error('Error al eliminar', err);
+          alert('No se pudo eliminar la ficha');
+        },
+      });
+    }
+  }
 }

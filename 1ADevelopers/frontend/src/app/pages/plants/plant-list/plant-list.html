@@ -1,53 +1,65 @@
 <div class="plant-container animate__animated animate__fadeIn">
-    <header class="list-header">
-        <div class="list-title-area">
-            <h2>Plantas Nativas</h2>
-            <p>Catálogo de especies de la provincia de Córdoba.</p>
-        </div>
-        <button class="btn-add-main" routerLink="/admin/nueva-planta">
-            <i class="bi bi-plus-circle-fill me-2"></i> Añadir Planta
-        </button>
-    </header>
-
-    <div class="table-card shadow-sm">
-        <table class="table table-hover mb-0">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Nombre Común</th>
-                    <th>Nombre Científico</th>
-                    <th>Categoría</th>
-                    <th class="text-end px-4">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-              @for (planta of plantas; track $index) {
-              <tr>
-                <td>
-                  <img [src]="planta.imagenes[0]?.url" class="rounded" width="50" height="50" style="object-fit: cover;">
-                </td>
-                <td class="fw-bold">{{ planta.nombre_comun }}</td>
-                <td class="fst-italic">{{ planta.nombre_cientifico }}</td>
-                <td><span class="badge-category">{{ planta.categoria_detalle?.categoria }}</span></td>
-                <td class="text-end px-4">
-                  <button class="btn-action btn-edit me-2" [routerLink]="['/admin/editar-planta', planta.id]"><i class="bi bi-pencil-fill"></i> Actualizar</button>
-                  <button class="btn-action btn-delete" (click)="eliminarPlanta(planta.id)">
-                    <i class="bi bi-trash3-fill"></i> Borrar
-                  </button>
-                </td>
-              </tr>
-              } @empty {
-              <tr>
-                <td colspan="5" class="text-center py-5">
-                  <div class="py-4">
-                    <i class="bi bi-tree text-muted opacity-25" style="font-size: 3rem;"></i>
-                    <p class="mt-3 text-muted">Aún no hay plantas cargadas en el sistema.</p>
-                  </div>
-                </td>
-              </tr>
-              }
-            </tbody>
-
-        </table>
+  <header class="list-header">
+    <div class="list-title-area">
+      <h2>Plantas Nativas</h2>
+      <p>Catálogo de especies de la provincia de Córdoba.</p>
     </div>
+    <button class="btn-add-main" routerLink="/admin/nueva-planta">
+      <i class="bi bi-plus-circle-fill me-2"></i> Añadir Planta
+    </button>
+  </header>
+
+  <div class="table-card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre Común</th>
+          <th>Nombre Científico</th>
+          <th>Categoría</th>
+          <th class="text-end px-4">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (planta of plantas; track $index) {
+          <tr>
+            <td>
+              <img
+                [src]="planta.imagenes[0]?.url"
+                class="rounded"
+                width="50"
+                height="50"
+                style="object-fit: cover"
+              />
+            </td>
+            <td class="fw-bold">{{ planta.nombre_comun }}</td>
+            <td class="fst-italic">{{ planta.nombre_cientifico }}</td>
+            <td>
+              <span class="badge-category">{{ planta.categoria_detalle?.categoria }}</span>
+            </td>
+            <td class="text-end px-4">
+              <button
+                class="btn etiqueta etiqueta-verde me-2"
+                [routerLink]="['/admin/editar-planta', planta.id]"
+              >
+                Actualizar
+              </button>
+              <button class="btn etiqueta etiqueta-salmon" (click)="eliminarPlanta(planta.id)">
+                Borrar
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center py-5">
+              <div class="py-4">
+                <i class="bi bi-tree text-muted opacity-25" style="font-size: 3rem"></i>
+                <p class="mt-3 text-muted">Aún no hay plantas cargadas en el sistema.</p>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>
