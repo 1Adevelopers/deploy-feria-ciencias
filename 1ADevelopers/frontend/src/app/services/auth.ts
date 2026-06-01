@@ -6,24 +6,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  //recordar despues aca iria la URL del backend desplegado
-  private apiUrl = 'http://localhost:8000/api/';
+
+  private apiUrl = 'http://127.0.0.1:8000/api/';
 
   constructor(private http: HttpClient) {}
 
-  //Registrar nuevo usuario Docente
-  register(userData:any): Observable<any> {
-    return this.http.post(`${this.apiUrl}register/`, {
-      ...userData,
-      role: 'docente', // Asignamos el rol de Docente por defecto 
-    });
+  // REGISTRO
+  register(userData: any): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}usuarios/usuarios/`,
+      userData
+    );
   }
 
-
-
-
-  //Login Usuario
-  login(credentials:any): Observable<any> {
-    return this.http.post(`${this.apiUrl}login/`, credentials);
+  // LOGIN 
+  login(): Observable<any> {
+    return this.http.get(`${this.apiUrl}usuarios/usuarios/`);
   }
 }
