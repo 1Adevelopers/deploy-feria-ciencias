@@ -42,8 +42,6 @@ export class RegisterComponent {
   }
 
   registrar() {
-    console.log(this.form.value);
-    console.log("funciona");
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
