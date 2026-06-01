@@ -12,8 +12,8 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Usuario
-        fields = ['id', 'nombre', 'apellido', 'email', 'rol', 'rol_nombre']
-        # Se proteje para que la contraseña no se envíe al frontend
+        fields = ['id', 'nombre', 'apellido', 'email', 'rol', 'rol_nombre', 'contrasena']
+        # Comento esto temporalemnte y agrege contrasena en fields| Se proteje para que la contraseña no se envíe al frontend
         extra_kwargs = {
             'contrasena': {'write_only': True}
         }
