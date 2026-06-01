@@ -54,7 +54,7 @@ export class RegisterComponent {
       nombre: this.form.value.nombre,
       apellido: this.form.value.apellido,
       contrasena: this.form.value.password,
-      rol: 1
+    
     };
 
     this.authService.register(userData).subscribe({
