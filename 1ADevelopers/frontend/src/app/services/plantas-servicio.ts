@@ -29,8 +29,8 @@ export class PlantasServicio {
 
   constructor(private http: HttpClient) {}
 
-  getMisPlantas(): Observable<Especie[]> {
-    return this.http.get<Especie[]>(`${this.API}/especies/mis-especies/`);
+  getMisPlantas(usuarioId: number): Observable<Especie[]> {
+    return this.http.get<Especie[]>(`${this.API}/especies/mis-especies/?usuario_id=${usuarioId}`);
   }
 
   getCategorias(): Observable<Categoria[]> {

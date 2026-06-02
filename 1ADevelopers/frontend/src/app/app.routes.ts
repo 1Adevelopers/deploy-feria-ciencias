@@ -30,17 +30,10 @@ export const routes: Routes = [
       { path: 'editar-planta/:id', component: PlantForm },
     ],
   },
-  
-  {
 
-    path: 'docentes',
-    component: DocenteDashboard,
-    children: [
-      { path: 'docentes', component: DocenteDashboard },
-      { path: 'docentes/nueva-planta', component: PlantForm },
-      { path: 'docentes/editar-planta/:id', component: PlantForm },
-    ]
-  },
+  { path: 'docentes', component: DocenteDashboard },
+  { path: 'docentes/nueva-planta', component: PlantForm },
+  { path: 'docentes/editar-planta/:id', component: PlantForm },
 
   { path: 'quienes-somos', component: QuienesSomos },
   { path: 'galeria', component: Galeriafichas },

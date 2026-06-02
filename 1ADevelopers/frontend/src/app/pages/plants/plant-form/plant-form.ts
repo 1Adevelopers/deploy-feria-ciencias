@@ -132,13 +132,20 @@ export class PlantForm implements OnInit {
 
     this.submitStatus = 'loading';
     const raw: Especie = this.form.getRawValue();
+    const userSession = localStorage.getItem('user');
+    let usuarioId = 1;
+
+    if (userSession) {
+      const user = JSON.parse(userSession);
+      usuarioId = user.id;
+    }
 
     const payload: Especie = {
       nombre_comun: raw.nombre_comun.trim(),
       nombre_cientifico: raw.nombre_cientifico.trim(),
       descripcion: raw.descripcion.trim(),
       categoria: Number(raw.categoria),
-      usuario: 1,
+      usuario: usuarioId,
       imagenes: raw.imagenes
         .filter((img: { url: string }) => img.url?.trim())
         .map((img: any) => ({

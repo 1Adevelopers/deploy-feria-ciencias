@@ -95,11 +95,11 @@ class ImagenEspecie(APIView):
 
 class MisEspeciesListar(APIView):
     def get(self, request):
-        # usuario_docente = Usuario.objects.get(email='profe@gmail.com')
-        
-        # especies = Especie.objects.filter(usuario=usuario_docente)
-        # serializer = EspecieSerializer(especies, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
-        especies = Especie.objects.filter(usuario_id=2)
-        serializer = EspecieSerializer(especies, many=True)
-        return Response(serializer.data)
+       usuario_id = request.query_params.get('usuario_id')
+
+       if usuario_id:
+           especies = Especie.objects.filter(usuario_id=usuario_id)
+       else:
+           return Response({"Error": "Falta el parámetro 'usuario_id'."}, status=status.HTTP_400_BAD_REQUEST)
+       serializer = EspecieSerializer(especies, many=True)
+       return Response(serializer.data)

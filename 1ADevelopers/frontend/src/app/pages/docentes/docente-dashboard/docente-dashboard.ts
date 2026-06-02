@@ -17,12 +17,23 @@ export class DocenteDashboard implements OnInit {
   misPlantas: Especie[] = [];
 
   ngOnInit() {
-    // localStorage.setItem('auth_token', 'TOKEN_TEMPORAL_DE_PRUEBA');
-    this.cargarMisPlantas();
+    const userSession = localStorage.getItem('user');
+    let usuarioId: number | null = null;
+
+    if (userSession) {
+      const user = JSON.parse(userSession);
+      usuarioId = Number(user.id);
+    }
+
+    if (usuarioId) {
+      this.cargarMisPlantas(usuarioId);
+    } else {
+      console.error('No se encontró ningún usuario logueado en la sesión.');
+    }
   }
 
-  cargarMisPlantas() {
-    this.plantasService.getMisPlantas().subscribe({
+  cargarMisPlantas(usuarioId: number) {
+    this.plantasService.getMisPlantas(usuarioId).subscribe({
       next: (data: Especie[]) => {
         this.misPlantas = data;
         this.cdr.detectChanges();
