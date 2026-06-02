@@ -3,7 +3,7 @@ Thumbs.db
 .DS_Store
 
 # Configuración de VS Code
-.vscode/
+.vscode/*
 
 # Logs y archivos temporales
 *.log
