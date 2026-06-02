@@ -1,26 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+from rest_framework import serializers
+from .models import Rol, Usuario
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/';
+class UsuarioSerializer(serializers.ModelSerializer):
 
-  constructor(private http: HttpClient) {}
+    rol_nombre = serializers.ReadOnlyField(source='rol.nombre_rol')
 
-  // REGISTRO
-  register(userData: any): Observable<any> {
-    return this.http.post(
-      `${this.apiUrl}usuarios/usuarios/`,
-      userData
-    );
-  }
+    class Meta:
+        model = Usuario
+        fields = [
+            'id',
+            'nombre',
+            'apellido',
+            'email',
+            'rol',
+            'rol_nombre',
+            'contrasena'
+        ]
 
-  // LOGIN 
-  login(): Observable<any> {
-    return this.http.get(`${this.apiUrl}usuarios/usuarios/`);
-  }
-}
+        extra_kwargs = {
+            'contrasena': {'write_only': True},
+            'rol': {'required': False}
+        }
+
+    def create(self, validated_data):
+        validated_data['rol_id'] = 2
+        return Usuario.objects.create(**validated_data)
