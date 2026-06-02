@@ -4,7 +4,10 @@
       <h2>Plantas Nativas</h2>
       <p>Catálogo de especies de la provincia de Córdoba.</p>
     </div>
-    <button class="btn-add-main" routerLink="/admin/nueva-planta">
+    <button
+      class="btn-add-main"
+      [routerLink]="esDocente ? '/docentes/nueva-planta' : '/admin/nueva-planta'"
+    >
       <i class="bi bi-plus-circle-fill me-2"></i> Añadir Planta
     </button>
   </header>
@@ -40,10 +43,15 @@
             <td class="text-end px-4">
               <button
                 class="btn etiqueta etiqueta-verde me-2"
-                [routerLink]="['/admin/editar-planta', planta.id]"
+                [routerLink]="
+                  esDocente
+                    ? ['/docentes/editar-planta', planta.id]
+                    : ['/admin/editar-planta', planta.id]
+                "
               >
                 Actualizar
               </button>
+
               <button class="btn etiqueta etiqueta-salmon" (click)="eliminarPlanta(planta.id)">
                 Borrar
               </button>
