@@ -70,3 +70,37 @@ class UsuarioDetalle(APIView):
         usuarios = get_object_or_404(Usuario, pk=pk)
         usuarios.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class LoginView(APIView):
+
+    def post(self, request):
+
+        email = request.data.get('email')
+        contrasena = request.data.get('contrasena')
+
+        if not email or not contrasena:
+            return Response(
+                {'error': 'Faltan datos'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+
+            usuario = Usuario.objects.get(
+                email=email,
+                contrasena=contrasena
+            )
+
+            serializer = UsuarioSerializer(usuario)
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+
+        except Usuario.DoesNotExist:
+
+            return Response(
+                {'error': 'Email o contraseña incorrectos'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )

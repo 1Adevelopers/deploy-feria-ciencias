@@ -7,20 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/';
+  private apiUrl = 'http://127.0.0.1:8000/api/usuarios/';
 
   constructor(private http: HttpClient) {}
 
   // REGISTRO
   register(userData: any): Observable<any> {
     return this.http.post(
-      `${this.apiUrl}usuarios/usuarios/`,
+      `${this.apiUrl}usuarios/`,
       userData
     );
   }
 
   // LOGIN 
-  login(): Observable<any> {
-    return this.http.get(`${this.apiUrl}usuarios/usuarios/`);
-  }
+   login(credentials: { email: string; contrasena: string }): Observable<any> {
+   return this.http.post(`${this.apiUrl}login/`, credentials);
+ }
 }
