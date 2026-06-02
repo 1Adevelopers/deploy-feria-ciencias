@@ -16,6 +16,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
 <<<<<<< Updated upstream
         fields = ['id', 'nombre', 'apellido', 'email', 'rol', 'rol_nombre', 'contrasena']
+<<<<<<< HEAD
         # Comento esto temporalemnte y agrege contrasena en fields| Se proteje para que la contraseña no se envíe al frontend
 =======
         fields = [
@@ -29,13 +30,22 @@ class UsuarioSerializer(serializers.ModelSerializer):
         ]
 
 >>>>>>> Stashed changes
+=======
+        # agregue contrasena en fields | Se proteje para que la contraseña no se envíe al frontend
+>>>>>>> 16c2e1294996b8be6a00d5bff39a5e24a067b404
         extra_kwargs = {
-            'contrasena': {'write_only': True},
+            # 'contrasena': {'write_only': True},
             'rol': {'required': False}
         }
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         def create(self, validated_data):
 =======
+=======
+        
+        
+    def create(self, validated_data):
+>>>>>>> 16c2e1294996b8be6a00d5bff39a5e24a067b404
 
     def create(self, validated_data):
 >>>>>>> Stashed changes
