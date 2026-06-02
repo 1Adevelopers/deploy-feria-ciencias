@@ -29,24 +29,27 @@ export class IniciarSesionComponent {
       return;
     }
 
-    const email = this.form.value.email;
-    const password = this.form.value.password;
+    const credentials = {
+      email: this.form.value.email,
+      contrasena: this.form.value.password,
+    };
 
-    this.authService.login().subscribe((users:any[]) => {
+    this.authService.login(credentials).subscribe({
+           next: (user) => {
+       alert(`¡Bienvenido a FlorApp, ${user.nombre}!`);
+       localStorage.setItem('user', JSON.stringify(user));
+       const idRol = Number(user.rol);
 
-      const user = users.find((u:any) =>
-        u.email === email &&
-        u.contrasena === password
-      );
 
-      if (user) {
-        alert('¡Bienvenido a FlorApp!');
-
-        localStorage.setItem('user', JSON.stringify(user));
-
-        this.router.navigate(['/admin']);
-      } else {
-        alert('Correo o contraseña incorrectos');
+     if (user.rol === 1) {
+       this.router.navigate(['/admin']);
+     } else if (user.rol === 2) {
+       this.router.navigate(['/docentes']);
+     }
+     },
+     error: (err) => {
+      console.error(err);
+      alert('Correo o contraseña incorrectos');
       }
 
     });

@@ -72,9 +72,7 @@ class UsuarioDetalle(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class LoginView(APIView):
-
     def post(self, request):
-
         email = request.data.get('email')
         contrasena = request.data.get('contrasena')
 
@@ -85,21 +83,10 @@ class LoginView(APIView):
             )
 
         try:
-
-            usuario = Usuario.objects.get(
-                email=email,
-                contrasena=contrasena
-            )
-
+            usuario = Usuario.objects.get(email=email, contrasena=contrasena)
             serializer = UsuarioSerializer(usuario)
-
-            return Response(
-                serializer.data,
-                status=status.HTTP_200_OK
-            )
-
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Usuario.DoesNotExist:
-
             return Response(
                 {'error': 'Email o contraseña incorrectos'},
                 status=status.HTTP_401_UNAUTHORIZED
