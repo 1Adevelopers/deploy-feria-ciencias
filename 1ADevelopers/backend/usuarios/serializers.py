@@ -20,6 +20,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
             'contrasena': {'write_only': True},
             'rol': {'required': False}
         }
-        def create(self, validated_data):
-                validated_data['rol_id'] = 2
-                return Usuario.objects.create(**validated_data)
+    
+    def create(self, validated_data):
+        validated_data['rol_id'] = 2
+        return Usuario.objects.create(**validated_data)
