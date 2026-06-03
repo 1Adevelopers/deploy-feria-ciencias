@@ -13,6 +13,7 @@ import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
 import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
 import { PlantForm } from './pages/plants/plant-form/plant-form';
 import { RegisterComponent } from './pages/auth/register/register';
+import { MensajesLista } from './pages/mensajes-lista/mensajes-lista';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'usuarios/nuevo', component: UserForm },
       { path: 'nueva-planta', component: PlantForm },
       { path: 'editar-planta/:id', component: PlantForm },
+      { path: 'mensajes', component: MensajesLista },
     ],
   },
 
