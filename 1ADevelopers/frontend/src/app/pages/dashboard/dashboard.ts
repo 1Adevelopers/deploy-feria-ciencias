@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import { Sidebar } from '../../shared/sidebar/sidebar';
 import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
-  standalone:true,
-  imports: [CommonModule, RouterModule, Sidebar, RouterOutlet],
+  imports: [RouterModule, DatePipe, Sidebar, RouterOutlet],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
-  today: Date = new Date();
+  today = signal(new Date());
 }

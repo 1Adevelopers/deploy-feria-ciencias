@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
@@ -17,28 +15,43 @@ export class IniciarSesionComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   iniciarSesion() {
-    const email = this.form.value.email;
-    const password = this.form.value.password;
-
-    if (this.form.valid) {
-      if (email === 'admin@gmail.com' && password === '123456') {
-        alert('¡Bienvenido a FlorApp!');
-
-        this.router.navigate(['/admin']);
-      } else {
-        alert('Correo o contraseña incorrectos');
-      }
-    } else {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      return;
     }
+
+    const credentials = {
+      email: this.form.value.email,
+      contrasena: this.form.value.password,
+    };
+
+    this.authService.login(credentials).subscribe({
+           next: (user) => {
+       alert(`¡Bienvenido a FlorApp, ${user.nombre}!`);
+       localStorage.setItem('user', JSON.stringify(user));
+       const idRol = Number(user.rol);
+
+
+     if (user.rol === 1) {
+       this.router.navigate(['/admin']);
+     } else if (user.rol === 2) {
+       this.router.navigate(['/docentes']);
+     }
+     },
+     error: (err) => {
+      console.error(err);
+      alert('Correo o contraseña incorrectos');
+      }
+
+    });
   }
 }

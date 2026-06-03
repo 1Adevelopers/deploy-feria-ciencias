@@ -122,26 +122,30 @@ python manage.py loaddata florapp/fixtures/especies.json
 
 | ID | Descripción |
 |---|---|
-| RF01 | Inicio de sesión para administradores y docentes que gestionan el contenido educativo. |
-| RF02 | Fichas ilustradas de árboles y plantas autóctonas con imagen al frente e información educativa al dorso. |
-| RF03 | Juego de memoria reutilizando las fichas, con puntaje según aciertos y tiempo de resolución. |
-| RF04 | Ingreso de nombre o apodo al finalizar el juego, con almacenamiento del puntaje en tabla pública de clasificación. |
-| RF05 | Cuentos interactivos con ilustraciones y texto breve, navegables mediante botones. |
+| RF01 | El sistema debe mostrar una página de home con mensaje de bienvenida que invita al usuario a explorar la página y acceso a las secciones principales. |
+| RF02 | El sistema debe mostrar una sección “Quiénes Somos” con información sobre la misión del proyecto. |
+| RF03 | El sistema debe permitir al administrador o docente iniciar sesión utilizando una dirección de correo electrónico válida y una contraseña de mínimo 6 caracteres. |
+| RF04 | El sistema debe mostrar una galería de fichas con fotos de especies en formato tarjeta. |
+| RF05 | El sistema debe permitir al administrador o docente gestionar el contenido (especies, imágenes, usuarios, etc) de acuerdo a los permisos de cada tipo de usuario. |
+| RF06 | El sistema debe permitir al usuario visitante enviar consultas generales mediante un formulario de contacto. |
 
 ### 🔒 No Funcionales
 
 | ID | Descripción |
 |---|---|
-| RNF01 | Interfaz simple e intuitiva, orientada a niños. |
-| RNF02 | Diseño responsive (adaptable a distintos dispositivos). |
-| RNF03 | Tiempo de carga menor a 3 segundos. |
-| RNF04 | No se solicitan datos personales de menores. |
-| RNF05 | Disponibilidad del sistema 24/7. |
+| RNF01 | El sistema debe adaptarse, respondiendo dependiendo del tamaño de pantalla, del cual el usuario visita la página. |
+| RNF02 | El sistema debe cargar las secciones principales sin exceder los 3 segundos. |
+| RNF03 | El sistema no debe solicitar ni almacenar datos personales de los usuarios visitantes fuera del formulario de contacto. |
+| RNF04 | La interfaz deberá ser simple, intuitiva, utilizando botones grandes, colores amigables y navegación sencilla. |
 
 ---
 
 ## 📅 Información académica
 
 **Evidencia de Apendizaje N.º 1** — jueves, 16 de abril de 2026
+
+Modulo Promador Web - TSDWAD - ISPC
+
+**Evidencia de Apendizaje N.º 2** — martes, 12 de mayo de 2026
 
 Modulo Promador Web - TSDWAD - ISPC

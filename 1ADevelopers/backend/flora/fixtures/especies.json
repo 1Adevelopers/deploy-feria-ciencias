@@ -1,0 +1,24 @@
+[
+  {
+    "model": "flora.especie",
+    "pk": 1,
+    "fields": {
+      "nombre_comun": "Algarrobo Blanco",
+      "nombre_cientifico": "Neltuma alba",
+      "descripcion": "Árbol nativo de las regiones áridas y semiáridas. Posee una copa amplia y es sumamente resistente a las sequías.",
+      "categoria": 1,
+      "usuario": 1
+    }
+  },
+  {
+    "model": "flora.especie",
+    "pk": 2,
+    "fields": {
+      "nombre_comun": "Peperina",
+      "nombre_cientifico": "Minthostachys verticillata",
+      "descripcion": "Arbusto aromático característico de las sierras. Muy apreciado para infusiones y medicina tradicional.",
+      "categoria": 2,
+      "usuario": 1
+    }
+  }
+]
