@@ -2,6 +2,23 @@
   <h2 class="h4 mb-4 text-forest">Contacto</h2>
 
   <form [formGroup]="form" (ngSubmit)="enviarConsulta()">
+
+    <div class="mb-3">
+    <label for="nombre" class="form-label fw-medium">Tu nombre</label>
+    <input
+      type="text"
+      class="form-control custom-input"
+      id="nombre"
+      placeholder="Nombre completo"
+      formControlName="nombre"
+    />
+    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+      <div class="error">
+        <small>El nombre es obligatorio</small>
+      </div>
+    }
+  </div>
+
     <div class="mb-3">
       <label for="email" class="form-label fw-medium">Tu correo electrónico</label>
       <input
@@ -48,9 +65,16 @@
     </div>
 
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-verde px-5" routerLink="/notfound404">
-        Enviar consulta
+      <button type="submit" class="btn btn-verde px-5">
+        Enviar
       </button>
     </div>
   </form>
+
+  @if (enviado) {
+  <div class="alert alert-success mt-3 text-center">
+    ¡Mensaje enviado! Gracias por aporte.
+  </div>
+  }
+
 </div>
