@@ -38,7 +38,7 @@ export class Contact {
       mensaje: this.form.value.mensaje,
     };
 
-    this.http.post('http://localhost:8000/api/interacciones/contacto/', datos).subscribe({
+    this.http.post('http://localhost:8000/api/interacciones/', datos).subscribe({
       next: () => {
         this.enviado = true;
         this.form.reset();
