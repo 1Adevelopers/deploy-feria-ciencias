@@ -22,5 +22,22 @@ class UsuarioSerializer(serializers.ModelSerializer):
         }
     
     def create(self, validated_data):
-        validated_data['rol_id'] = 2
+        rol = validated_data.get('rol')
+        if not rol:
+            validated_data['rol_id'] = 2
         return Usuario.objects.create(**validated_data)
+    
+    def update(self, instance, validated_data):
+        instance.nombre = validated_data.get('nombre', instance.nombre)
+        instance.apellido = validated_data.get('apellido', instance.apellido)
+        instance.email = validated_data.get('email', instance.email)
+        
+        nueva_contrasena = validated_data.get('contrasena')
+        if nueva_contrasena:
+            instance.contrasena = nueva_contrasena
+        
+        if 'rol' in validated_data:
+            instance.rol = validated_data.get('rol')
+            
+        instance.save()
+        return instance
