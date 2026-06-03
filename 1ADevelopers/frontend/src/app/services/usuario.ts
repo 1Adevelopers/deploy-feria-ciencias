@@ -8,7 +8,7 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class UsuarioService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000/api/usuarios'; //cambiar por la url de django
+  private apiUrl = 'http://localhost:8000/api/usuarios/'; 
 
   crearUsuario(usuario: Usuario): Observable<any> {
     return this.http.post(this.apiUrl, usuario);
@@ -19,10 +19,10 @@ export class UsuarioService {
   }
 
   eliminarUsuario(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}${id}/`);
   }
 
   actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, usuario);
+    return this.http.put(`${this.apiUrl}${id}/`, usuario);
   }
 }
