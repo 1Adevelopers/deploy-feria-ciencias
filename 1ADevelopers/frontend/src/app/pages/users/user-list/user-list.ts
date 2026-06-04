@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario';
 import { Usuario } from '../../../interfaces/usuario';
@@ -11,6 +11,8 @@ import { Usuario } from '../../../interfaces/usuario';
 })
 export class UserList implements OnInit {
   private usuarioService = inject(UsuarioService);
+  private cdr = inject(ChangeDetectorRef);
+
   usuarios: Usuario[] = [];
 
   ngOnInit(): void {
@@ -19,8 +21,10 @@ export class UserList implements OnInit {
 
   cargarUsuarios(): void {
     this.usuarioService.ObtenerUsuarios().subscribe({
-      next: (data) => 
+      next: (data) => {
         this.usuarios = data,
+        this.cdr.detectChanges();
+      },
       error: (err) => console.error('Error al cargar usuarios:', err)
     });
   }

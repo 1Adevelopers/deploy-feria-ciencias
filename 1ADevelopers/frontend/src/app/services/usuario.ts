@@ -8,7 +8,7 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class UsuarioService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000/api/usuarios/'; 
+  private apiUrl = 'http://localhost:8000/api/usuarios/usuarios/'; 
 
   crearUsuario(usuario: Usuario): Observable<any> {
     return this.http.post(this.apiUrl, usuario);
