@@ -138,6 +138,11 @@ h6 {
   transform: translateY(-1px);
 }
 
+.icon-empty-state {
+    font-size: 3rem;
+}
+
+
 /* Estilos para el dashboard principal */
 
 .titulo-panel {
