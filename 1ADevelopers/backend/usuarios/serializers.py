@@ -22,9 +22,18 @@ class UsuarioSerializer(serializers.ModelSerializer):
         }
     
     def create(self, validated_data):
-        rol = validated_data.get('rol')
-        if not rol:
+        rol_data = validated_data.pop('rol', None)
+        
+        # Si no viene rol (registro público), asignamos el ID 2 directamente
+        if not rol_data:
             validated_data['rol_id'] = 2
+        # Si viene como diccionario (desde alguna otra vista)
+        elif isinstance(rol_data, dict):
+            validated_data['rol_id'] = rol_data.get('id', 2)
+        # Si ya es una instancia del modelo Rol (comportamiento por defecto de DRF)
+        else:
+            validated_data['rol'] = rol_data
+            
         return Usuario.objects.create(**validated_data)
     
     def update(self, instance, validated_data):
