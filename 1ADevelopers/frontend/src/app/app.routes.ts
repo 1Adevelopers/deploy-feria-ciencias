@@ -14,6 +14,7 @@ import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-das
 import { PlantForm } from './pages/plants/plant-form/plant-form';
 import { RegisterComponent } from './pages/auth/register/register';
 import { MensajesLista } from './pages/mensajes-lista/mensajes-lista';
+import { using } from 'rxjs';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,10 +26,11 @@ export const routes: Routes = [
     component: Dashboard,
     children: [
       { path: 'plantas', component: PlantList },
-      { path: 'usuarios', component: UserList },
-      { path: 'usuarios/nuevo', component: UserForm },
       { path: 'nueva-planta', component: PlantForm },
       { path: 'editar-planta/:id', component: PlantForm },
+      { path: 'usuarios', component: UserList },
+      { path: 'usuarios/nuevo', component: UserForm },
+      {path: 'usuarios/editar/:id', component: UserForm},
       { path: 'mensajes', component: MensajesLista },
     ],
   },

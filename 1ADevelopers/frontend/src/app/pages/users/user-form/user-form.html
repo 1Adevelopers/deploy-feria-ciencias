@@ -1,5 +1,5 @@
 <div class="wp-form-container">
-    <h2>Añadir nuevo usuario</h2>
+    <h2>{{ isEditMode ? 'Actualizar usuario' : 'Añadir nuevo usuario' }}</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="wp-form">
 
         <div class="form-row">
@@ -13,6 +13,20 @@
                 } @else if (userForm.get('nombre')?.hasError('minlength')) {
                 <span class="error-text">Debe tener al menos 3 caracteres.</span>
                 }
+                }
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="apellido">Apellido</label>
+            <div class="input-wrapper">
+                <input type="text" id="apellido" formControlName="apellido">
+
+                @if (userForm.get('apellido')?.touched) {
+                    @if (userForm.get('apellido')?.hasError('required')) {
+                        <span class="error-text">El apellido es obligatorio.</span>
+                    } @else if (userForm.get('apellido')?.hasError('minlength')) {
+                        <span class="error-text">Debe tener al menos 2 caracteres.</span>
+                    }
                 }
             </div>
         </div>
@@ -64,7 +78,7 @@
 
         <div class="form-actions">
             <button type="submit" class="wp-button" [disabled]="userForm.invalid">
-                Añadir nuevo usuario
+                {{ isEditMode ? 'Guardar Cambios' : 'Añadir nuevo usuario' }}
             </button>
             <a routerLink="/admin/usuarios" class="cancel-link">
                 Cancelar

@@ -54,21 +54,21 @@ class UsuarioListarCrear(APIView):
 
 class UsuarioDetalle(APIView):
     def get(self, request, pk):
-        usuarios = get_object_or_404(Usuario, pk=pk)
-        serializer = UsuarioSerializer(usuarios)
+        usuario = get_object_or_404(Usuario, pk=pk)
+        serializer = UsuarioSerializer(usuario)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
-        usuarios = get_object_or_404(Usuario, pk=pk)
-        serializer = UsuarioSerializer(usuarios, data=request.data)
+        usuario = get_object_or_404(Usuario, pk=pk)
+        serializer = UsuarioSerializer(usuario, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        usuarios = get_object_or_404(Usuario, pk=pk)
-        usuarios.delete()
+        usuario = get_object_or_404(Usuario, pk=pk)
+        usuario.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class LoginView(APIView):
