@@ -55,12 +55,7 @@
           <div [formGroupName]="$index" class="image-group">
             <input type="text" formControlName="url" placeholder="https://ejemplo.com/foto.jpg" />
 
-            <button
-              type="button"
-              class="btn-secondary"
-              (click)="removeImagen($index)"
-              [disabled]="imagenes.length === 1"
-            >
+            <button  type="button"  class="btn-cancelar"  (click)="removeImagen($index)"  [disabled]="imagenes.length === 1">
               Eliminar
             </button>
           </div>
@@ -75,30 +70,21 @@
           }
         }
 
-        <button
-          type="button"
-          class="btn-secondary btn-add-url"
-          (click)="addImagen()"
-          [disabled]="imagenes.length >= maxImages"
-        >
+        <button type="button" class="btn-secondary btn-add-url" (click)="addImagen()" [disabled]="imagenes.length >= maxImages">
           + Añadir otra URL
         </button>
       </div>
     </fieldset>
 
     <div class="form-actions">
-      <button
-        type="submit"
-        class="wp-button"
-        [disabled]="form.invalid || submitStatus === 'loading'"
-      >
+      <button type="submit" class="btn etiqueta etiqueta-verde me-2">
         @if (submitStatus === 'loading') {
           Guardando...
         } @else {
           Guardar
         }
       </button>
-      <button type="button" class="cancel-link" (click)="onReset()">Cancelar</button>
+      <button class="btn etiqueta etiqueta-salmon" (click)="onReset()">Cancelar</button>
     </div>
   </form>
 </div>
