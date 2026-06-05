@@ -56,6 +56,16 @@ h6 {
   color: white;
 }
 
+.btn-cancelar{
+  display: inline-flex;
+  color: #8c8f94;
+  padding: 5px 15px;
+  border: solid 1px #8c8f94;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .etiqueta {
   border: none !important;
   transition: all 0.3s ease;

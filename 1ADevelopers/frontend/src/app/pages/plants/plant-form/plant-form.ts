@@ -203,6 +203,12 @@ export class PlantForm implements OnInit {
     this.imagenes.push(this.createImagenControl());
     this.submitStatus = 'idle';
     this.errorMessage = '';
+
+    if (this.esDocente) {
+      this.router.navigate(['/docentes']);
+    } else {
+      this.router.navigate(['/admin/plantas']);
+    }
   }
 
   get esDocente(): boolean {
