@@ -41,3 +41,20 @@ class ContactoDetalle(APIView):
        contacto = get_object_or_404(Contacto, pk=pk)
        contacto.delete()
        return Response(status=status.HTTP_204_NO_CONTENT)
+   
+class ContactoMarcarLeido(APIView):
+    def patch(self, request, pk):
+        contacto = get_object_or_404(Contacto, pk=pk)
+        contacto.leido = True
+        contacto.save()
+        serializer = ContactoSerializer(contacto)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ContactoMarcarRespondido(APIView):
+    def patch(self, request, pk):
+        contacto = get_object_or_404(Contacto, pk=pk)
+        contacto.respondido = True
+        contacto.save()
+        serializer = ContactoSerializer(contacto)
+        return Response(serializer.data, status=status.HTTP_200_OK)

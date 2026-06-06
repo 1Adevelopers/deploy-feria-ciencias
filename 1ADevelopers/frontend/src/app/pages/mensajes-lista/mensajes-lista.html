@@ -1,0 +1,93 @@
+<div class="mensajes-container animate__animated animate__fadeIn">
+  <header class="list-header">
+    <div class="list-title-area">
+      <h2>Mensajes</h2>
+      <p>Consultas recibidas desde el formulario de contacto.</p>
+    </div>
+  </header>
+
+  <!-- Filtros -->
+  <div class="d-flex gap-2 mb-4">
+    <button
+      class="btn etiqueta etiqueta-gris"
+      [class.active]="filtro() === 'todos'"
+      (click)="setFiltro('todos')"
+    >
+      Todos
+    </button>
+    <button
+      class="btn etiqueta etiqueta-verde"
+      [class.active]="filtro() === 'leidos'"
+      (click)="setFiltro('leidos')"
+    >
+      Leídos
+    </button>
+    <button
+      class="btn etiqueta etiqueta-salmon"
+      [class.active]="filtro() === 'respondidos'"
+      (click)="setFiltro('respondidos')"
+    >
+      Respondidos
+    </button>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Remitente</th>
+          <th>Email</th>
+          <th>Mensaje</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th class="text-end px-4">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (mensaje of mensajesFiltrados(); track mensaje.id) {
+          <tr [class.fw-bold]="!mensaje.leido" [class.text-muted]="mensaje.leido">
+            <td>{{ mensaje.nombre }}</td>
+            <td>{{ mensaje.email }}</td>
+            <td>{{ mensaje.mensaje }}</td>
+            <td>{{ mensaje.fecha_envio | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              @if (mensaje.respondido) {
+                <span class="badge bg-success">Respondido</span>
+              } @else if (mensaje.leido) {
+                <span class="badge bg-secondary">Leído</span>
+              } @else {
+                <span class="badge bg-warning text-dark">Nuevo</span>
+              }
+            </td>
+            <td class="text-end px-4">
+              @if (!mensaje.leido) {
+                <button
+                  class="btn etiqueta etiqueta-verde me-2"
+                  (click)="marcarLeido(mensaje.id)"
+                >
+                  Marcar leído
+                </button>
+              }
+              @if (!mensaje.respondido) {
+                <button
+                  class="btn etiqueta etiqueta-amarilla"
+                  (click)="marcarRespondido(mensaje.id)"
+                >
+                  Marcar respondido
+                </button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="text-center py-5">
+              <i class="bi bi-envelope text-muted opacity-25" style="font-size: 3rem"></i>
+              <p class="mt-3 text-muted">No hay mensajes en esta categoría.</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

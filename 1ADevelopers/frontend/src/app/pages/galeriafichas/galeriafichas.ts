@@ -1,29 +1,60 @@
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
+import { PlantasServicio } from '../../services/plantas-servicio';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-galeriafichas',
-  standalone: true,
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './galeriafichas.html',
-  styleUrls: ['./galeriafichas.css']
+  styleUrls: ['./galeriafichas.css'],
 })
-export class Galeriafichas {
-  fichas= [
-    { nombreComun: 'nombre1', nombreCientifico: 'nombreCientifico1', descripcion: 'descripcion1', mostrar: false },
-    { nombreComun: 'nombre2', nombreCientifico: 'nombreCientifico2', descripcion: 'descripcion2', mostrar: false },
-    { nombreComun: 'nombre3', nombreCientifico: 'nombreCientifico3', descripcion: 'descripcion3', mostrar: false },
-    { nombreComun: 'nombre4', nombreCientifico: 'nombreCientifico4', descripcion: 'descripcion4', mostrar: false },
-    { nombreComun: 'nombre5', nombreCientifico: 'nombreCientifico5', descripcion: 'descripcion5', mostrar: false },
-    { nombreComun: 'nombre6', nombreCientifico: 'nombreCientifico6', descripcion: 'descripcion6', mostrar: false },
-    { nombreComun: 'nombre7', nombreCientifico: 'nombreCientifico7', descripcion: 'descripcion7', mostrar: false },
-    { nombreComun: 'nombre8', nombreCientifico: 'nombreCientifico8', descripcion: 'descripcion8', mostrar: false },
-    { nombreComun: 'nombre9', nombreCientifico: 'nombreCientifico9', descripcion: 'descripcion9', mostrar: false },
-  ];
+export class Galeriafichas implements OnInit {
+  private plantasServicio = inject(PlantasServicio);
 
-  seleccionada: any = null;
+  plantas = signal<any[]>([]);
+  categorias = signal<any[]>([]);
+  categoriaSeleccionadaId = signal<number | null>(null);
 
-  mostrarInfo(ficha: any) {
-    this.seleccionada = ficha;
+  plantasFiltradas = computed(() => {
+    const filtroId = this.categoriaSeleccionadaId();
+    const lista = this.plantas();
+    if (filtroId === null) return lista;
+
+    return lista.filter((p) => Number(p.categoria) === Number(filtroId));
+  });
+
+  ngOnInit(): void {
+    this.cargarContenido();
+  }
+
+  cargarContenido(): void {
+    this.plantasServicio.getPlantas().subscribe({
+      next: (data) => {
+        this.plantas.set(data.map((p) => ({ ...p, mostrar: false })));
+      },
+      error: (err) => console.error('Error al cargar plantas:', err),
+    });
+
+    this.plantasServicio.getCategorias().subscribe({
+      next: (data) => this.categorias.set(data),
+      error: (err) => console.error('Error al cargar categorías:', err),
+    });
+  }
+
+  filtrarPorCategoria(id: number | null): void {
+    this.categoriaSeleccionadaId.set(id);
+  }
+
+  obtenerNombreCategoria(categoriaId: any): string {
+    if (!categoriaId) return '';
+    const cat = this.categorias().find((c) => Number(c.id) === Number(categoriaId));
+    return cat ? cat.categoria : '';
+  }
+
+  togglePlanta(plantaId: number): void {
+    this.plantas.update((lista) =>
+      lista.map((p) => (p.id === plantaId ? { ...p, mostrar: !p.mostrar } : p)),
+    );
   }
 }

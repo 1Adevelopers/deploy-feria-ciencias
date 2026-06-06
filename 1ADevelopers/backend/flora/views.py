@@ -1,15 +1,16 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import viewsets #BORRAR
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import CategoriaEspecie, Especie, ImagenEspecie
+from .models import CategoriaEspecie, Especie, ImagenEspecie, Usuario
 from .serializers import CategoriaSerializer, EspecieSerializer, ImagenEspecieSerializer
+
 
 class Categorias(APIView):
     def get(self, request):
-        categoria = categoria.objects.all()
-        serializer = CategoriaSerializer(categoria, many=True)
+        categorias = CategoriaEspecie.objects.all()
+        serializer = CategoriaSerializer(categorias, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def post(self, request):
@@ -20,7 +21,7 @@ class Categorias(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def put(self, request, pk):
-        categoria = get_object_or_404(Categorias, pk=pk)
+        categoria = get_object_or_404(CategoriaEspecie, pk=pk)
         serializer = CategoriaSerializer (categoria, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -91,4 +92,14 @@ class ImagenEspecie(APIView):
         ImagenEspecie = get_object_or_404(ImagenEspecie, pk=pk)
         ImagenEspecie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+class MisEspeciesListar(APIView):
+    def get(self, request):
+       usuario_id = request.query_params.get('usuario_id')
+
+       if usuario_id:
+           especies = Especie.objects.filter(usuario_id=usuario_id)
+       else:
+           return Response({"Error": "Falta el parámetro 'usuario_id'."}, status=status.HTTP_400_BAD_REQUEST)
+       serializer = EspecieSerializer(especies, many=True)
+       return Response(serializer.data)

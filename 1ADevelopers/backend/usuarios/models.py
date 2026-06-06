@@ -11,11 +11,8 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    # Usamos CharField para la contraseña por ahora, 
-    # en el futuro usaremos el sistema de hash de Django
     contrasena = models.CharField(max_length=255)
     
-    # Relación: Un Rol puede tener muchos Usuarios (1:N)
     rol = models.ForeignKey(Rol, on_delete=models.PROTECT)
 
     def __str__(self):

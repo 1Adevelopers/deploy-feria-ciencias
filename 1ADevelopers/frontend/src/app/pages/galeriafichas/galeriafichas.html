@@ -1,47 +1,89 @@
-<section class="">
+<section>
   <div class="container py-5 mt-5">
-    <div class="text-center"><h1 class="titulo mb-5 mt-5">Fichas de Plantas</h1></div>
+    <div class="text-center">
+      <h1 class="titulo mb-5 mt-5">Fichas de Plantas</h1>
+    </div>
 
-    <div class="d-flex justify-content-center gap-3 mb-4">
-      <button class="btn etiqueta etiqueta-verde">Árboles</button>
-      <button class="btn etiqueta etiqueta-salmon">Arbustos</button>
-      <button class="btn etiqueta etiqueta-amarilla">Hierbas</button>
-      <button class="btn etiqueta etiqueta-violeta">Trepadoras</button>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+      <button
+        class="btn etiqueta etiqueta-gris"
+        [class.active]="categoriaSeleccionadaId() === null"
+        (click)="filtrarPorCategoria(null)"
+      >
+        Todas
+      </button>
+
+      @for (cat of categorias(); track cat.id) {
+        <button
+          class="btn etiqueta"
+          [ngClass]="{
+            active: categoriaSeleccionadaId() === cat.id,
+            'etiqueta-verde': cat.categoria === 'arbol',
+            'etiqueta-salmon': cat.categoria === 'arbusto',
+            'etiqueta-amarilla': cat.categoria === 'hierba',
+            'etiqueta-violeta': cat.categoria === 'trepadora',
+            'etiqueta-celeste':
+              cat.categoria !== 'arbol' &&
+              cat.categoria !== 'arbusto' &&
+              cat.categoria !== 'hierba' &&
+              cat.categoria !== 'trepadora',
+          }"
+          (click)="filtrarPorCategoria(cat.id)"
+        >
+          {{ cat.categoria }}
+        </button>
+      }
     </div>
 
     <div class="row g-4">
-      @for (ficha of fichas; track ficha) {
+      @for (planta of plantasFiltradas(); track planta.id) {
         <div class="col-md-4">
-          <div class="card rounded-4 shadow border-0" (click)="ficha.mostrar = !ficha.mostrar">
-            @if (!ficha.mostrar) {
+          <div class="card rounded-4 shadow border-0 c-pointer" (click)="togglePlanta(planta.id)">
+            @if (!planta.mostrar) {
               <img
-                src="public/fotos/nativas/algarrobo-0.webp"
-                class="card-img-top rounded-top-4"
-                alt="{{ ficha.nombreComun }}"
+                [src]="planta.imagenes && planta.imagenes.length > 0 ? planta.imagenes[0].url : ''"
+                class="card-img-top rounded-top-4 object-fit-cover"
+                style="height: 220px"
+                [alt]="planta.nombre_comun"
               />
+
               <div class="position-absolute top-0 end-0 p-2">
-                <span class="badge rounded-pill etiqueta etiqueta-amarilla">Categoría</span>
+                <span
+                  class="badge rounded-pill etiqueta text-capitalize"
+                  [ngClass]="{
+                    'etiqueta-verde': obtenerNombreCategoria(planta.categoria) === 'arbol',
+                    'etiqueta-salmon': obtenerNombreCategoria(planta.categoria) === 'arbusto',
+                    'etiqueta-amarilla': obtenerNombreCategoria(planta.categoria) === 'hierba',
+                    'etiqueta-violeta': obtenerNombreCategoria(planta.categoria) === 'trepadora',
+                  }"
+                >
+                  {{ obtenerNombreCategoria(planta.categoria) }}
+                </span>
               </div>
+
               <div class="card-body">
-                <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-                <p class="card-text">{{ ficha.nombreCientifico }}</p>
+                <h5 class="card-title">{{ planta.nombre_comun }}</h5>
+                <p class="card-text text-muted">
+                  <em>{{ planta.nombre_cientifico }}</em>
+                </p>
               </div>
             } @else {
-              <div class="card-body">
-                <h5 class="card-title">{{ ficha.nombreComun }}</h5>
-                <p class="card-text">{{ ficha.nombreCientifico }}</p>
-                <p>{{ ficha.descripcion }}</p>
+              <div
+                class="card-body d-flex flex-column justify-content-between"
+                style="min-height: 220px"
+              >
+                <div>
+                  <h5 class="card-title">{{ planta.nombre_comun }}</h5>
+                  <p class="card-text mt-3"><strong>Detalles Técnicos:</strong></p>
+                  <p class="small text-secondary">{{ planta.descripcion }}</p>
+                </div>
               </div>
             }
           </div>
         </div>
-      }
-
-      @if (seleccionada) {
-        <div class="mt-4 p-3 border rounded bg-light">
-          <h3>{{ seleccionada.nombre }}</h3>
-          <p>{{ seleccionada.nombreCientifico }}</p>
-          <p>{{ seleccionada.descripcion }}</p>
+      } @empty {
+        <div class="col-12 text-center py-5">
+          <p class="text-muted fs-5">No hay plantas disponibles.</p>
         </div>
       }
     </div>
