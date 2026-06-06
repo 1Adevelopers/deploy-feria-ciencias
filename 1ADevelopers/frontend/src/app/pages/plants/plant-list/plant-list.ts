@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { PlantasServicio } from '../../../services/plantas-servicio';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-plant-list',
-  imports: [RouterModule, CommonModule],
-  standalone: true,
+  imports: [RouterModule],
   templateUrl: './plant-list.html',
   styleUrl: './plant-list.css',
 })

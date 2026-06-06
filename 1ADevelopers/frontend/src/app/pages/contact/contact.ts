@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './contact.html',
   styleUrls: ['./contact.css'],

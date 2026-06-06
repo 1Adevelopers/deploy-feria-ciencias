@@ -5,7 +5,6 @@ import { Especie } from '../../../services/plantas-servicio';
 
 @Component({
   selector: 'app-docente-dashboard',
-  standalone: true,
   imports: [RouterModule],
   templateUrl: './docente-dashboard.html',
   styleUrl: './docente-dashboard.css',

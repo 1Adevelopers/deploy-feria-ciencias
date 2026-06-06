@@ -33,7 +33,6 @@ function imageUrlValidator(control: AbstractControl): ValidationErrors | null {
 
 @Component({
   selector: 'app-plant-form',
-  standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './plant-form.html',
   styleUrl: './plant-form.css',

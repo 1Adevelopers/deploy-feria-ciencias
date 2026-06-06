@@ -1,6 +1,24 @@
 [
   {
     "model": "usuarios.rol",
+    "pk": 1,
+    "fields": {
+      "nombre_rol": "Administrador"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 1,
+    "fields": {
+      "nombre": "admin",
+      "apellido": "admin",
+      "email": "admin@gmail.com",
+      "contrasena": "123456", 
+      "rol": 1
+    }
+  },
+  {
+    "model": "usuarios.rol",
     "pk": 2,
     "fields": {
       "nombre_rol": "Docente"
