@@ -101,7 +101,6 @@ python manage.py runserver
 
 Acceder en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-```bash
 
 > **Importante:**  Antes de correr FlorApp, es necesario cargar estos fixtures:
 
@@ -133,27 +132,26 @@ Hemos consolidado estos recursos en un álbum propio para tener control sobre la
 Por el momento el sistema está configurado de esta manera, pero en próximos sprints revisaremos esta configuración.
 
 
-```
 # Endpoints Disponibles
  -Módulo Usuarios (api/usuarios/)
-   - [http://127.0.0.1:8000/api/usuarios/usuarios/](http://127.0.0.1:8000/api/usuarios/usuarios/) - `Registro y listado general de usuarios.`
-   - [http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>/](http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>) - `Detalle y ABM de un usuario específico`
-   - [http://127.0.0.1:8000/api/usuarios/roles/](http://127.0.0.1:8000/api/usuarios/roles/) - `Listar roles del sistema.`
-   - [http://127.0.0.1:8000/api/usuarios/login/](http://127.0.0.1:8000/api/usuarios/login/) - `Endpoint seguro de autenticación por método POST.`
+   - [http://127.0.0.1:8000/api/usuarios/usuarios/](http://127.0.0.1:8000/api/usuarios/usuarios/) - <small>Registro y listado general de usuarios.</small>
+   - [http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>/](http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>) - <small>Detalle y ABM de un usuario específico</small>
+   - [http://127.0.0.1:8000/api/usuarios/roles/](http://127.0.0.1:8000/api/usuarios/roles/) - <small>Listar roles del sistema.</small>
+   - [http://127.0.0.1:8000/api/usuarios/login/](http://127.0.0.1:8000/api/usuarios/login/) - <small>Endpoint seguro de autenticación por método POST.</small>
 
  -Módulo Flora (api/flora/)
-   - [http://127.0.0.1:8000/api/flora/especies/](http://127.0.0.1:8000/api/flora/especies/) - `Catálogo público de especies cargadas en el sistema`
-   - [http://127.0.0.1:8000/api/flora/especies/<int:pk>/](http://127.0.0.1:8000/api/flora/especies/<int:pk>) - `Gestión y detalle de una especie por ID.`
-   - [http://127.0.0.1:8000/api/flora/especies/mis-especies/](http://127.0.0.1:8000/api/especies/mis-especies/) - `Listado de plantas cargadas por el docente autenticado.`
-   - [http://127.0.0.1:8000/api/flora/categorias/](http://127.0.0.1:8000/api/flora/categorias/) - `Listado de las categorías de las plantas`
-   - [http://127.0.0.1:8000/api/flora/categorias/<int:pk>/](http://127.0.0.1:8000/api/flora/categorias/<int:pk>/) - `Detalle de categoria específica`
+   - [http://127.0.0.1:8000/api/flora/especies/](http://127.0.0.1:8000/api/flora/especies/) - <small>Catálogo público de especies cargadas en el sistema<small>
+   - [http://127.0.0.1:8000/api/flora/especies/<int:pk>/](http://127.0.0.1:8000/api/flora/especies/<int:pk>) - <small>Gestión y detalle de una especie por ID.</small>
+   - [http://127.0.0.1:8000/api/flora/especies/mis-especies/](http://127.0.0.1:8000/api/especies/mis-especies/) - <small>Listado de plantas cargadas por el docente autenticado.</small>
+   - [http://127.0.0.1:8000/api/flora/categorias/](http://127.0.0.1:8000/api/flora/categorias/) - <small>Listado de las categorías de las plantas</small>
+   - [http://127.0.0.1:8000/api/flora/categorias/<int:pk>/](http://127.0.0.1:8000/api/flora/categorias/<int:pk>/) - <small>Detalle de categoria específica</small>
 
  -Módulo Interacciones (/api/interacciones/)
-   - [http://127.0.0.1:8000/api/interacciones/](http://127.0.0.1:8000/api/interacciones/) - `Recepción de formulario de consulta pública del Home.`
+   - [http://127.0.0.1:8000/api/interacciones/](http://127.0.0.1:8000/api/interacciones/) - <small>Recepción de formulario de consulta pública del Home.</small>
  
  -Módulo Fichas (api/flora/)
-   - [http://127.0.0.1:8000/api/flora/fichas/fichas/](http://127.0.0.1:8000/api/flora/fichas/fichas/) - `Catálogo de fichas`
-   - [http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/](http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/) - `ABM para ficha detalle por ID`
+   - [http://127.0.0.1:8000/api/flora/fichas/fichas/](http://127.0.0.1:8000/api/flora/fichas/fichas/) - <small>Catálogo de fichas</small>
+   - [http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/](http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/) - <small>ABM para ficha detalle por ID</small>
 
 ---
 
