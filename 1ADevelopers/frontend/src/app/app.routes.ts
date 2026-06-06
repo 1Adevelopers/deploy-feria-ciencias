@@ -12,23 +12,33 @@ import { IniciarSesionComponent } from './pages/auth/login/login';
 import { Galeriafichas } from './pages/galeriafichas/galeriafichas';
 import { DocenteDashboard } from './pages/docentes/docente-dashboard/docente-dashboard';
 import { PlantForm } from './pages/plants/plant-form/plant-form';
+import { RegisterComponent } from './pages/auth/register/register';
+import { MensajesLista } from './pages/mensajes-lista/mensajes-lista';
+import { using } from 'rxjs';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
   { path: 'login', component: IniciarSesionComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'admin',
     component: Dashboard,
     children: [
       { path: 'plantas', component: PlantList },
+      { path: 'nueva-planta', component: PlantForm },
+      { path: 'editar-planta/:id', component: PlantForm },
       { path: 'usuarios', component: UserList },
       { path: 'usuarios/nuevo', component: UserForm },
-      { path: 'docentes', component: DocenteDashboard },
-      { path: 'nueva-planta', component: PlantForm },
+      {path: 'usuarios/editar/:id', component: UserForm},
+      { path: 'mensajes', component: MensajesLista },
     ],
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+
+  { path: 'docentes', component: DocenteDashboard },
+  { path: 'docentes/nueva-planta', component: PlantForm },
+  { path: 'docentes/editar-planta/:id', component: PlantForm },
+
   { path: 'quienes-somos', component: QuienesSomos },
   { path: 'galeria', component: Galeriafichas },
   { path: 'contacto', component: Contact },

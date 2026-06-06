@@ -1,90 +1,66 @@
 <div class="docente-container animate__animated animate__fadeIn">
-
-    <!-- Cabecera -->
-    <header class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="section-title">Docentes</h2>
-
-            <p class="text-muted small">
-                Gestiona los docentes registrados en FlorApp.
-            </p>
-        </div>
-
-        <!-- Botón -->
-        <button class="wp-button-green">
-            <i class="bi bi-person-plus-fill me-2"></i>
-            Añadir nuevo docente
-        </button>
-    </header>
-
-    <!-- Tabla -->
-    <div class="table-card shadow-sm">
-
-        <table class="table table-hover mb-0">
-
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Especialidad</th>
-                    <th>Correo electrónico</th>
-                    <th class="text-end px-4">Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <!-- Lista docentes -->
-                <tr *ngFor="let docente of docentes">
-
-                    <td class="fw-bold text-dark">
-                        {{ docente.nombre }}
-                    </td>
-
-                    <td>
-                        {{ docente.especialidad }}
-                    </td>
-
-                    <td>
-                        {{ docente.email }}
-                    </td>
-
-                    <td class="text-end px-4">
-
-                        <button class="btn-action btn-edit me-2">
-                            <i class="bi bi-pencil-fill"></i>
-                            Actualizar
-                        </button>
-
-                        <button class="btn-action btn-delete">
-                            <i class="bi bi-trash3-fill"></i>
-                            Borrar
-                        </button>
-
-                    </td>
-
-                </tr>
-
-                <!-- Vacío -->
-                <tr *ngIf="docentes.length === 0">
-
-                    <td colspan="4" class="text-center py-5">
-
-                        <i class="bi bi-person-workspace text-muted opacity-25"
-                            style="font-size: 3rem;">
-                        </i>
-
-                        <p class="mt-3 text-muted">
-                            No se encontraron docentes registrados.
-                        </p>
-
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
+  <header class="list-header d-flex justify-content-between align-items-center mb-4">
+    <div class="list-title-area">
+      <h2 class="section-title">Mis Fichas de Flora</h2>
+      <p class="text-muted small">Gestiona tus fichas registradas en FlorApp.</p>
     </div>
+    <button class="btn-add-main" routerLink="/docentes/nueva-planta">
+      <i class="bi bi-plus-circle-fill me-2"></i> Nueva Ficha
+    </button>
+  </header>
 
+  <div class="table-card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre Común</th>
+          <th>Nombre Científico</th>
+          <th>Categoría</th>
+          <th class="text-end px-4">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (planta of misPlantas; track planta.id) {
+          <tr>
+            <td>
+              <img
+                [src]="planta.imagenes[0]?.url"
+                class="rounded"
+                width="50"
+                height="50"
+                style="object-fit: cover"
+              />
+            </td>
+            <td class="fw-bold text-dark">{{ planta.nombre_comun }}</td>
+            <td class="fst-italic">{{ planta.nombre_cientifico }}</td>
+            <td>
+              <span class="badge-category">{{ planta.categoria_detalle?.categoria }}</span>
+            </td>
+            <td class="text-end px-4">
+              <button
+                class="btn etiqueta etiqueta-verde me-2"
+                [routerLink]="['/docentes/editar-planta', planta.id]"
+              >
+                Actualizar
+              </button>
+              <button class="btn etiqueta etiqueta-salmon" (click)="eliminarFicha(planta.id)">
+                Borrar
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center py-5">
+              <div class="py-4">
+                <i class="bi bi-tree text-muted opacity-25" style="font-size: 3rem"></i>
+                <p class="mt-3 text-muted">No has registrado fichas aún.</p>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

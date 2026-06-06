@@ -91,6 +91,16 @@ button:hover {
   font-size: 15px;
 }
 
+.extra a {
+  color: var(--color-naranja);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.extra a:hover {
+  color: var(--color-verde1);
+}
+
 
 .error {
   color: red;
