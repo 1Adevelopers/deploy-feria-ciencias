@@ -21,6 +21,10 @@ a {
   list-style: none;
 }
 
+.btn {
+  color: white !important;
+}
+
 .btn-home {
   background-color: var(--color-amarillo);
 }
