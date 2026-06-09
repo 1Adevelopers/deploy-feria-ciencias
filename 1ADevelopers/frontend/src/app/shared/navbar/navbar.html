@@ -18,17 +18,34 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav gap-2 align-items-right ms-auto">
-        <a class="nav-link" (click)="scrollTo('home')" class="btn btn-home"> Home </a>
+        <a class="nav-link btn btn-home d-flex align-items-center gap-2" (click)="scrollTo('home')">
+          <img src="public/iconos/home.svg" width="20" alt="Icono Home" />
+          Home
+        </a>
 
-        <a class="nav-link" (click)="scrollTo('quienes-somos')" class="btn btn-quienes-somos"
-          >Quiénes Somos</a
+        <a
+          class="nav-link btn btn-quienes-somos d-flex align-items-center gap-2"
+          (click)="scrollTo('quienes-somos')"
         >
+          <img src="public/iconos/quienes_somos.svg" width="20" alt="Icono Info" />
+          Quiénes Somos
+        </a>
 
-        <a class="nav-link" (click)="scrollTo('contacto')" class="btn btn-contacto"> Contacto </a>
-
-        <a class="nav-link" routerLink="/galeria" class="btn btn-galeria"> Fichas </a>
-
-        <a class="nav-link" routerLink="/login" class="btn btn-login me-3"> Iniciar sesión </a>
+        <a
+          class="nav-link btn btn-contacto d-flex align-items-center gap-2"
+          (click)="scrollTo('contacto')"
+        >
+          <img src="public/iconos/contacto.svg" width="20" alt="Icono Contacto" />
+          Contacto
+        </a>
+        <a class="nav-link btn btn-galeria d-flex align-items-center gap-2" routerLink="/galeria">
+          <img src="public/iconos/fichas.svg" width="20" alt="Icono Fichas" />
+          Fichas
+        </a>
+        <a class="nav-link btn btn-login me-3 d-flex align-items-center gap-2" routerLink="/login">
+          <img src="public/iconos/inicio_sesion.svg" width="20" alt="Icono Usuario" />
+          Iniciar sesión
+        </a>
       </div>
     </div>
   </div>
