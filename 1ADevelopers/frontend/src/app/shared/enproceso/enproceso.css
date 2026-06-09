@@ -5,7 +5,7 @@
 
 .page {
   min-height: 100vh;
-  background: #CAE5C1;
+  background: var(--color-verde-pastel);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +35,7 @@
 
 .titulo {
   font-size: 50px;
-  font-family: 'montserrat', sans-serif;
+  font-family: var(--font-general);
   font-weight: bold;
   color: var(--color-verde1);
 }
@@ -56,7 +56,7 @@
 
 .descripcion {
   font-size: 15px;
-  font-family: 'montserrat', sans-serif;
+  font-family: var(--font-general);
   font-weight: thin;
   color: black;
   line-height: 1.8;

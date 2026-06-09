@@ -1,30 +1,27 @@
-/* Contenedor principal */
 .docente-container {
   padding: 100px 50px 300px 50px;
 }
 
 .section-title {
-  font-family: 'Fredoka', sans-serif;
-  color: #3d8a2e;
+  color: var(--color-verde1);
   font-size: 28px;
   margin: 0;
 }
 
-/* Tarjeta de la tabla */
 .table-card {
-  background: #fff;
-  border: 1px solid #e5e5e5;
+  background: white;
+  border: 1px solid var(--color-gris);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .table thead {
-  background-color: #f8f9fa;
-  border-bottom: 2px solid #3d8a2e;
+  background-color: white;
+  border-bottom: 2px solid var(--color-verde1);
 }
 
 .table th {
-  color: #50575e;
+  color: var(--color-gris);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -37,46 +34,6 @@
   font-size: 14px;
 }
 
-/* Botón Añadir (Verde FlorApp) */
-.wp-button-green {
-  background-color: #3d8a2e;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.wp-button-green:hover {
-  background-color: #61b045;
-  transform: translateY(-1px);
-}
-
-/* Botones de Acción */
-.btn-action {
-  border: 1px solid #ccc;
-  background: white;
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-/* Estilo Actualizar (Amarillo de acento) */
-.btn-edit:hover {
-  background-color: #f4d35e;
-  border-color: #d4b54a;
-  color: #333;
-}
-
-/* Estilo Borrar (Rojo sutil) */
-.btn-delete:hover {
-  background-color: #fbeaea;
-  border-color: #d63638;
-  color: #d63638;
-}
 
 i {
   font-size: 3rem;

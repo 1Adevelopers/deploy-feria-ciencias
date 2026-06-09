@@ -1,22 +1,19 @@
 .hero {
   position: relative;
   height: 100vh;
-  background-image: url('https://images.pexels.com/photos/13544822/pexels-photo-13544822.jpeg'); /* podés cambiarla */
+  background-image: url('../../../public/fotos/ChañarHero.webp');
   background-size: cover;
-  background-position: center;
+  background-position: top;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-/* capa oscura */
 .overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* contenido centrado */
 .hero-content {
   position: relative;
   text-align: center;
@@ -34,18 +31,3 @@
   font-size: 18px;
   margin-bottom: 30px;
 }
-
-/* .hero-content button {
-  padding: 12px 24px;
-  background-color: #4caf4f00;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid white;
-} */
-
-/* .hero-content button:hover {
-  background-color: #388e3c;
-} */

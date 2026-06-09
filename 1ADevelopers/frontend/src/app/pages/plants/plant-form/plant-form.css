@@ -41,7 +41,7 @@ legend {
   flex-direction: column;
 }
 
-.input-wrapper input[type='text'],
+.input-wrapper input,
 .input-wrapper select,
 .input-wrapper textarea {
   width: 100%;
@@ -50,8 +50,8 @@ legend {
   font-size: 14px;
   line-height: 2;
   color: #32373c;
-  background-color: #fff;
-  border: 1px solid #8c8f94;
+  background-color: white;
+  border: 1px solid var(--color-gris);
   border-radius: 8px;
   box-shadow: 0 0 0 transparent;
   transition: border-color 0.1s ease-in-out;
@@ -104,7 +104,7 @@ fieldset {
   max-width: 350px;
   padding: 6px 12px;
   font-size: 14px;
-  border: 1px solid #8c8f94;
+  border: 1px solid var(--color-gris);
   border-radius: 8px;
 }
 
@@ -115,7 +115,7 @@ fieldset {
 }
 
 .btn-secondary {
-  background-color: #f6f7f7;
+  background-color: white;
   color: #2271b1;
   border: 1px solid #2271b1;
   border-radius: 3px;
@@ -135,7 +135,7 @@ fieldset {
   align-items: center;
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #dcdcde;
+  border-top: 1px solid var(--color-gris);
   margin-left: 180px;
 }
 
