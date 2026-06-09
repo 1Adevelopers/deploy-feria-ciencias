@@ -2,34 +2,37 @@
 .contact-container {
   max-width: 600px;
   margin: 2rem auto;
-  background-color: #ffffff;
-  border: 1px solid #e9ecef;
+  background-color: white;
+  border: 1px solid var(--color-gris);
 }
 
-/* Títulos con color "Bosque" */
 .text-forest {
-  color: #2d5a27;
+  color: var(--color-verde1);
   font-weight: 600;
-  border-bottom: 2px solid #a3b18a;
+  border-bottom: 2px solid var(--color-verde-pastel);
   display: inline-block;
   padding-bottom: 5px;
 }
 
-/* Estilización de los campos de entrada */
 .custom-input {
-  border: 1px solid #ced4da;
+  border: 1px solid var(--color-gris);
   border-radius: 8px;
   padding: 0.75rem;
   transition: all 0.3s ease;
 }
 
+.error-text {
+  color: #d63638;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .custom-input:focus {
-  border-color: #a3b18a; /* Verde oliva suave */
-  box-shadow: 0 0 0 0.25rem rgba(163, 177, 138, 0.25);
+  border-color: var(--color-verde1);
+  box-shadow: 0 0 0 1px var(--color-verde1);
   outline: none;
 }
 
-/* Estilo para las etiquetas */
 .form-label {
   color: #495057;
   font-size: 0.95rem;

@@ -16,6 +16,8 @@ html {
   --color-violeta-pastel: #decffb;
   --color-verde-pastel: #cae5c1;
   --color-amarillo-pastel: #fae9af;
+  --color-celeste-pastel: #B7E5FA;
+  --color-gris: #8c8f94;
 
   --font-general: 'Montserrat', sans-serif;
   --font-titulos: 'Grandstander', cursive;
@@ -52,15 +54,15 @@ h6 {
 }
 
 .btn-verde:hover {
-  background-color: #295c1f;
+  background-color: var(--color-verde1);
   color: white;
 }
 
 .btn-cancelar{
   display: inline-flex;
-  color: #8c8f94;
+  color: var(--color-gris);
   padding: 5px 15px;
-  border: solid 1px #8c8f94;
+  border: solid 1px var(--color-gris);
   border-radius: 10px;
   font-weight: bolder;
   cursor: pointer;
@@ -71,7 +73,7 @@ h6 {
   transition: all 0.3s ease;
   padding: 8px 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  color: #000;
+  color: black;
   cursor: pointer;
 }
 
@@ -98,12 +100,9 @@ h6 {
   background-color: #e0e0e0 !important;
 }
 .etiqueta-celeste {
-  background-color: var(--color-celeste) !important;
+  background-color: var(--color-celeste-pastel) !important;
 }
 
-/* Estructura de Listas (Usuarios y Plantas) */
-
-/* Contenedor estándar para las cabeceras de las listas */
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -112,10 +111,8 @@ h6 {
   margin-bottom: 1.5rem;
 }
 
-/* Estilo para los títulos (idéntico en ambos) */
 .list-title-area h2 {
-  font-family: 'Fredoka', sans-serif;
-  color: #3d8a2e;
+  color: var(--color-verde1);
   font-size: 1.75rem;
   margin-bottom: 0.25rem;
   line-height: 1.2;
@@ -124,19 +121,18 @@ h6 {
 .list-title-area p {
   margin: 0;
   font-size: 0.9rem;
-  color: #6c757d;
+  color: var(--color-gris);
 }
 
-/* Botón "Añadir" con ancho mínimo para evitar saltos visuales */
 .btn-add-main {
-  background-color: #3d8a2e;
+  background-color: var(--color-verde1);
   color: white;
   border: none;
   padding: 10px 24px;
   border-radius: 8px;
   font-weight: 600;
-  white-space: nowrap; /* Evita que el texto del botón se rompa */
-  min-width: 180px; /* Asegura que el botón ocupe un espacio similar */
+  white-space: nowrap;
+  min-width: 180px;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -144,7 +140,7 @@ h6 {
 }
 
 .btn-add-main:hover {
-  background-color: #61b045;
+  background-color: var(--color-verde2);
   transform: translateY(-1px);
 }
 
@@ -152,17 +148,13 @@ h6 {
     font-size: 3rem;
 }
 
-
-/* Estilos para el dashboard principal */
-
 .titulo-panel {
-  font-family: 'Fredoka', sans-serif;
-  color: #3d8a2e;
+  color: var(--color-verde1);
 }
 
 .badge-fecha {
-  background-color: #f4d35e;
-  color: #333;
+  background-color: var(--color-amarillo);
+  color: black;
 }
 
 .contenedor-principal {

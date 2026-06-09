@@ -10,17 +10,6 @@ nav {
   align-self: center;
 }
 
-/* .user-icon svg {
-  font-size: 24px;
-  color: #2e7d32;
-  transition: 0.3s;
-}
-
-.user-icon svg:hover {
-  color: #1b5e20;
-  transform: scale(1.1);
-}
- */
 .nav-link {
   justify-content: center;
   align-items: center;

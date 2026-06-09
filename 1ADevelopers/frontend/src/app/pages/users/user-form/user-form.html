@@ -77,10 +77,10 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="wp-button" [disabled]="userForm.invalid">
-                {{ isEditMode ? 'Guardar Cambios' : 'Añadir nuevo usuario' }}
+            <button type="submit" class="btn etiqueta etiqueta-verde me-2" [disabled]="userForm.invalid">
+                {{ isEditMode ? 'Guardar Cambios' : 'Añadir usuario' }}
             </button>
-            <a routerLink="/admin/usuarios" class="cancel-link">
+            <a routerLink="/admin/usuarios" class="btn etiqueta etiqueta-salmon">
                 Cancelar
             </a>
         </div>
