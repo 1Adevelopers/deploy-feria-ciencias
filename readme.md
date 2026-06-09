@@ -1,5 +1,7 @@
 # FLORAPP
+
 ### Concientización sobre Biodiversidad y Deforestación
+
 Aplicación web educativa orientada a niños y jóvenes de la provincia de Córdoba.
 
 ---
@@ -12,24 +14,24 @@ FLORAPP busca fomentar la concientización ambiental a través del aprendizaje l
 
 ## Integrantes
 
-| Apellido | Nombre | Rol |
-|---|---|---|
-| Balbastro | Carlos Eduardo | Team Dev |
-| Bentivoglio | Ignacio Martín | Team Dev |
-| Bosque | Ruben Darío | Team Dev |
-| Fernández | Kiara | Scrum Master |
-| Heredia | Eric Víctor Hugo | Team Dev |
-| Lorenzati | María Florencia | Team Dev |
+| Apellido    | Nombre           | Rol          |
+| ----------- | ---------------- | ------------ |
+| Balbastro   | Carlos Eduardo   | Team Dev     |
+| Bentivoglio | Ignacio Martín   | Team Dev     |
+| Bosque      | Ruben Darío      | Team Dev     |
+| Fernández   | Kiara            | Scrum Master |
+| Heredia     | Eric Víctor Hugo | Team Dev     |
+| Lorenzati   | María Florencia  | Team Dev     |
 
 ---
 
 ## Tecnologías utilizadas
 
-| Capa | Tecnología |
-|---|---|
-| Frontend | Angular |
-| Backend | Django REST Framework |
-| Base de datos | MySQL |
+| Capa          | Tecnología            |
+| ------------- | --------------------- |
+| Frontend      | Angular               |
+| Backend       | Django REST Framework |
+| Base de datos | MySQL                 |
 
 ---
 
@@ -101,27 +103,25 @@ python manage.py runserver
 
 Acceder en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-
-> **Importante:**  Antes de correr FlorApp, es necesario cargar estos fixtures:
+> **Importante:** Antes de correr FlorApp, es necesario cargar estos fixtures:
 
     cd 1ADevelopers/backend
 
     - En la consola escribir:
         python manage.py loaddata categorias.json
-        python manage.py loaddata usuarios.json 
+        python manage.py loaddata usuarios.json
 
 ---
 
 ## Carga de imágenes de especies
 
-
 Para probar la carga de imágenes, pueden utilizar los siguientes enlaces directos:
 
-- Pasionaria Azul: https://i.ibb.co/FLmR4LmT/Pasionaria-Azul3.webp  
-- Peperina: https://i.ibb.co/HLS3SczY/Peperina.webp  
-- Sauce Criollo: https://i.ibb.co/RmmntfN/saucecriollo-02.webp  
-- Chañar: https://i.ibb.co/BKY1b1q4/cha-ar-10.webp  -   https://i.ibb.co/qYC6nMYV/cha-ar-09.webp  
-- Quebracho Blanco: https://i.ibb.co/NgkL9GBY/quebrachoblanco-07.webp 
+- Pasionaria Azul: https://i.ibb.co/FLmR4LmT/Pasionaria-Azul3.webp
+- Peperina: https://i.ibb.co/HLS3SczY/Peperina.webp
+- Sauce Criollo: https://i.ibb.co/RmmntfN/saucecriollo-02.webp
+- Chañar: https://i.ibb.co/BKY1b1q4/cha-ar-10.webp - https://i.ibb.co/qYC6nMYV/cha-ar-09.webp
+- Quebracho Blanco: https://i.ibb.co/NgkL9GBY/quebrachoblanco-07.webp
 
 Pueden encontrar más imágenes en nuestro álbum público: [Álbum FlorApp](https://ibb.co/album/4sv2BV)
 
@@ -131,27 +131,26 @@ Para la carga, asegúrense siempre de seleccionar la opción **"Enlaces directos
 Hemos consolidado estos recursos en un álbum propio para tener control sobre las rutas y evitar depender de fuentes externas, cumpliendo con las licencias de **Dominio Público** y **Creative Commons** de uso libre.  
 Por el momento el sistema está configurado de esta manera, pero en próximos sprints revisaremos esta configuración.
 
-
 # Endpoints Disponibles
- -Módulo Usuarios (api/usuarios/)
-   - [http://127.0.0.1:8000/api/usuarios/usuarios/](http://127.0.0.1:8000/api/usuarios/usuarios/) - <small>Registro y listado general de usuarios.</small>
-   - [http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>/](http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>) - <small>Detalle y ABM de un usuario específico</small>
-   - [http://127.0.0.1:8000/api/usuarios/roles/](http://127.0.0.1:8000/api/usuarios/roles/) - <small>Listar roles del sistema.</small>
-   - [http://127.0.0.1:8000/api/usuarios/login/](http://127.0.0.1:8000/api/usuarios/login/) - <small>Endpoint seguro de autenticación por método POST.</small>
 
- -Módulo Flora (api/flora/)
-   - [http://127.0.0.1:8000/api/flora/especies/](http://127.0.0.1:8000/api/flora/especies/) - <small>Catálogo público de especies cargadas en el sistema<small>
-   - [http://127.0.0.1:8000/api/flora/especies/<int:pk>/](http://127.0.0.1:8000/api/flora/especies/<int:pk>) - <small>Gestión y detalle de una especie por ID.</small>
-   - [http://127.0.0.1:8000/api/flora/especies/mis-especies/](http://127.0.0.1:8000/api/especies/mis-especies/) - <small>Listado de plantas cargadas por el docente autenticado.</small>
-   - [http://127.0.0.1:8000/api/flora/categorias/](http://127.0.0.1:8000/api/flora/categorias/) - <small>Listado de las categorías de las plantas</small>
-   - [http://127.0.0.1:8000/api/flora/categorias/<int:pk>/](http://127.0.0.1:8000/api/flora/categorias/<int:pk>/) - <small>Detalle de categoria específica</small>
+-Módulo Usuarios (api/usuarios/)
 
- -Módulo Interacciones (/api/interacciones/)
-   - [http://127.0.0.1:8000/api/interacciones/](http://127.0.0.1:8000/api/interacciones/) - <small>Recepción de formulario de consulta pública del Home.</small>
- 
- -Módulo Fichas (api/flora/)
-   - [http://127.0.0.1:8000/api/flora/fichas/fichas/](http://127.0.0.1:8000/api/flora/fichas/fichas/) - <small>Catálogo de fichas</small>
-   - [http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/](http://127.0.0.1:8000/api/flora/fichas/fichas/<int:pk>/) - <small>ABM para ficha detalle por ID</small>
+- [http://127.0.0.1:8000/api/usuarios/usuarios/](http://127.0.0.1:8000/api/usuarios/usuarios/) - <small>Registro y listado general de usuarios.</small>
+- [http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>/](http://127.0.0.1:8000/api/usuarios/usuarios/<int:pk>) - <small>Detalle y ABM de un usuario específico</small>
+- [http://127.0.0.1:8000/api/usuarios/roles/](http://127.0.0.1:8000/api/usuarios/roles/) - <small>Listar roles del sistema.</small>
+- [http://127.0.0.1:8000/api/usuarios/login/](http://127.0.0.1:8000/api/usuarios/login/) - <small>Endpoint seguro de autenticación por método POST.</small>
+
+-Módulo Flora (api/flora/)
+
+- [http://127.0.0.1:8000/api/flora/especies/](http://127.0.0.1:8000/api/flora/especies/) - <small>Catálogo público de especies cargadas en el sistema<small>
+- [http://127.0.0.1:8000/api/flora/especies/<int:pk>/](http://127.0.0.1:8000/api/flora/especies/<int:pk>) - <small>Gestión y detalle de una especie por ID.</small>
+- [http://127.0.0.1:8000/api/flora/especies/mis-especies/](http://127.0.0.1:8000/api/especies/mis-especies/) - <small>Listado de plantas cargadas por el docente autenticado.</small>
+- [http://127.0.0.1:8000/api/flora/categorias/](http://127.0.0.1:8000/api/flora/categorias/) - <small>Listado de las categorías de las plantas</small>
+- [http://127.0.0.1:8000/api/flora/categorias/<int:pk>/](http://127.0.0.1:8000/api/flora/categorias/<int:pk>/) - <small>Detalle de categoria específica</small>
+
+-Módulo Interacciones (/api/interacciones/)
+
+- [http://127.0.0.1:8000/api/interacciones/](http://127.0.0.1:8000/api/interacciones/) - <small>Recepción de formulario de consulta pública del Home.</small>
 
 ---
 
@@ -173,23 +172,23 @@ Por el momento el sistema está configurado de esta manera, pero en próximos sp
 
 ### Funcionales
 
-| ID | Descripción |
-|---|---|
-| RF01 | El sistema debe mostrar una página de home con mensaje de bienvenida que invita al usuario a explorar la página y acceso a las secciones principales. |
-| RF02 | El sistema debe mostrar una sección “Quiénes Somos” con información sobre la misión del proyecto. |
+| ID   | Descripción                                                                                                                                                       |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RF01 | El sistema debe mostrar una página de home con mensaje de bienvenida que invita al usuario a explorar la página y acceso a las secciones principales.             |
+| RF02 | El sistema debe mostrar una sección “Quiénes Somos” con información sobre la misión del proyecto.                                                                 |
 | RF03 | El sistema debe permitir al administrador o docente iniciar sesión utilizando una dirección de correo electrónico válida y una contraseña de mínimo 6 caracteres. |
-| RF04 | El sistema debe mostrar una galería de fichas con fotos de especies en formato tarjeta. |
+| RF04 | El sistema debe mostrar una galería de fichas con fotos de especies en formato tarjeta.                                                                           |
 | RF05 | El sistema debe permitir al administrador o docente gestionar el contenido (especies, imágenes, usuarios, etc) de acuerdo a los permisos de cada tipo de usuario. |
-| RF06 | El sistema debe permitir al usuario visitante enviar consultas generales mediante un formulario de contacto. |
+| RF06 | El sistema debe permitir al usuario visitante enviar consultas generales mediante un formulario de contacto.                                                      |
 
 ### No Funcionales
 
-| ID | Descripción |
-|---|---|
-| RNF01 | El sistema debe adaptarse, respondiendo dependiendo del tamaño de pantalla, del cual el usuario visita la página. |
-| RNF02 | El sistema debe cargar las secciones principales sin exceder los 3 segundos. |
+| ID    | Descripción                                                                                                             |
+| ----- | ----------------------------------------------------------------------------------------------------------------------- |
+| RNF01 | El sistema debe adaptarse, respondiendo dependiendo del tamaño de pantalla, del cual el usuario visita la página.       |
+| RNF02 | El sistema debe cargar las secciones principales sin exceder los 3 segundos.                                            |
 | RNF03 | El sistema no debe solicitar ni almacenar datos personales de los usuarios visitantes fuera del formulario de contacto. |
-| RNF04 | La interfaz deberá ser simple, intuitiva, utilizando botones grandes, colores amigables y navegación sencilla. |
+| RNF04 | La interfaz deberá ser simple, intuitiva, utilizando botones grandes, colores amigables y navegación sencilla.          |
 
 ---
 
