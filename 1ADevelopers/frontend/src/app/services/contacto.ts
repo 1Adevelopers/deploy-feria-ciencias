@@ -1,16 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Contacto } from '../interfaces/contacto';
 
-export interface Contacto {
-  id: number;
-  nombre: string;
-  email: string;
-  mensaje: string;
-  fecha_envio: string;
-  leido: boolean;
-  respondido: boolean;
-}
+
 
 @Injectable({
   providedIn: 'root'

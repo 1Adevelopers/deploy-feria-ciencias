@@ -17,7 +17,7 @@
       @for (cat of categorias(); track cat.id) {
         <button
           class="btn etiqueta d-flex align-items-center gap-2"
-          [ngClass]="{
+          [class]="{
             active: categoriaSeleccionadaId() === cat.id,
             'etiqueta-verde': cat.categoria === 'arbol',
             'etiqueta-salmon': cat.categoria === 'arbusto',
@@ -64,7 +64,7 @@
               <div class="position-absolute top-0 end-0 p-2">
                 <span
                   class="badge rounded-pill etiqueta text-capitalize d-flex align-items-center gap-1"
-                  [ngClass]="{
+                  [class]="{
                     'etiqueta-verde': obtenerNombreCategoria(planta.categoria) === 'arbol',
                     'etiqueta-salmon': obtenerNombreCategoria(planta.categoria) === 'arbusto',
                     'etiqueta-amarilla': obtenerNombreCategoria(planta.categoria) === 'hierba',

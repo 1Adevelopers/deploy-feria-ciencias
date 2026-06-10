@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PlantasServicio } from '../../../services/plantas-servicio';
-import { Especie } from '../../../services/plantas-servicio';
+import { Especie } from '../../../interfaces/especie';
 
 @Component({
   selector: 'app-docente-dashboard',
