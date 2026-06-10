@@ -1,11 +1,11 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ContactoService, Contacto } from '../../services/contacto';
+import { ContactoService} from '../../services/contacto';
+import { Contacto } from '../../interfaces/contacto';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-mensajes-lista',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [DatePipe],
   templateUrl: './mensajes-lista.html',
   styleUrl: './mensajes-lista.css',
 })

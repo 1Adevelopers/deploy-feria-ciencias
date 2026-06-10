@@ -1,27 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Categoria } from '../interfaces/categoria';
+import { Especie } from '../interfaces/especie';
 
-export interface Categoria {
-  id: number;
-  categoria: string;
-  descripcion: string;
-}
 
-export interface Especie {
-  id?: number;
-  nombre_comun: string;
-  nombre_cientifico: string;
-  descripcion: string;
-  categoria: number;
-  categoria_detalle?: {
-    id: number;
-    categoria: string;
-    descripcion: string;
-  };
-  usuario: number;
-  imagenes: { url: string }[];
-}
 
 @Injectable({ providedIn: 'root' })
 export class PlantasServicio {
@@ -37,12 +20,12 @@ export class PlantasServicio {
     return this.http.get<Categoria[]>(`${this.API}/categorias/`);
   }
 
-  getPlantas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.API}/especies/`);
+  getPlantas(): Observable<Especie[]> {
+    return this.http.get<Especie[]>(`${this.API}/especies/`);
   }
 
-  crearPlanta(Especie: Especie): Observable<any> {
-    return this.http.post<any>(`${this.API}/especies/`, Especie);
+  crearPlanta(Especie: Especie): Observable<Especie> {
+    return this.http.post<Especie>(`${this.API}/especies/`, Especie);
   }
 
   eliminarPlanta(id: number): Observable<void> {

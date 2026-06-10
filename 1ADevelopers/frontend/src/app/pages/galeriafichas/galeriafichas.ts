@@ -1,10 +1,10 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { PlantasServicio } from '../../services/plantas-servicio';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-galeriafichas',
-  imports: [CommonModule],
+  imports: [],
   standalone: true,
   templateUrl: './galeriafichas.html',
   styleUrls: ['./galeriafichas.css'],
