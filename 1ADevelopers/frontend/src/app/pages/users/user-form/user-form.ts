@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario';
+import { Usuario } from '../../../interfaces/usuario';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { UsuarioService } from '../../../services/usuario';
   templateUrl: './user-form.html',
   styleUrl: './user-form.css',
 })
-export class UserForm {
+export class UserForm implements OnInit {
   private usuarioService = inject(UsuarioService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -23,16 +24,40 @@ export class UserForm {
     apellido: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('',[Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required, Validators.minLength(6)]),
-    rol: new FormControl('',[Validators.required])
+    rol: new FormControl<number | string>('', [Validators.required]),
   });
 
   ngOnInit(): void {
-    
-    const id = this.route.snapshot.paramMap.get('id');
-    
+    const id = this.route.snapshot.paramMap.get('id');    
     if (id) {
       this.isEditMode = true; 
       this.userId = Number(id);
+      this.userForm.get('password')?.clearValidators();
+      this.userForm.get('password')?.setValidators([Validators.minLength(6)]);
+      this.userForm.get('password')?.updateValueAndValidity();
+
+      this.usuarioService.ObtenerUsuarioPorId(this.userId).subscribe({
+        next:(data: Usuario) => {
+
+          let rolIdFinal: number | string;
+          if(data.rol && typeof data.rol === 'object') {
+            rolIdFinal = data.rol.id;
+          } else {
+            rolIdFinal = data.rol;
+          }
+          
+          this.userForm.patchValue({
+            nombre: data.nombre,
+            apellido: data.apellido,
+            email: data.email,
+            rol: rolIdFinal
+          });
+        },
+        error: (err) => {
+          console.error('Error al cargar usuario:', err);
+          alert('Hubo un error al cargar los datos del usuario.');
+        }
+      });
     }
   }
 
@@ -44,12 +69,14 @@ export class UserForm {
         nombre: formValue.nombre,
         apellido: formValue.apellido,
         email: formValue.email,
-        contrasena: formValue.password,
-        rol: formValue.rol === 'docente' ? 2 : 1
+        rol: Number(formValue.rol)
       };
-      if (this.isEditMode && this.userId !== null) {
-        // MODO EDICIÓN: Llamamos a actualizarUsuario pasándole el ID
-        this.usuarioService.actualizarUsuario(this.userId, datosParaDjango).subscribe({
+
+      if (formValue.password && formValue.password.trim() !== '') {
+        datosParaDjango.contrasena = formValue.password;
+      }
+
+      if (this.isEditMode && this.userId !== null) { this.usuarioService.actualizarUsuario(this.userId, datosParaDjango).subscribe({
           next: () => {
             alert('¡Usuario actualizado con éxito!');
             this.router.navigate(['/admin/usuarios']); 
@@ -59,8 +86,7 @@ export class UserForm {
             alert('Hubo un error al actualizar el usuario.');
           }
         });
-      } else {
-        
+      } else {        
         this.usuarioService.crearUsuario(datosParaDjango).subscribe({
           next: () => {
             alert('¡Usuario creado con éxito!');
