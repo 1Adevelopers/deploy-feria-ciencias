@@ -66,8 +66,8 @@
             <div class="input-wrapper">
                 <select id="rol" formControlName="rol">
                     <option value="" disabled>Seleccionar perfil...</option>
-                    <option value="docente">Docente</option>
-                    <option value="admin">Administrador</option>
+                    <option [value]="2">Docente</option>
+                    <option [value]="1">Administrador</option>
                 </select>
 
                 @if (userForm.get('rol')?.touched && userForm.get('rol')?.hasError('required')) {
