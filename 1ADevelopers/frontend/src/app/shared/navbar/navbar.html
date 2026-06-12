@@ -42,10 +42,34 @@
           <img src="public/iconos/fichas.svg" width="20" alt="Icono Fichas" />
           Fichas
         </a>
-        <a class="nav-link btn btn-login me-3 d-flex align-items-center gap-2" routerLink="/login">
-          <img src="public/iconos/inicio_sesion.svg" width="20" alt="Icono Usuario" />
-          Iniciar sesión
-        </a>
+        @if (!isLoggedIn()) {
+          <a
+            class="nav-link btn btn-login me-3 d-flex align-items-center gap-2"
+            routerLink="/login">
+
+            <img
+              src="public/iconos/inicio_sesion.svg"
+              width="20"
+              alt="Icono Usuario" />
+
+            Iniciar sesión
+          </a>
+        }
+
+        @if (isLoggedIn()) {
+          <a
+            class="nav-link btn btn-login me-3 d-flex align-items-center gap-2"
+            (click)="logout()"
+            style="cursor: pointer;">
+
+            <img
+              src="public/iconos/sesion_iniciada.svg"
+              width="20"
+              alt="Cerrar sesión" />
+
+            Cerrar sesión
+          </a>
+        }
       </div>
     </div>
   </div>
