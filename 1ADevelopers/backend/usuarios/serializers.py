@@ -17,11 +17,14 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = ['id', 'nombre', 'apellido', 'email', 'rol', 'rol_nombre', 'contrasena']
         # agrege contrasena en fields| Se proteje para que la contraseña no se envíe al frontend
         extra_kwargs = {
-            'contrasena': {'write_only': True},
+            'contrasena': {'write_only': True, 'required':False},
             'rol': {'required': False}
         }
     
     def create(self, validated_data):
+        if not validated_data.get('contrasena'):
+            raise serializers.ValidationError({'contrasena': 'La contraseña es obligatoria para registrar un nuevo usuario'})
+        
         rol_data = validated_data.pop('rol', None)
         
         # Si no viene rol (registro público), asignamos el ID 2 directamente
