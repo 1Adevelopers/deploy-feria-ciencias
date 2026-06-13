@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PlantasServicio } from '../../../services/plantas-servicio';
-import { Especie } from '../../../services/plantas-servicio';
+import { Especie } from '../../../interfaces/especie';
 
 @Component({
   selector: 'app-docente-dashboard',
@@ -46,6 +46,7 @@ export class DocenteDashboard implements OnInit {
       this.plantasService.eliminarPlanta(id).subscribe({
         next: () => {
           this.misPlantas = this.misPlantas.filter((p) => p.id !== id);
+          this.cdr.detectChanges(); // 👈 fuerza la actualización de la vista
           alert('Ficha eliminada correctamente');
         },
         error: (err) => {

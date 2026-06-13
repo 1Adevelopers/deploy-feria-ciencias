@@ -8,7 +8,9 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { PlantasServicio, Categoria, Especie } from '../../../services/plantas-servicio';
+import { PlantasServicio,} from '../../../services/plantas-servicio';
+import { Categoria } from '../../../interfaces/categoria';
+import { Especie } from '../../../interfaces/especie';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];

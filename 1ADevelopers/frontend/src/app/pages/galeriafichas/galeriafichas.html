@@ -6,30 +6,44 @@
 
     <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
       <button
-        class="btn etiqueta etiqueta-gris"
+        class="btn etiqueta etiqueta-gris d-flex align-items-center gap-2"
         [class.active]="categoriaSeleccionadaId() === null"
         (click)="filtrarPorCategoria(null)"
       >
+        <img src="../../../public/iconos/todas.png" width="20" alt="Todas" />
         Todas
       </button>
 
       @for (cat of categorias(); track cat.id) {
         <button
-          class="btn etiqueta"
-          [ngClass]="{
+          class="btn etiqueta d-flex align-items-center gap-2"
+          [class]="{
             active: categoriaSeleccionadaId() === cat.id,
             'etiqueta-verde': cat.categoria === 'arbol',
             'etiqueta-salmon': cat.categoria === 'arbusto',
             'etiqueta-amarilla': cat.categoria === 'hierba',
             'etiqueta-violeta': cat.categoria === 'trepadora',
-            'etiqueta-celeste':
-              cat.categoria !== 'arbol' &&
-              cat.categoria !== 'arbusto' &&
-              cat.categoria !== 'hierba' &&
-              cat.categoria !== 'trepadora',
+            'etiqueta-celeste': cat.categoria === 'otro' || cat.categoria === 'otras',
           }"
           (click)="filtrarPorCategoria(cat.id)"
         >
+          @switch (cat.categoria) {
+            @case ('arbol') {
+              <img src="../../../public/iconos/arbol.png" width="20" alt="Arbol" />
+            }
+            @case ('arbusto') {
+              <img src="../../../public/iconos/arbustos.png" width="20" alt="Arbusto" />
+            }
+            @case ('hierba') {
+              <img src="../../../public/iconos/herbaceas.png" width="20" alt="Hierba" />
+            }
+            @case ('trepadora') {
+              <img src="../../../public/iconos/trepadoras.png" width="20" alt="Trepadora" />
+            }
+            @default {
+              <img src="../../../public/iconos/otras.png" width="20" alt="Otras" />
+            }
+          }
           {{ cat.categoria }}
         </button>
       }
@@ -49,14 +63,32 @@
 
               <div class="position-absolute top-0 end-0 p-2">
                 <span
-                  class="badge rounded-pill etiqueta text-capitalize"
-                  [ngClass]="{
+                  class="badge rounded-pill etiqueta text-capitalize d-flex align-items-center gap-1"
+                  [class]="{
                     'etiqueta-verde': obtenerNombreCategoria(planta.categoria) === 'arbol',
                     'etiqueta-salmon': obtenerNombreCategoria(planta.categoria) === 'arbusto',
                     'etiqueta-amarilla': obtenerNombreCategoria(planta.categoria) === 'hierba',
                     'etiqueta-violeta': obtenerNombreCategoria(planta.categoria) === 'trepadora',
+                    'etiqueta-celeste': obtenerNombreCategoria(planta.categoria) === 'otras',
                   }"
                 >
+                  @switch (obtenerNombreCategoria(planta.categoria)) {
+                    @case ('arbol') {
+                      <img src="../../../public/iconos/arbol.png" width="16" alt="Arbol" />
+                    }
+                    @case ('arbusto') {
+                      <img src="../../../public/iconos/arbustos.png" width="16" alt="Arbusto" />
+                    }
+                    @case ('hierba') {
+                      <img src="public/iconos/herbaceas.png" width="16" alt="Hierba" />
+                    }
+                    @case ('trepadora') {
+                      <img src="../../../public/iconos/trepadoras.png" width="16" alt="Trepador" />
+                    }
+                    @default {
+                      <img src="../../../public/iconos/otras.png" width="16" alt="Otras" />
+                    }
+                  }
                   {{ obtenerNombreCategoria(planta.categoria) }}
                 </span>
               </div>

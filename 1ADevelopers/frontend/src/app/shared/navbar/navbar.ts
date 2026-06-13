@@ -11,6 +11,14 @@ import { RouterLink } from '@angular/router';
 export class Navbar {
   constructor(private router: Router) {}
 
+  isLoggedIn(): boolean {
+    return localStorage.getItem('user') !== null;
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
+    this.router.navigate(['/']);
+  }
   scrollTo(sectionId: string): void {
     // Si no estamos en home, navegamos primero
     this.router.navigate(['/']).then(() => {
