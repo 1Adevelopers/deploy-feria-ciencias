@@ -14,7 +14,7 @@
     />
     @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
       <div class="error">
-        <small>El nombre es obligatorio</small>
+        <small class="error-text">El nombre es obligatorio</small>
       </div>
     }
   </div>
@@ -32,11 +32,11 @@
       @if (form.get('email')?.invalid && form.get('email')?.touched) {
         <div class="error">
           @if (form.get('email')?.errors?.['required']) {
-            <small> El correo es obligatorio </small>
+            <small class="error-text"> El correo es obligatorio </small>
           }
 
           @if (form.get('email')?.errors?.['email']) {
-            <small> El formato del correo debe ser válido </small>
+            <small class="error-text"> El formato del correo debe ser válido </small>
           }
         </div>
       }
@@ -54,11 +54,11 @@
       @if (form.get('mensaje')?.invalid && form.get('mensaje')?.touched) {
         <div class="error">
           @if (form.get('mensaje')?.errors?.['required']) {
-            <small> El mensaje es obligatorio </small>
+            <small class="error-text"> El mensaje es obligatorio </small>
           }
 
           @if (form.get('mensaje')?.errors?.['minlength']) {
-            <small> El mensaje requiere al menos 10 caracteres </small>
+            <small class="error-text"> El mensaje requiere al menos 10 caracteres </small>
           }
         </div>
       }

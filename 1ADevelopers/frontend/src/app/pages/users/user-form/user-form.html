@@ -66,8 +66,8 @@
             <div class="input-wrapper">
                 <select id="rol" formControlName="rol">
                     <option value="" disabled>Seleccionar perfil...</option>
-                    <option value="docente">Docente</option>
-                    <option value="admin">Administrador</option>
+                    <option [value]="2">Docente</option>
+                    <option [value]="1">Administrador</option>
                 </select>
 
                 @if (userForm.get('rol')?.touched && userForm.get('rol')?.hasError('required')) {
@@ -77,10 +77,10 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="wp-button" [disabled]="userForm.invalid">
-                {{ isEditMode ? 'Guardar Cambios' : 'Añadir nuevo usuario' }}
+            <button type="submit" class="btn etiqueta etiqueta-verde me-2" [disabled]="userForm.invalid">
+                {{ isEditMode ? 'Guardar Cambios' : 'Añadir usuario' }}
             </button>
-            <a routerLink="/admin/usuarios" class="cancel-link">
+            <a routerLink="/admin/usuarios" class="btn etiqueta etiqueta-salmon">
                 Cancelar
             </a>
         </div>

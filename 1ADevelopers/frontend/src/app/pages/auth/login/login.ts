@@ -35,21 +35,20 @@ export class IniciarSesionComponent {
     };
 
     this.authService.login(credentials).subscribe({
-           next: (user) => {
-       alert(`¡Bienvenido a FlorApp, ${user.nombre}!`);
-       localStorage.setItem('user', JSON.stringify(user));
-       const idRol = Number(user.rol);
+      next: (user) => {
+      alert(`¡Bienvenido a FlorApp, ${user.nombre}!`);
+      localStorage.setItem('user', JSON.stringify(user));
+      const idRol = Number(user.rol);
 
-
-     if (user.rol === 1) {
-       this.router.navigate(['/admin']);
-     } else if (user.rol === 2) {
-       this.router.navigate(['/docentes']);
-     }
-     },
-     error: (err) => {
-      console.error(err);
-      alert('Correo o contraseña incorrectos');
+      if (user.rol === 1) {
+        this.router.navigate(['/admin']);
+        } else if (user.rol === 2) {
+          this.router.navigate(['/docentes']);
+          }
+        },
+        error: (err) => {
+        console.error(err);
+        alert('Correo o contraseña incorrectos');
       }
 
     });
