@@ -46,6 +46,7 @@ export class DocenteDashboard implements OnInit {
       this.plantasService.eliminarPlanta(id).subscribe({
         next: () => {
           this.misPlantas = this.misPlantas.filter((p) => p.id !== id);
+          this.cdr.detectChanges(); // 👈 fuerza la actualización de la vista
           alert('Ficha eliminada correctamente');
         },
         error: (err) => {
