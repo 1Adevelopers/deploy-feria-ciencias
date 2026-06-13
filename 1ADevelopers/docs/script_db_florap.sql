@@ -16,19 +16,12 @@ CREATE TABLE rol (
 
 CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
     nombre VARCHAR(100) NOT NULL,
-
     apellido VARCHAR(100) NOT NULL,
-
-    email VARCHAR(100) NOT NULL UNIQUE,
-
+    email VARCHAR(254) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
-
     rol_id INT NOT NULL,
-
-    FOREIGN KEY (rol_id)
-    REFERENCES rol(id)
+    FOREIGN KEY (rol_id) REFERENCES rol(id)
 );
 
 -- =========================
@@ -37,9 +30,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE categoria_especie (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
     categoria VARCHAR(50) NOT NULL UNIQUE,
-
     descripcion TEXT
 );
 
@@ -49,22 +40,17 @@ CREATE TABLE categoria_especie (
 
 CREATE TABLE especie (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
     nombre_comun VARCHAR(100) NOT NULL UNIQUE,
-
     nombre_cientifico VARCHAR(150) NOT NULL UNIQUE,
-
     descripcion TEXT NOT NULL,
-
     categoria_id INT NOT NULL,
-
     usuario_id INT NOT NULL,
 
     FOREIGN KEY (categoria_id)
-    REFERENCES categoria_especie(id),
+        REFERENCES categoria_especie(id),
 
     FOREIGN KEY (usuario_id)
-    REFERENCES usuario(id)
+        REFERENCES usuario(id)
 );
 
 -- =========================
@@ -73,15 +59,12 @@ CREATE TABLE especie (
 
 CREATE TABLE imagen_especie (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
     especie_id INT NOT NULL,
-
     url VARCHAR(500) NOT NULL,
-
     fecha_subida DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (especie_id)
-    REFERENCES especie(id)
+        REFERENCES especie(id)
 );
 
 -- =========================
@@ -90,30 +73,26 @@ CREATE TABLE imagen_especie (
 
 CREATE TABLE contacto (
     id INT AUTO_INCREMENT PRIMARY KEY,
-
     nombre VARCHAR(100) NOT NULL,
-
-    email VARCHAR(100) NOT NULL,
-
+    email VARCHAR(254) NOT NULL,
     mensaje TEXT NOT NULL,
-
     fecha_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    leido BOOLEAN DEFAULT FALSE
+    leido BOOLEAN DEFAULT FALSE,
+    respondido BOOLEAN DEFAULT FALSE
 );
 
--- =========================
--- INSERT ROLES
--- =========================
+-- ===================================================
+-- DATOS DE DEMOSTRACION
+-- ===================================================
+
+-- ROLES
 
 INSERT INTO rol (nombre_rol)
 VALUES
 ('docente'),
 ('admin');
 
--- =========================
--- INSERT USUARIOS
--- =========================
+-- USUARIOS
 
 INSERT INTO usuario (
     nombre,
@@ -138,9 +117,7 @@ VALUES
     2
 );
 
--- =========================
--- INSERT CATEGORIAS
--- =========================
+-- CATEGORIAS
 
 INSERT INTO categoria_especie (
     categoria,
@@ -158,11 +135,17 @@ VALUES
 (
     'hierba',
     'Especies herbaceas'
+),
+(
+    'trepadora',
+    'Especies trepadoras'
+),
+(
+    'otro',
+    'Otras especies nativas'
 );
 
--- =========================
--- INSERT ESPECIES
--- =========================
+-- ESPECIES
 
 INSERT INTO especie (
     nombre_comun,
@@ -174,34 +157,61 @@ INSERT INTO especie (
 VALUES
 (
     'Lapacho',
-    'Tabebuia',
-    'Arbol nativo de flores rosadas',
+    'Tabebuia impetiginosa',
+    'Arbol nativo reconocido por sus flores rosadas.',
     1,
     1
 ),
 (
     'Jarilla',
     'Larrea divaricata',
-    'Arbusto de zonas aridas',
+    'Arbusto caracteristico de zonas aridas.',
     2,
+    1
+),
+(
+    'Espinillo',
+    'Vachellia caven',
+    'Arbol espinoso de flores amarillas aromaticas.',
+    1,
+    1
+),
+(
+    'Peperina',
+    'Minthostachys verticillata',
+    'Hierba aromatica tradicional de las sierras de Cordoba.',
+    3,
     1
 );
 
--- =========================
--- INSERT IMAGENES
--- =========================
+-- MENSAJES DE CONTACTO
 
-INSERT INTO imagen_especie (
-    especie_id,
-    url
+INSERT INTO contacto (
+    nombre,
+    email,
+    mensaje,
+    leido,
+    respondido
 )
 VALUES
 (
-    1,
-    'https://ejemplo.com/lapacho.jpg'
+    'Carlos Ruiz',
+    'carlos@gmail.com',
+    'Excelente informacion sobre las especies nativas.',
+    FALSE,
+    FALSE
 ),
 (
-    2,
-    'https://ejemplo.com/jarilla.jpg'
+    'Ana Lopez',
+    'ana@gmail.com',
+    'Me gustaria conocer mas sobre las plantas de Cordoba.',
+    FALSE,
+    FALSE
+),
+(
+    'Pedro Martinez',
+    'pedro@gmail.com',
+    'La aplicacion resulta muy util para estudiantes.',
+    TRUE,
+    FALSE
 );
-
